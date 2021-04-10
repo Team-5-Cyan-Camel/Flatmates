@@ -17,6 +17,20 @@ function App() {
         <p>Flatmates</p>
 
         {/* Add username password fields here */}
+        <form>
+          {/* <label for="username">Username:</label> */}
+          <input type="text" name="username" placeholder="Username" />
+          <br></br>
+          {/* <label for="password">Password: </label> */}
+          <input
+            type="password"
+            id="lname"
+            name="lname"
+            placeholder="Password"
+          />
+          <br></br>
+          <input type="submit" value="Login" />
+        </form>
 
         <p>
           Or if you don't have an account,{" "}
