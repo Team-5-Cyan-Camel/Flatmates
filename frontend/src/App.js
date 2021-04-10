@@ -1,10 +1,5 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SignUp from "./Components/SignUp";
 
@@ -30,6 +25,8 @@ function App() {
 
     // then if wanted, remove pasword stored
     setPassword(undefined);
+
+    return <Redirect to="/code" />;
   };
 
   const cancelSignup = () => {
@@ -62,6 +59,7 @@ function App() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <br></br>
+          <link></link>
           <input type="submit" value="Login" />
         </form>
 
