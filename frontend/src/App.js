@@ -9,10 +9,12 @@ import { useState, useEffect } from "react";
 import SignUp from "./Components/SignUp";
 
 function App() {
+  // obj to be populated on successful signup
   let [userObj, setObj] = useState(undefined);
   let [user, setUser] = useState(undefined);
   let [password, setPassword] = useState(undefined);
 
+  // boolean for showing signup
   let [register, setSignup] = useState(false);
 
   const onSubmit = (e) => {
@@ -30,7 +32,7 @@ function App() {
     setPassword(undefined);
   };
 
-  const cancel = () => {
+  const cancelSignup = () => {
     setSignup(false);
   };
 
@@ -64,7 +66,9 @@ function App() {
         </form>
 
         {/* modal */}
-        {register && <SignUp dismissOnClickOutside={true} cancel={cancel} />}
+        {register && (
+          <SignUp dismissOnClickOutside={true} cancel={cancelSignup} />
+        )}
         <button onClick={() => setSignup(true)}>Sign Up Here!</button>
       </Route>
 
