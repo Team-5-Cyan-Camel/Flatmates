@@ -14,13 +14,26 @@ function App() {
     <Router>
       {/* path for main page */}
       <Route path="/" exact>
-        <p>Main</p>
-        <Link to="/signup">Signup</Link>
+        <p>Flatmates</p>
+
+        {/* Add username password fields here */}
+
+        <p>
+          Or if you don't have an account,{" "}
+          <Link to="/signup">
+            <b>sign up</b>
+          </Link>{" "}
+          here
+        </p>
       </Route>
 
       {/* path for sign up screen */}
       <Route path="/signup">
         <p>signup</p>
+
+        {/* username field */}
+        {/* password field */}
+        {/* password confirmation */}
       </Route>
 
       {/* path for room code to give */}
