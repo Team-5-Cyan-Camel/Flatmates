@@ -20,6 +20,7 @@ function App() {
   // boolean for showing signup
   let [register, setSignup] = useState(false);
 
+
   const login = (e) => {
     e.preventDefault();
     console.log("check login");
@@ -41,10 +42,16 @@ function App() {
     // need to check if room code exist
   };
 
+  const history = useHistory();
+
   const GenerateRoom = () => {
     // sends request to generate a room
     // redirects to the room with the code
     console.log("generate room");
+
+    // at api call, go to room
+    return <Redirect to='/room/TEST'  />
+    // history.push('/room/TEST');
   };
 
   const cancelSignup = () => {
