@@ -1,10 +1,10 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
-import SignUp from "./Components/SignUp";
-import Login from "./Components/Login";
-import GenerateRoom from "./Components/GenerateRoom";
-import JoinRoom from "./Components/JoinRoom";
+import SignUp from "./Components/Account/SignUp";
+import Login from "./Components/Account/Login";
+import GenerateRoom from "./Components/Code/GenerateRoom";
+import JoinRoom from "./Components/Code/JoinRoom";
 
 function App() {
   // obj to be populated on successful signup
