@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+require('dotenv').config({path: __dirname + '/.env'})
 
 var indexRouter = require('./routes/index');
 var roomRouter = require('./routes/room');
@@ -12,7 +13,7 @@ var rosterRouter = require('./routes/roster');
 
 var app = express();
 
-mongoose.connect(`mongodb+srv://${proc.env.MONGODB_USERNAME}:${proc.env.MONGODB_PASSWORD}@flatmates-database-dev.lwm8u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@flatmates-database-dev.lwm8u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
