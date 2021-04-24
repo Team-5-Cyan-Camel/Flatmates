@@ -1,21 +1,33 @@
 import ReactDOM from "react-dom";
 import styles from "./SignUp.module.css";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { FaTimes as Cross } from "react-icons/fa";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const SignUp = ({ cancel }) => {
-  let [user, setUser] = useState(undefined);
-  let [password, setPassword] = useState(undefined);
-  let [passwordC, setPasswordC] = useState(undefined);
+const SignUp = ({ cancel, setObj }) => {
+  const history = useHistory();
+  let [user, setUser] = useState("");
+  let [password, setPassword] = useState("");
+  let [passwordC, setPasswordC] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
     console.log("Creating account");
     // // check if passwords are the same
-    if (password === passwordC) {
-      //   check if username is legit
+    if (user !== "" && password !== "" && password === passwordC) {
+      //   check if username is unique
+      // if unique
+
+      //set userObj made from db
+      // setObj(userObj);
+
+      //call cancel to reset state
+      cancel();
+
+      //change location
+      history.push("/code");
     }
   };
 
