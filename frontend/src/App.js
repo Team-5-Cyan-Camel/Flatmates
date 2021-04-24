@@ -4,10 +4,11 @@ import {
   Route,
   Redirect,
   Link,
-  useHistory,
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SignUp from "./Components/SignUp";
+import GenerateRoom from "./Components/GenerateRoom";
+import JoinRoom from "./Components/JoinRoom";
 
 function App() {
   // obj to be populated on successful signup
@@ -15,11 +16,8 @@ function App() {
   let [user, setUser] = useState(undefined);
   let [password, setPassword] = useState(undefined);
 
-  let [code, setCode] = useState(undefined);
-
   // boolean for showing signup
   let [register, setSignup] = useState(false);
-
 
   const login = (e) => {
     e.preventDefault();
@@ -34,24 +32,6 @@ function App() {
 
     // then if wanted, remove pasword stored
     setPassword(undefined);
-  };
-
-  const joinRoom = (e) => {
-    console.log("Join provided room");
-    e.preventDefault();
-    // need to check if room code exist
-  };
-
-  const history = useHistory();
-
-  const GenerateRoom = () => {
-    // sends request to generate a room
-    // redirects to the room with the code
-    console.log("generate room");
-
-    // at api call, go to room
-    return <Redirect to='/room/TEST'  />
-    // history.push('/room/TEST');
   };
 
   const cancelSignup = () => {
@@ -99,19 +79,8 @@ function App() {
 
       {/* path for room code to give */}
       <Route path="/code" exact>
-        <button onClick={GenerateRoom}>Generate a new room</button>
-        <form onSubmit={joinRoom}>
-          <h3>or join a room</h3>
-          <input
-            type="text"
-            name="code"
-            placeholder="Enter Code here"
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-          />
-          <br />
-          <input type="submit" value="Join Room!" />
-        </form>
+        <GenerateRoom />
+        <JoinRoom />
       </Route>
 
       {/* path for room screen */}
