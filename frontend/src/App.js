@@ -1,10 +1,5 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SignUp from "./Components/SignUp";
 import Login from "./Components/Login";
@@ -27,10 +22,15 @@ function App() {
       {/* path for main page */}
       <h1>Flatmates</h1>
       <Route path="/" exact>
-        <Login />
-        {/* modal */}
+        <Login setObj={setObj} />
+
+        {/* modal for login*/}
         {register && (
-          <SignUp dismissOnClickOutside={true} cancel={cancelSignup} />
+          <SignUp
+            dismissOnClickOutside={true}
+            cancel={cancelSignup}
+            setObj={setObj}
+          />
         )}
         <button onClick={() => setSignup(true)}>Sign Up Here!</button>
       </Route>

@@ -8,9 +8,12 @@ const JoinRoom = () => {
   const joinRoom = (e) => {
     console.log("Join provided room");
     e.preventDefault();
-    // need to check if room code exist
-    // if does
-    history.push("/room/" + code);
+    // check if code is set
+    if (code !== undefined) {
+      // need to check if room code exist
+      // if does
+      history.push("/room/" + code);
+    }
   };
   return (
     <>
