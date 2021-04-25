@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SignUp from "./Components/Account/SignUp";
+import Settings from "./Components/Account/Settings";
 import Login from "./Components/Account/Login";
 import GenerateRoom from "./Components/Code/GenerateRoom";
 import JoinRoom from "./Components/Code/JoinRoom";
@@ -13,9 +14,14 @@ function App() {
 
   // boolean for showing signup
   let [register, setSignup] = useState(false);
+  let [settings, setSettings] = useState(false);
 
   const cancelSignup = () => {
     setSignup(false);
+  };
+
+  const hideSettings = () => {
+    setSettings(false);
   };
 
   return (
@@ -44,8 +50,9 @@ function App() {
 
       {/* path for room screen */}
       <Route path="/room/:code">
-        <p>Room</p>
-        <NavBar />
+        <NavBar setSettings={setSettings} />
+        {/* modal for user settings*/}
+        {settings && <Settings hideSettings={hideSettings} />}
       </Route>
 
       {/* path for incompatable path */}
