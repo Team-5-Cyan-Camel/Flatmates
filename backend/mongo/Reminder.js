@@ -1,8 +1,6 @@
-import mongoose from 'mongoose';
-
+const mongoose = require('mongoose');
 
 const reminderSchema = mongoose.Schema({
-    _id: mongoose.Types.ObjectId,
     owner: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
@@ -15,4 +13,4 @@ const reminderSchema = mongoose.Schema({
     date: Date
 });
 
-export default mongoose.model('Reminder', reminderSchema);
+module.exports = mongoose.model('Reminder', reminderSchema);

@@ -1,15 +1,15 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-import {rosterSchema} from './Roster';
-import {reminderSchema} from './Reminder';
-import {expenseSchema} from './Expense';
+const rosterSchema =  require('./Roster');
+const reminderSchema =  require('./Reminder');
+const expenseSchema = require('./Expense');
 
 
 const roomSchema = mongoose.Schema({
-    _id: mongoose.Types.ObjectId,
     host: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User'
+        ref: 'User',
+        required: true,
     },
     rosters: {
         type: [rosterSchema]
@@ -26,4 +26,4 @@ const roomSchema = mongoose.Schema({
     }]
 });
 
-export default mongoose.model('Room', roomSchema);
+module.exports = mongoose.model('Room', roomSchema);

@@ -1,8 +1,6 @@
-import mongoose from 'mongoose';
-
+const mongoose = require('mongoose');
 
 const expenseSchema = mongoose.Schema({
-    _id: mongoose.Types.ObjectId,
     identifier: String,
     owner: {
         type: mongoose.Schema.Types.ObjectId, 
@@ -17,4 +15,4 @@ const expenseSchema = mongoose.Schema({
     date: Date
 });
 
-export default mongoose.model('expense', expenseSchema);
+module.exports = mongoose.model('expense', expenseSchema);
