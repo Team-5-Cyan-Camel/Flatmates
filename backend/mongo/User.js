@@ -1,16 +1,28 @@
-const mongoose = require('mongoose');
-
+const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-    socketID: String,
-    username: String, // TODO: should be enforced unique?
-    password: String,
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
     roomCode: String,
-    isHost: Boolean,
+    isHost: {
+        type: Boolean,
+        default: false,
+    },
     contactDetails: String,
     name: String,
     phoneNumber: String,
-    sessionID: String
+    socketID: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Room',
+    },
+    sessionID: String,
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("User", userSchema);
