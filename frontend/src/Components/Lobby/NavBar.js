@@ -16,6 +16,7 @@ const NavBar = ({ setSettings }) => {
   return (
     <>
       <nav>
+        {/* list for features */}
         <ul>
           <li>
             <Link to={"/room/" + code + "/reminder"}>Reminders</Link>
@@ -33,9 +34,19 @@ const NavBar = ({ setSettings }) => {
             <Link to={"/room/" + code + "/message"}>Message Board</Link>
           </li>
         </ul>
-        <button onClick={leave}>Leave Room</button>
-        <button onClick={signOut}>Sign Out</button>
-        <button onClick={() => setSettings(true)}>Settings</button>
+
+        {/* list for actions */}
+        <ul>
+          <li>
+            <button onClick={() => setSettings(true)}>Settings</button>
+          </li>
+          <li>
+            <button onClick={leave}>Leave Room</button>
+          </li>
+          <li>
+            <button onClick={signOut}>Sign Out</button>
+          </li>
+        </ul>
       </nav>
     </>
   );
