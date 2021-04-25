@@ -5,6 +5,7 @@ import SignUp from "./Components/Account/SignUp";
 import Login from "./Components/Account/Login";
 import GenerateRoom from "./Components/Code/GenerateRoom";
 import JoinRoom from "./Components/Code/JoinRoom";
+import NavBar from "./Components/Lobby/NavBar";
 
 function App() {
   // obj to be populated on successful signup
@@ -42,8 +43,9 @@ function App() {
       </Route>
 
       {/* path for room screen */}
-      <Route path="/room/:code" exact>
-        <p>room</p>
+      <Route path="/room/:code">
+        <p>Room</p>
+        <NavBar />
       </Route>
 
       {/* path for incompatable path */}
