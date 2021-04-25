@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 
 const userSchema = mongoose.Schema({
@@ -14,4 +14,4 @@ const userSchema = mongoose.Schema({
     sessionID: String
 });
 
-export default mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);
