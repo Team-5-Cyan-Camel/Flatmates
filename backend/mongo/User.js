@@ -10,18 +10,18 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    roomCode: String,
     isHost: {
         type: Boolean,
         default: false,
     },
-    contactDetails: String,
-    name: String,
-    phoneNumber: String,
-    socketID: {
+    roomCode: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Room',
     },
+    contactDetails: String,
+    name: String,
+    phoneNumber: String,
+    socketID: String,
     sessionID: String,
 });
 
