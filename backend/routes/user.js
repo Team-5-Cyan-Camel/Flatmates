@@ -17,7 +17,7 @@ router.post("/register", async function (req, res, next) {
   let user;
   try {
     user = await newUser.save();
-    await setSessionCookie(req, res, user._id);
+    await setSessionCookie(req, res, user);
     return res.status(201).json(user);
   } catch (err) {
     return res.status(500).json({ message: err.message });
@@ -28,7 +28,7 @@ router.post("/register", async function (req, res, next) {
 router.post("/login", async function (req, res, next) {
   // Obtain user
   let user;
-  try{
+  try {
     user = await User.findOne({
       username: req.body.username,
       password: req.body.password
@@ -36,15 +36,15 @@ router.post("/login", async function (req, res, next) {
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  
+
   // If user does not exist, credentials were incorrect
-  if(user === null) {
+  if (user === null) {
     return res.status(401).json({ message: "Incorrect username or password" });
   }
 
   // Setting cookies
   try {
-    await setSessionCookie(req, res, user._id);
+    await setSessionCookie(req, res, user);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
@@ -56,17 +56,19 @@ router.post("/login", async function (req, res, next) {
   });
 });
 
-async function setSessionCookie(req, res, id) {
+async function setSessionCookie(req, res, user) {
   return new Promise(async (resolve) => {
     // Creating and setting new cookie
-    let cookie = req.cookies.sessionID;
-    if (cookie === undefined) {
+    let frontCookie = req.cookies.sessionID;
+    let backCookie = user.sessionID;
+
+    if (frontCookie !== backCookie) {
       let newCookie = uuid.v4()
       // Setting for frontend response
       res.cookie('sessionID', newCookie, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
       // Setting for database
       await User.updateOne(
-        { _id: id },
+        { _id: user._id },
         { $set: { sessionID: newCookie } },
       );
     }
