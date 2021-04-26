@@ -1,19 +1,21 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const taskSchema = require('./Task');
+const taskSchema = require("./Task").schema;
 
 const rosterSchema = mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
+  title: {
+    type: String,
+    required: true,
+  },
+  tasks: {
+    type: [taskSchema],
+  },
+  assignedUsers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
-    tasks: {
-        type: [taskSchema]
-    },
-    assignedUsers: [{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User'
-    }]
+  ],
 });
 
-module.exports = mongoose.model('Roster', rosterSchema);
+module.exports = mongoose.model("Roster", rosterSchema);
