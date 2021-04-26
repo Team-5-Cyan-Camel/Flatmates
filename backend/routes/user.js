@@ -18,7 +18,7 @@ router.post("/register", async function (req, res, next) {
   try {
     user = await newUser.save();
     await setSessionCookie(req, res, user._id);
-    return res.status(200).json(user);
+    return res.status(201).json(user);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
@@ -39,7 +39,7 @@ router.post("/login", async function (req, res, next) {
   
   // If user does not exist, credentials were incorrect
   if(user === null) {
-    return res.status(403).json({ message: "Incorrect username or password" });
+    return res.status(401).json({ message: "Incorrect username or password" });
   }
 
   // Setting cookies
