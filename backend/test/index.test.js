@@ -2,7 +2,7 @@ const request = require("supertest");
 const app = require("../app");
 
 beforeAll(async () => {
-  await sleep(2000)
+  await sleep(1000)
 });
 
 function sleep(ms) {
