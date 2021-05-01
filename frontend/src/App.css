@@ -36,3 +36,140 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+/* Commons */
+.Title {
+  position: absolute;
+  color: white;
+  font-family: monospace;
+  margin: 1vw;
+  font-size: 2rem;
+}
+
+.BackGroundImage {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.411), rgba(0, 0, 0, 0.432)), url('https://i.imgur.com/grylMfV.png'); 
+  background-color: #b8b8b8;
+
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
+  background-position: center;
+  
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+
+.MakeCentre {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+/* StartPage */
+.StartTitle {
+  color: white;
+  font-size: 5rem;
+  font-family: monospace;
+
+  margin: 0;
+  margin-bottom: 3rem;
+  
+}
+
+
+
+.GoButton {
+  cursor: pointer;
+  outline: none;
+  font-size: 1.3em !important;
+  border-radius: 0.5rem;
+  border-color: black !important;
+  border-width: 1.5px !important;
+
+  background-color: #696969 !important;
+  white-space: nowrap;
+  height: 60%;
+  margin: 1.5em;
+  margin-top: 2em;
+}
+
+.GoButton:hover {
+  background: #a7a7a7 !important;
+}
+
+#Card-field {
+  background-color: #64676e;
+  color: white;
+}
+
+#Card-Header {
+  background-color: #454549;
+  color: white;
+}
+
+
+.AccountInputField {
+  outline: none;
+  background-color: #424141;
+  color: rgb(196, 189, 189);
+  width: 100%;
+  border-radius: 0.2rem;
+  border: 1.5px solid black;
+  font-size: 2rem;
+  margin-bottom: 1vw;
+  padding-left: 0.4em;
+
+}
+
