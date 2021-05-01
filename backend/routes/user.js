@@ -62,7 +62,7 @@ async function setSessionCookie(req, res, user) {
     let frontCookie = req.cookies.sessionID;
     let backCookie = user.sessionID;
 
-    if (frontCookie !== backCookie) {
+    if (frontCookie !== backCookie || backCookie===null || backCookie === undefined) {
       let newCookie = uuid.v4()
       // Setting for frontend response
       res.cookie('sessionID', newCookie, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
