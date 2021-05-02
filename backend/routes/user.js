@@ -56,6 +56,16 @@ router.post("/login", async function (req, res, next) {
   });
 });
 
+/* POST user logout */
+router.post("/logout", async function (req, res, next) {
+  await User.updateOne(
+    { sessionID: req.cookies.sessionID },
+    { $set: { sessionID: null } },
+  );
+  res.clearCookie('sessionID');
+  res.status(200).send();
+});
+
 async function setSessionCookie(req, res, user) {
   return new Promise(async (resolve) => {
     // Creating and setting new cookie
