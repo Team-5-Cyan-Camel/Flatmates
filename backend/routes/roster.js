@@ -5,7 +5,6 @@ var Room = require('../mongo/Room');
 var Roster = require('../mongo/Roster');
 const Task = require("../mongo/Task");
 
-
 /* POST new roster. */
 router.post("/", getUser, getRoom, async function (req, res, next) {
   const newRoster = new Roster({
@@ -18,10 +17,11 @@ router.post("/", getUser, getRoom, async function (req, res, next) {
   try {
     req.room.rosters.push(newRoster);
     room = await req.room.save();
-    return res.status(200).json(room);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
+  res.status(200).json(room);
+  socketRosterUpdate(room._id, room.rosters);
 });
 
 /* DELETE specified roster. */
@@ -33,7 +33,8 @@ router.delete("/", getUser, getRoom, getRoster, async function (req, res, next) 
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  return res.status(200).json(room);
+  res.status(200).json(room);
+  socketRosterUpdate(room._id, room.rosters);
 });
 
 /* PATCH rotate a specified roster. */
@@ -47,6 +48,7 @@ router.patch("/rotate", getUser, getRoom, getRoster, async function (req, res, n
     return res.status(500).json({ message: err.message });
   }
   res.status(200).json(room);
+  socketRosterUpdate(room._id, room.rosters);
 });
 
 /* POST add a new task to a roster. */
@@ -68,10 +70,11 @@ router.post("/task", getUser, getRoom, getRoster, async function (req, res, next
   try {
     req.roster.tasks.push(newTask);
     room = await req.room.save();
-    return res.status(200).json(room);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
+  res.status(200).json(room);
+  socketRosterUpdate(room._id, room.rosters);
 });
 
 /* DELETE remove task from roster. */
@@ -83,8 +86,13 @@ router.delete("/task", getUser, getRoom, getRoster, async function (req, res, ne
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  return res.status(200).json(room);
+  res.status(200).json(room);
+  socketRosterUpdate(room._id, room.rosters);
 });
+
+function socketRosterUpdate(roomID, roster){
+  global.io.to(roomID).emit('roster_update', roster);
+}
 
 async function getUser(req, res, next) {
   req.user = await User.findOne({ sessionID: req.cookies.sessionID });
