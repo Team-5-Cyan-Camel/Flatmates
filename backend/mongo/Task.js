@@ -7,15 +7,10 @@ const taskSchema = mongoose.Schema({
     },
     description: {
         type: String,
-        required: true,
     },
     userIndex: {
         type: Number,
     },
-    assignedUsers: [{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User'
-    }],
     dueType: {
         type: String
     },

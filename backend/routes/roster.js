@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../mongo/User');
 var Room = require('../mongo/Room');
 var Roster = require('../mongo/Roster');
+const Task = require("../mongo/Task");
 
 
 /* POST new roster. */
@@ -25,29 +26,64 @@ router.post("/", getUser, getRoom, async function (req, res, next) {
 
 /* DELETE specified roster. */
 router.delete("/", getUser, getRoom, getRoster, async function (req, res, next) {
+  let room;
   try {
     req.room.rosters.pull({ _id: req.body.rosterID });
-    await req.room.save();
+    room = await req.room.save();
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  return res.status(200).json({ message: "Successfully deleted" });
-
+  return res.status(200).json(room);
 });
 
 /* PATCH rotate a specified roster. */
-router.patch("/rotate", function (req, res, next) {
-  res.status(200).send("roster successfully rotated");
+router.patch("/rotate", getUser, getRoom, getRoster, async function (req, res, next) {
+  let lastUser = req.roster.assignedUsers.pop();
+  req.roster.assignedUsers.unshift(lastUser);
+  let room;
+  try {
+    room = await req.room.save();
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+  res.status(200).json(room);
 });
 
 /* POST add a new task to a roster. */
-router.delete("/task", function (req, res, next) {
-  res.status(201).json({ taskID: "asdh" });
+router.post("/task", getUser, getRoom, getRoster, async function (req, res, next) {
+  var userIndex = req.roster.assignedUsers.indexOf(req.body.assignedUserID);
+  if(userIndex===-1){
+    return res.status(500).json({ message: "Could not find user in assignedUsers" });
+  }
+
+  const newTask = new Task({
+    title: req.body.title,
+    description: req.body.description,
+    userIndex: userIndex,
+    dueType: req.body.dueTupe,
+    due: req.body.due
+  });
+
+  let room;
+  try {
+    req.roster.tasks.push(newTask);
+    room = await req.room.save();
+    return res.status(200).json(room);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
 });
 
 /* DELETE remove task from roster. */
-router.delete("/task", function (req, res, next) {
-  res.status(200).send("task successfully deleted");
+router.delete("/task", getUser, getRoom, getRoster, async function (req, res, next) {
+  let room;
+  try {
+    req.roster.tasks.pull({ _id: req.body.taskID });
+    room = await req.room.save();
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+  return res.status(200).json(room);
 });
 
 async function getUser(req, res, next) {
