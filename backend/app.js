@@ -13,7 +13,14 @@ var rosterRouter = require("./routes/roster");
 
 var app = express();
 
-var mongoUri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@flatmates-database-dev.lwm8u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+let mongodbDatabase;
+if(process.env.NODE_ENV==="test"){
+  mongodbDatabase = "testDatabase";
+}else{
+  mongodbDatabase = "myFirstDatabase";
+}
+
+var mongoUri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@flatmates-database-dev.lwm8u.mongodb.net/${mongodbDatabase}?retryWrites=true&w=majority`;
 
 mongoose.connect(
   mongoUri,

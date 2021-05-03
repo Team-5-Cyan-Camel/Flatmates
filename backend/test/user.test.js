@@ -6,7 +6,7 @@ const User = require('../mongo/User');
 beforeAll(async () => {
     await sleep(1000)
     // Need to delete previous test registration
-    let mongoUri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@flatmates-database-dev.lwm8u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+    let mongoUri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@flatmates-database-dev.lwm8u.mongodb.net/testDatabase?retryWrites=true&w=majority`;
     await mongoose.connect(
         mongoUri,
         { useNewUrlParser: true, useUnifiedTopology: true },
