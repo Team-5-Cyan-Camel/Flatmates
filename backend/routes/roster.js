@@ -54,7 +54,7 @@ router.patch("/rotate", getUser, getRoom, getRoster, async function (req, res, n
 /* POST add a new task to a roster. */
 router.post("/task", getUser, getRoom, getRoster, async function (req, res, next) {
   var userIndex = req.roster.assignedUsers.indexOf(req.body.assignedUserID);
-  if(userIndex===-1){
+  if (userIndex === -1) {
     return res.status(500).json({ message: "Could not find user in assignedUsers" });
   }
 
@@ -90,8 +90,11 @@ router.delete("/task", getUser, getRoom, getRoster, async function (req, res, ne
   socketRosterUpdate(room._id, room.rosters);
 });
 
-function socketRosterUpdate(roomID, roster){
-  global.io.to(roomID).emit('roster_update', roster);
+function socketRosterUpdate(roomID, roster) {
+  if (global.io) {
+    roomID = JSON.stringify(roomID).replace(/(^")|("$)/g, "");
+    global.io.in(roomID).emit('roster_update', roster);
+  }
 }
 
 async function getUser(req, res, next) {
