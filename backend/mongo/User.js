@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Room',
     },
-    contactDetails: String,
+    email: String,
     name: String,
     phoneNumber: String,
     socketID: String,

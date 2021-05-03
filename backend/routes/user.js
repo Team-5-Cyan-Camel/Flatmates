@@ -8,7 +8,7 @@ router.post("/register", async function (req, res, next) {
   const newUser = new User({
     username: req.body.username,
     password: req.body.password,
-    contactDetails: req.body.contactDetails,
+    email: req.body.email,
     name: req.body.name,
     phoneNumber: req.body.phoneNumber
   });
