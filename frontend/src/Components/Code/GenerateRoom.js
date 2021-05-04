@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 
 const GenerateRoom = () => {
   const history = useHistory();
@@ -17,7 +18,11 @@ const GenerateRoom = () => {
 
   return (
     <>
-      <button onClick={MakeRoom}>Generate a new room</button>
+                  <Button
+                    onClick={MakeRoom}
+                    className='GoButton'
+
+                  >Generate</Button>
     </>
   );
 };

@@ -1,4 +1,6 @@
 import { Link, useHistory, useParams } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+
 
 const NavBar = ({ setSettings }) => {
   const history = useHistory();
@@ -15,37 +17,36 @@ const NavBar = ({ setSettings }) => {
   };
   return (
     <>
-      <nav>
+
+      <nav class="topnav" style={{ display:'flex' }}>
         {/* list for features */}
         <ul>
-          <li>
+          <a>
             <Link to={"/room/" + code + "/reminder"}>Reminders</Link>
-          </li>
+          </a>
 
-          <li>
+          <a>
             <Link to={"/room/" + code + "/roster"}>Roster</Link>
-          </li>
+          </a>
 
-          <li>
+          <a>
             <Link to={"/room/" + code + "/budget"}>Message Budget</Link>
-          </li>
+          </a>
 
-          <li>
+          <a>
             <Link to={"/room/" + code + "/message"}>Message Board</Link>
-          </li>
+          </a>
         </ul>
 
         {/* list for actions */}
-        <ul>
-          <li>
-            <button onClick={() => setSettings(true)}>Settings</button>
-          </li>
-          <li>
-            <button onClick={leave}>Leave Room</button>
-          </li>
-          <li>
-            <button onClick={signOut}>Sign Out</button>
-          </li>
+        <ul style={{ marginLeft:'3rem' }}>
+
+            <Button className='navbutton' onClick={() => setSettings(true)}>Settings</Button>
+
+            <Button className='navbutton' onClick={leave}>Leave Room</Button>
+
+            <Button className='navbutton' onClick={signOut}>Sign Out</Button>
+
         </ul>
       </nav>
     </>

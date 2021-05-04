@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+import Button from 'react-bootstrap/Button';
+
+
 const JoinRoom = () => {
   const history = useHistory();
   let [code, setCode] = useState(undefined);
@@ -18,17 +21,21 @@ const JoinRoom = () => {
   return (
     <>
       <form onSubmit={joinRoom}>
-        <h3>or join a room</h3>
-        <input
+        <h3>Join Room</h3>
+        <input class = 'AccountInputField'
           type="text"
           name="code"
-          placeholder="Enter Code here"
+          placeholder="Enter Code"
           value={code}
           onChange={(e) => setCode(e.target.value)}
         />
         <br />
-        <input type="submit" value="Join Room!" />
+        <input className='GoButton' type="submit" value="Join Room!" />
       </form>
+      <Button
+
+className='GoButton'
+>Join</Button>
     </>
   );
 };
