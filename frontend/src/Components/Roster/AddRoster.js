@@ -9,12 +9,12 @@ import Button from "react-bootstrap/Button";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const AddRoster = () => {
+const AddRoster = ({ show }) => {
   let [chore, setChore] = useState("");
 
   return ReactDOM.createPortal(
     <div className={styles.modalContainer}>
-      {/* <div className={styles.form}>
+      <div className={styles.form}>
         <Card
           id="Card-field"
           style={{
@@ -29,7 +29,7 @@ const AddRoster = () => {
             style={{ width: "100%" }}
           >
             {" "}
-            Add Roster <Cross />
+            Add Roster <Cross onClick={() => show(false)} />
           </Card.Header>
 
           <Card.Body
@@ -51,10 +51,10 @@ const AddRoster = () => {
               />
               <br></br>
             </form>
-            <Button className="GoButton">Create Chore</Button>
+            <Button className="GoButton">Create Roster</Button>
           </Card.Body>
         </Card>
-      </div> */}
+      </div>
     </div>,
     modalRoot
   );

@@ -11,37 +11,37 @@ const SelectRoster = ({ rosters, setRoster }) => {
 
   return (
     <>
-      {rosters !== "undefined" && (
-        <Card
-          id="Card-field"
+      {/* {rosters !== "undefined" && ( */}
+      <Card
+        id="Card-field"
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Card.Body
           style={{
+            display: "Flex",
             alignItems: "center",
             justifyContent: "center",
+            width: "90%",
           }}
         >
-          <Card.Body
-            style={{
-              display: "Flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "90%",
-            }}
-          >
-            {/* <div class='topnav' style={{display: 'flex'}}> */}
-            {rosters !== undefined &&
-              rosters.map((e) => [
-                <Button className="GoButton" onClick={() => setRoster(e.title)}>
-                  {e.title}
-                </Button>,
-              ])}
-            <Button className="GoButton" onClick={setMakeRoster(true)}>
-              Add+
-            </Button>
-            {/* </div> */}
-          </Card.Body>
-        </Card>
-      )}
-      {/* {makeRoster && <AddRoster />} */}
+          {/* <div class='topnav' style={{display: 'flex'}}> */}
+          {rosters !== "undefined" &&
+            rosters.map((e) => [
+              <Button className="GoButton" onClick={() => setRoster(e.title)}>
+                {e.title}
+              </Button>,
+            ])}
+          <Button className="GoButton" onClick={() => setMakeRoster(true)}>
+            Add+
+          </Button>
+          {/* </div> */}
+        </Card.Body>
+      </Card>
+      {/* )} */}
+      {makeRoster && <AddRoster show={setMakeRoster} />}
     </>
   );
 };
