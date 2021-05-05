@@ -7,8 +7,7 @@ var router = express.Router();
 router.post("/", async function (req, res, next) {
   const user = await getUserOfCookie(req, res);
 
-  if (user.roomCode != null) {
-    // TODO: should this ever happen, frontend can prevent this??
+  if (!user.roomCode) {
     return res
       .status(403)
       .json({ message: "Must leave current room before creating another" });
@@ -49,8 +48,7 @@ router.post("/join", async function (req, res, next) {
       .status(400)
       .json({ message: "bad request, missing room code to join" });
   }
-  if (user.roomCode != null) {
-    // TODO: should this ever happen, frontend can prevent this??
+  if (!user.roomCode) {
     return res
       .status(403)
       .json({ message: "Must leave current room before joining another" });
@@ -74,9 +72,7 @@ router.post("/join", async function (req, res, next) {
 /* PACH room details and remove the user from the room, if they are not host */
 router.patch("/leave", async function (req, res, next) {
   const user = await getUserOfCookie(req, res);
-  if (user.roomCode === null) {
-    // TODO: should this ever happen, frontend can prevent this??
-    // TODO: is this 403, since user leaving room when not in one, vs forbidden to join one
+  if (!user.roomCode) {
     return res
       .status(403)
       .json({ message: "User is not currently a member of any room" });
@@ -104,9 +100,7 @@ router.patch("/leave", async function (req, res, next) {
 /* GET all information for a room */
 router.get("/", async function (req, res, next) {
   const user = await getUserOfCookie(req, res);
-  if (user.roomCode === null) {
-    // TODO: should this ever happen, frontend can prevent this??
-    // TODO: is this 403, since user leaving room when not in one, vs forbidden to join one
+  if (!user.roomCode) {
     return res
       .status(403)
       .json({ message: "User is not currently a member of any room" });
@@ -125,9 +119,7 @@ router.get("/", async function (req, res, next) {
 /* DELETE a room, only the host may do this */
 router.delete("/", async function (req, res, next) {
   const user = await getUserOfCookie(req, res);
-  if (user.roomCode === null) {
-    // TODO: should this ever happen, frontend can prevent this??
-    // TODO: is this 403, since user leaving room when not in one, vs forbidden to join one
+  if (!user.roomCode) {
     return res
       .status(403)
       .json({ message: "User is not currently a member of any room" });
@@ -168,9 +160,7 @@ router.delete("/", async function (req, res, next) {
 /* PACH room details and remove the user from the room, if they are not host */
 router.patch("/kick", async function (req, res, next) {
   const user = await getUserOfCookie(req, res);
-  if (user.roomCode === null) {
-    // TODO: should this ever happen, frontend can prevent this??
-    // TODO: is this 403, since user leaving room when not in one, vs forbidden to join one
+  if (!user.roomCode) {
     return res
       .status(403)
       .json({ message: "User is not currently a member of any room" });
