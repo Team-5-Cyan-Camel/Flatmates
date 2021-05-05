@@ -53,7 +53,7 @@ router.patch("/rotate", getUser, getRoom, getRoster, async function (req, res, n
 
 /* POST add a new task to a roster. */
 router.post("/task", getUser, getRoom, getRoster, async function (req, res, next) {
-  var userIndex = req.roster.assignedUsers.map((e)=> { return e._id }).indexOf(req.body.assignedUserID);
+  var userIndex = req.roster.assignedUsers.map((e) => { return e._id }).indexOf(req.body.assignedUserID);
   if (userIndex === -1) {
     return res.status(500).json({ message: "Could not find user in assignedUsers" });
   }
@@ -112,8 +112,8 @@ async function getRoom(req, res, next) {
     return res.status(403).json({ message: "Not in a room" })
   }
   req.room = await Room.findOne({ _id: req.user.roomCode })
-  .populate("users", "_id username name")
-  .populate("rosters.assignedUsers", "_id username name");
+    .populate("users", "_id username name")
+    .populate("rosters.assignedUsers", "_id username name");
   if (!req.room) {
     return res.status(404).json({ message: "Room not found" })
   } else {
