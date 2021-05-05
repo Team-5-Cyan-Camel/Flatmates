@@ -111,6 +111,7 @@ describe("Tests the endpoints dealing with room when not loggied in", () => {
 // test login group
 describe("Tests the endpoints dealing with room when loggied in", () => {
   let cookie;
+  let code;
   beforeAll(async () => {
     // login
     const req = {
@@ -123,6 +124,7 @@ describe("Tests the endpoints dealing with room when loggied in", () => {
       .set("Accept", "application/json");
 
     cookie = res.header["set-cookie"];
+    code = res.body.roomCode;
   });
 
   //   beforeEach()(async () => {
@@ -186,6 +188,69 @@ describe("Tests the endpoints dealing with room when loggied in", () => {
       done();
     });
 
+    test("POST join room", async (done) => {
+      // 2nd user joins the room
+      // (created by the default user used in the tests)
+      const [res, secondUsrCookie] = await joinRoom();
+
+      expect(res.statusCode).toBe(200);
+      done();
+    });
+
+    test("PATCH leave room", async (done) => {
+      const [res, secondUsrCookie] = await joinRoom();
+
+      var req2 = {};
+      var res2 = await request(app)
+        .patch("/room/leave")
+        .set("Cookie", secondUsrCookie)
+        .send(req2)
+        .set("Accept", "application/json");
+
+      expect(res2.body.message).toBe("x");
+      expect(res2.statusCode).toBe(200);
+      done();
+    });
+
+    test("PATCH kick a user from room", async (done) => {
+      const [res, secondUsrCookie] = await joinRoom();
+
+      // original user kicks the 2nd user
+      var req2 = { username: "roomTestsAccount2-username" };
+      var res2 = await request(app)
+        .patch("/room/kick")
+        .set("Cookie", cookie)
+        .send(req2)
+        .set("Accept", "application/json");
+
+      expect(res2.body.message).toBe("x");
+      expect(res2.statusCode).toBe(200);
+      done();
+    });
+
+    async function joinRoom() {
+      let cookieUsr2;
+      var reqLogin = {
+        username: "roomTestsAccount2-username",
+        password: "roomTestsAccount2-password",
+      };
+      var resLogin = await request(app)
+        .post("/user/login")
+        .send(reqLogin)
+        .set("Accept", "application/json");
+
+      cookieUsr2 = resLogin.header["set-cookie"];
+
+      var req = { roomCode: code };
+      var res = await request(app)
+        .post("/room/join")
+        .set("Cookie", cookieUsr2)
+        .send(req)
+        .set("Accept", "application/json");
+
+      return [res, cookieUsr2];
+    }
+
     afterEach(async () => {
       const req = {};
       const res = await request(app)
@@ -194,9 +259,5 @@ describe("Tests the endpoints dealing with room when loggied in", () => {
         .send(req)
         .set("Accept", "application/json");
     });
-  });
-
-  afterAll(async () => {
-    // logout here (cant until functionality for doing so exists)
   });
 });

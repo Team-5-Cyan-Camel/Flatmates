@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-var User = require('../mongo/User');
-var uuid = require('uuid')
+var User = require("../mongo/User");
+var uuid = require("uuid");
 
 /* POST user register. */
 router.post("/register", async function (req, res, next) {
@@ -10,7 +10,7 @@ router.post("/register", async function (req, res, next) {
     password: req.body.password,
     email: req.body.email,
     name: req.body.name,
-    phoneNumber: req.body.phoneNumber
+    phoneNumber: req.body.phoneNumber,
   });
 
   // Saving user and setting cookies
@@ -31,8 +31,8 @@ router.post("/login", async function (req, res, next) {
   try {
     user = await User.findOne({
       username: req.body.username,
-      password: req.body.password
-    })
+      password: req.body.password,
+    });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
@@ -52,7 +52,7 @@ router.post("/login", async function (req, res, next) {
   // Creating response
   return res.status(200).json({
     inRoom: user.roomCode ? true : false,
-    roomCode: user.roomCode
+    roomCode: user.roomCode,
   });
 });
 
@@ -60,9 +60,9 @@ router.post("/login", async function (req, res, next) {
 router.post("/logout", async function (req, res, next) {
   await User.updateOne(
     { sessionID: req.cookies.sessionID },
-    { $set: { sessionID: null } },
+    { $set: { sessionID: null } }
   );
-  res.clearCookie('sessionID');
+  res.clearCookie("sessionID");
   res.status(200).send();
 });
 
@@ -72,14 +72,21 @@ async function setSessionCookie(req, res, user) {
     let frontCookie = req.cookies.sessionID;
     let backCookie = user.sessionID;
 
-    if (frontCookie !== backCookie || backCookie===null || backCookie === undefined) {
-      let newCookie = uuid.v4()
+    if (
+      frontCookie !== backCookie ||
+      backCookie === null ||
+      backCookie === undefined
+    ) {
+      let newCookie = uuid.v4();
       // Setting for frontend response
-      res.cookie('sessionID', newCookie, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
+      res.cookie("sessionID", newCookie, {
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+      });
       // Setting for database
       await User.updateOne(
         { _id: user._id },
-        { $set: { sessionID: newCookie } },
+        { $set: { sessionID: newCookie } }
       );
     }
     resolve();
