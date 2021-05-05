@@ -17,72 +17,74 @@ const AddTask = ({ show }) => {
 
   return ReactDOM.createPortal(
     <div className={styles.modalContainer}>
-      <Card
-        id="Card-field"
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Card.Header
-          as="h5"
-          id="Card-Header"
-          className="text-center"
-          style={{ width: "100%" }}
-        >
-          {" "}
-          Add Task <Cross onClick={() => show(false)} />
-        </Card.Header>
-
-        <Card.Body
+      <div className={styles.form}>
+        <Card
+          id="Card-field"
           style={{
-            display: "Grid",
             alignItems: "center",
             justifyContent: "center",
-            width: "90%",
           }}
         >
-          <form>
-            <input
-              class="TaskInputField"
-              type="text"
-              name="Title"
-              placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <br></br>
-            <input
-              class="TaskInputField"
-              type="text"
-              name="Description"
-              placeholder="Description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-            <br></br>
-            <input
-              class="TaskInputField"
-              type="text"
-              name="DueType"
-              placeholder="Due Type"
-              value={dueType}
-              onChange={(e) => setDueType(e.target.value)}
-            />
-            <br></br>
-            <input
-              class="TaskInputField"
-              type="text"
-              name="Due"
-              placeholder="Due"
-              value={due}
-              onChange={(e) => setDue(e.target.value)}
-            />
-            <br></br>
-          </form>
-          <Button className="GoButton">Create Task</Button>
-        </Card.Body>
-      </Card>
+          <Card.Header
+            as="h5"
+            id="Card-Header"
+            className="text-center"
+            style={{ width: "100%" }}
+          >
+            {" "}
+            Add Task <Cross onClick={() => show(false)} />
+          </Card.Header>
+
+          <Card.Body
+            style={{
+              display: "Grid",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "90%",
+            }}
+          >
+            <form>
+              <input
+                class="TaskInputField"
+                type="text"
+                name="Title"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <br></br>
+              <input
+                class="TaskInputField"
+                type="text"
+                name="Description"
+                placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+              <br></br>
+              <input
+                class="TaskInputField"
+                type="text"
+                name="DueType"
+                placeholder="Due Type"
+                value={dueType}
+                onChange={(e) => setDueType(e.target.value)}
+              />
+              <br></br>
+              <input
+                class="TaskInputField"
+                type="text"
+                name="Due"
+                placeholder="Due"
+                value={due}
+                onChange={(e) => setDue(e.target.value)}
+              />
+              <br></br>
+            </form>
+            <Button className="GoButton">Create Task</Button>
+          </Card.Body>
+        </Card>
+      </div>
     </div>,
     modalRoot
   );
