@@ -29,53 +29,49 @@ import '../../App.css';
 //   },
 
 const Roster = ({data}) => {
-  useEffect(() => {
-    // console.log(
-    //   data.tasks.filter((data) => {
-    //     return data.userIndex === 0;
-    //   });
-    // );
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
-      <Card
-        id='Card-field'
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Card.Header
-          as='h5'
-          id='Card-Header'
-          className='text-center'
-          style={{width: '100%'}}
-        >
-          {' '}
-          {data.title}
-        </Card.Header>
-
-        <Card.Body
+      {data !== 'undefined' && (
+        <Card
+          id='Card-field'
           style={{
-            display: 'Grid',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '90%',
           }}
         >
-          {data.assignedUsers.map((e, i) => {
-            return (
-              <UserTask
-                name={e}
-                task={data.tasks.filter((data) => {
-                  return data.userIndex === i;
-                })}
-              />
-            );
-          })}
-        </Card.Body>
-      </Card>
+          <Card.Header
+            as='h5'
+            id='Card-Header'
+            className='text-center'
+            style={{width: '100%'}}
+          >
+            {' '}
+            {data.title}
+          </Card.Header>
+
+          <Card.Body
+            style={{
+              display: 'Grid',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '90%',
+            }}
+          >
+            {data.assignedUsers.map((e, i) => {
+              return (
+                <UserTask
+                  name={e}
+                  task={data.tasks.filter((data) => {
+                    return data.userIndex === i;
+                  })}
+                />
+              );
+            })}
+          </Card.Body>
+        </Card>
+      )}
     </>
   );
 };

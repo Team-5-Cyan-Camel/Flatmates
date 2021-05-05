@@ -13,7 +13,7 @@ const Rosters = () => {
         tasks: [
           {
             _id: 'adjkshdkaj13',
-            title: 'Cheesing',
+            title: 'Roster 1 chess',
             description: 'Grate the cheese',
             userIndex: 0,
             dueType: 'Weekly',
@@ -21,7 +21,7 @@ const Rosters = () => {
           },
           {
             _id: 'adjkshdkaj14',
-            title: 'Carroting',
+            title: 'Roster 1 something',
             description: 'Grate the Carrot',
             userIndex: 1,
             dueType: 'Weekly',
@@ -36,7 +36,7 @@ const Rosters = () => {
         tasks: [
           {
             _id: 'adjkshdkaj13',
-            title: 'Cheasdesing',
+            title: 'Roster 2 asomfa',
             description: 'Grate the cheese',
             userIndex: 0,
             dueType: 'Weekly',
@@ -44,7 +44,7 @@ const Rosters = () => {
           },
           {
             _id: 'adjkshdkaj14',
-            title: 'Carroting',
+            title: 'Roster 2a asdasd',
             description: 'Grate the Carrot',
             userIndex: 1,
             dueType: 'Weekly',
@@ -54,11 +54,14 @@ const Rosters = () => {
       },
     ],
   });
+
+  //TODO need to fix this harding of first position
+  //   let [DisplayRoster, setDisplayRoster] = useState(Rosters.rosters[0]);
   let [DisplayRoster, setDisplayRoster] = useState('undefined');
 
   useEffect(() => {
     // get roster data
-    if (Rosters.rosters !== undefined && Rosters.rosters.length !== 0) {
+    if (Rosters.rosters !== 'undefined' && Rosters.rosters.length !== 0) {
       setDisplayRoster(Rosters.rosters[0]);
     }
   }, []);
@@ -74,12 +77,14 @@ const Rosters = () => {
 
   return (
     <>
-      {Rosters.rosters !== undefined && (
+      {Rosters.rosters !== 'undefined' && (
         <SelectRoster rosters={Rosters.rosters} setRoster={roster} />
       )}
 
       <button>Add Roster+</button>
-      {Rosters.rosters !== undefined && <Roster data={DisplayRoster} />}
+      {Rosters.rosters !== 'undefined' && DisplayRoster !== 'undefined' && (
+        <Roster data={DisplayRoster} />
+      )}
     </>
   );
 };
