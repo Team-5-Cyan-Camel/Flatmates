@@ -7,7 +7,7 @@ var router = express.Router();
 router.post("/", async function (req, res, next) {
   const user = await getUserOfCookie(req, res);
 
-  if (!user.roomCode) {
+  if (user.roomCode) {
     return res
       .status(403)
       .json({ message: "Must leave current room before creating another" });
@@ -48,7 +48,7 @@ router.post("/join", async function (req, res, next) {
       .status(400)
       .json({ message: "bad request, missing room code to join" });
   }
-  if (!user.roomCode) {
+  if (user.roomCode) {
     return res
       .status(403)
       .json({ message: "Must leave current room before joining another" });
@@ -57,7 +57,10 @@ router.post("/join", async function (req, res, next) {
   try {
     await Room.updateOne(
       { _id: req.body.roomCode },
-      { $push: { Users: user._id } }
+      { $push: { 
+        Users: user._id,
+       "rosters.$[].assignedUsers": user._id
+      } }
     );
     user.roomCode = req.body.roomCode;
     await user.save();
@@ -69,7 +72,7 @@ router.post("/join", async function (req, res, next) {
   // TODO: send notification on socket.io and add user to socket.io room
 });
 
-/* PACH room details and remove the user from the room, if they are not host */
+/* PATCH room details and remove the user from the room, if they are not host */
 router.patch("/leave", async function (req, res, next) {
   const user = await getUserOfCookie(req, res);
   if (!user.roomCode) {
@@ -157,7 +160,7 @@ router.delete("/", async function (req, res, next) {
   }
 });
 
-/* PACH room details and remove the user from the room, if they are not host */
+/* PACTH room details and remove the user from the room, if they are not host */
 router.patch("/kick", async function (req, res, next) {
   const user = await getUserOfCookie(req, res);
   if (!user.roomCode) {
