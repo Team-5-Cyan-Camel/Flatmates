@@ -6,7 +6,6 @@ import { FaTimes as Cross } from "react-icons/fa";
 
 import "../../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
@@ -100,11 +99,10 @@ const SignUp = ({ cancel, setObj }) => {
               />
               <br></br>
               {/* <input type="submit" value="Create Account!" /> */}
-
             </form>
             <Button className="GoButton" onClick={onSubmit}>
-                Create
-              </Button>
+              Create
+            </Button>
           </Card.Body>
         </Card>
       </div>

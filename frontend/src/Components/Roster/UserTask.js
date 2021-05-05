@@ -2,10 +2,13 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
+import AddTask from "./AddTask";
 
 import Button from "react-bootstrap/Button";
 
-const UserTask = ({ name, task, addTask }) => {
+const UserTask = ({ task, name }) => {
+  let [makeTask, setMakeTask] = useState(false);
+
   return (
     <>
       <Card
@@ -37,11 +40,13 @@ const UserTask = ({ name, task, addTask }) => {
             return <p>{e.title}</p>;
           })}
 
-          <Button className="GoButton" onClick={() => addTask(true)}>
+          <Button className="GoButton" onClick={() => setMakeTask(true)}>
             Add Task
           </Button>
         </Card.Body>
       </Card>
+
+      {makeTask && <AddTask />}
     </>
   );
 };

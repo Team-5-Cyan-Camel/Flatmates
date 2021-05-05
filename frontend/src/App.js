@@ -20,7 +20,6 @@ import AddTask from "./Components/Roster/AddTask";
 function App() {
   // obj to be populated on successful signup
   let [userObj, setObj] = useState(undefined);
-  let [task, setAddTask] = useState(false);
 
   // boolean for showing signup
   let [register, setSignup] = useState(false);
@@ -141,8 +140,7 @@ function App() {
             </Route>
 
             <Route path="/room/:code/roster" exact>
-              <Rosters addTask={setAddTask} />
-              {task && <AddTask />}
+              <Rosters />
             </Route>
 
             {/* path for incompatable path */}

@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import UserTask from "./UserTask";
 import "../../App.css";
 
-const Roster = ({ data, addTask }) => {
+const Roster = ({ data }) => {
   useEffect(() => {}, []);
 
   return (
@@ -39,7 +39,6 @@ const Roster = ({ data, addTask }) => {
             {data.assignedUsers.map((e, i) => {
               return (
                 <UserTask
-                  addTask={addTask}
                   name={e}
                   task={data.tasks.filter((data) => {
                     return data.userIndex === i;
