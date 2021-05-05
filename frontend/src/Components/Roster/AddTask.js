@@ -2,12 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { FaTimes as Cross } from "react-icons/fa";
+import styles from "./AddTask.module.css";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const AddTask = () => {
+const AddTask = ({ show }) => {
   return ReactDOM.createPortal(
-    <>
+    <div className={styles.modalContainer}>
       <Card
         id="Card-field"
         style={{
@@ -22,7 +24,7 @@ const AddTask = () => {
           style={{ width: "100%" }}
         >
           {" "}
-          Settings
+          Add Task <Cross onClick={() => show(false)} />
         </Card.Header>
 
         <Card.Body
@@ -34,7 +36,7 @@ const AddTask = () => {
           }}
         ></Card.Body>
       </Card>
-    </>,
+    </div>,
     modalRoot
   );
 };

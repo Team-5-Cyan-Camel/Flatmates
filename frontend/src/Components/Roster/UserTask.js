@@ -46,7 +46,7 @@ const UserTask = ({ task, name }) => {
         </Card.Body>
       </Card>
 
-      {makeTask && <AddTask />}
+      {makeTask && <AddTask show={setMakeTask} />}
     </>
   );
 };
