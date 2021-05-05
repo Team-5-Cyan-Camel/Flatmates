@@ -8,6 +8,13 @@ import "../../App.css";
 const Roster = ({ data }) => {
   useEffect(() => {}, []);
 
+  const addUser = () => {
+    // use axios to add a new user
+    // this class should always know how many existing users there are?
+    // may need to pass it down as aparameter
+    console.log(addUser);
+  };
+
   return (
     <>
       {data !== "undefined" && (
@@ -46,7 +53,9 @@ const Roster = ({ data }) => {
                 />
               );
             })}
-            <Button className="GoButton">Add User</Button>
+            <Button className="GoButton" onClick={addUser}>
+              Add Yourself
+            </Button>
           </Card.Body>
         </Card>
       )}
