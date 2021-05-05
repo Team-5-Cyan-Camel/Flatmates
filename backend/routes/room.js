@@ -57,10 +57,10 @@ router.post("/join", async function (req, res, next) {
   try {
     await Room.updateOne(
       { _id: req.body.roomCode },
-      { $push: { 
-        Users: user._id,
-       "rosters.$[].assignedUsers": user._id
-      } }
+      {$push: {
+          "users": user._id,
+          "rosters.$[].assignedUsers": user._id
+      }}
     );
     user.roomCode = req.body.roomCode;
     await user.save();
