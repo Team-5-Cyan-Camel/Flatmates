@@ -20,8 +20,9 @@ router.post("/", getUser, getRoom, async function (req, res, next) {
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  res.status(200).json(room);
-  socketRosterUpdate(room._id, room.rosters);
+  let responseRosters = formatRostersResponse(room.rosters);
+  res.status(200).json(responseRosters);
+  socketRosterUpdate(room._id, responseRosters);
 });
 
 /* DELETE specified roster. */
@@ -33,8 +34,9 @@ router.delete("/", getUser, getRoom, getRoster, async function (req, res, next) 
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  res.status(200).json(room);
-  socketRosterUpdate(room._id, room.rosters);
+  let responseRosters = formatRostersResponse(room.rosters);
+  res.status(200).json(responseRosters);
+  socketRosterUpdate(room._id, responseRosters);
 });
 
 /* PATCH rotate a specified roster. */
@@ -47,13 +49,14 @@ router.patch("/rotate", getUser, getRoom, getRoster, async function (req, res, n
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  res.status(200).json(room);
-  socketRosterUpdate(room._id, room.rosters);
+  let responseRosters = formatRostersResponse(room.rosters);
+  res.status(200).json(responseRosters);
+  socketRosterUpdate(room._id, responseRosters);
 });
 
 /* POST add a new task to a roster. */
 router.post("/task", getUser, getRoom, getRoster, async function (req, res, next) {
-  var userIndex = req.roster.assignedUsers.indexOf(req.body.assignedUserID);
+  var userIndex = req.roster.assignedUsers.map((e)=> { return e._id }).indexOf(req.body.assignedUserID);
   if (userIndex === -1) {
     return res.status(500).json({ message: "Could not find user in assignedUsers" });
   }
@@ -73,8 +76,9 @@ router.post("/task", getUser, getRoom, getRoster, async function (req, res, next
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  res.status(200).json(room);
-  socketRosterUpdate(room._id, room.rosters);
+  let responseRosters = formatRostersResponse(room.rosters);
+  res.status(200).json(responseRosters);
+  socketRosterUpdate(room._id, responseRosters);
 });
 
 /* DELETE remove task from roster. */
@@ -86,9 +90,31 @@ router.delete("/task", getUser, getRoom, getRoster, async function (req, res, ne
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  res.status(200).json(room);
-  socketRosterUpdate(room._id, room.rosters);
+  let responseRosters = formatRostersResponse(room.rosters);
+  res.status(200).json(responseRosters);
+  socketRosterUpdate(room._id, responseRosters);
 });
+
+function formatRostersResponse(rosters) {
+  let responseRosters = [];
+  for (let i = 0; i<rosters.length; i++) {
+    let responseRoster = {
+      _id: rosters[i]._id,
+      title: rosters[i].title,
+      tasks: rosters[i].tasks,
+      assignedUsers: []
+    }
+    for (let j = 0; j<rosters[i].assignedUsers.length; j++) {
+      responseRoster.assignedUsers.push({
+        _id: rosters[i].assignedUsers[j]._id,
+        username: rosters[i].assignedUsers[j].username,
+        name: rosters[i].assignedUsers[j].name
+      });
+    }
+    responseRosters.push(responseRoster);
+  }
+  return responseRosters;
+}
 
 function socketRosterUpdate(roomID, roster) {
   if (global.io) {
@@ -110,7 +136,7 @@ async function getRoom(req, res, next) {
   if (!req.user.roomCode) {
     return res.status(403).json({ message: "Not in a room" })
   }
-  req.room = await Room.findOne({ _id: req.user.roomCode });
+  req.room = await Room.findOne({ _id: req.user.roomCode }).populate("users").populate("rosters.assignedUsers");
   if (!req.room) {
     return res.status(404).json({ message: "Room not found" })
   } else {

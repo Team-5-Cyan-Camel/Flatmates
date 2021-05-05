@@ -17,9 +17,9 @@ router.post("/", async function (req, res, next) {
   // create a new room
   const newRoom = new Room({
     host: user._id,
-    rosters: {},
-    reminders: {},
-    expenses: {},
+    rosters: [],
+    reminders: [],
+    expenses: [],
     users: [user._id],
   });
 
@@ -165,7 +165,6 @@ router.delete("/", async function (req, res, next) {
   }
 });
 
-// TODO room/kick missing
 /* PACH room details and remove the user from the room, if they are not host */
 router.patch("/kick", async function (req, res, next) {
   const user = await getUserOfCookie(req, res);
