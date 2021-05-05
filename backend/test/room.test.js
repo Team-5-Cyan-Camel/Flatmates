@@ -193,6 +193,7 @@ describe("Tests the endpoints dealing with room when loggied in", () => {
       // (created by the default user used in the tests)
       const [res, secondUsrCookie] = await joinRoom();
 
+      expect(res.body.message).toBe("x");
       expect(res.statusCode).toBe(200);
       done();
     });

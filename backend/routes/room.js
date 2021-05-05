@@ -50,11 +50,11 @@ router.post("/join", async function (req, res, next) {
   }
   let room;
   try {
-    room = await Room.updateOne(
+    await Room.updateOne(
       { _id: req.body.roomCode },
       { $push: { Users: user._id } }
     );
-    user.roomCode = room._id;
+    user.roomCode = req.body.roomCode;
     await user.save();
     return res.status(200).json({ message: "success" });
   } catch (err) {
@@ -140,8 +140,10 @@ router.delete("/", async function (req, res, next) {
       roomUser = await User.findOne({
         _id: room.users[i],
       });
-      roomUser.roomCode = null;
-      await roomUser.save();
+      if (user._id != roomUser._id) {
+        roomUser.roomCode = null;
+        await roomUser.save();
+      }
     }
     room = await Room.deleteOne({
       _id: user.roomCode,
