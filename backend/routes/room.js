@@ -183,7 +183,11 @@ router.patch("/kick", async function (req, res, next) {
 
     await Room.updateOne(
       { _id: userToKick.roomCode },
-      { $pull: { Users: userToKick._id } }
+      {$pull: {
+        "users": userToKick._id,
+        "rosters.$[].assignedUsers": userToKick._id
+      }}
+
     );
     userToKick.roomCode = null;
     await userToKick.save();
