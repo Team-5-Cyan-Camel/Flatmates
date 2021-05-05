@@ -1,44 +1,45 @@
-import React, {useState, useEffect} from 'react';
-import Card from 'react-bootstrap/Card';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import UserTask from './UserTask';
-import '../../App.css';
+import React, { useState, useEffect } from "react";
+import Card from "react-bootstrap/Card";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
+import UserTask from "./UserTask";
+import "../../App.css";
 
-const Roster = ({data}) => {
+const Roster = ({ data, addTask }) => {
   useEffect(() => {}, []);
 
   return (
     <>
-      {data !== 'undefined' && (
+      {data !== "undefined" && (
         <Card
-          id='Card-field'
+          id="Card-field"
           style={{
-            alignItems: 'center',
-            justifyContent: 'center',
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <Card.Header
-            as='h5'
-            id='Card-Header'
-            className='text-center'
-            style={{width: '100%'}}
+            as="h5"
+            id="Card-Header"
+            className="text-center"
+            style={{ width: "100%" }}
           >
-            {' '}
+            {" "}
             {data.title}
           </Card.Header>
 
           <Card.Body
             style={{
-              display: 'Flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '90%',
+              display: "Flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "90%",
             }}
           >
             {data.assignedUsers.map((e, i) => {
               return (
                 <UserTask
+                  addTask={addTask}
                   name={e}
                   task={data.tasks.filter((data) => {
                     return data.userIndex === i;
@@ -46,7 +47,7 @@ const Roster = ({data}) => {
                 />
               );
             })}
-            <Button className='GoButton'>Add User</Button>
+            <Button className="GoButton">Add User</Button>
           </Card.Body>
         </Card>
       )}

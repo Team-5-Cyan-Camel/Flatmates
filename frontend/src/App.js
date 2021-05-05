@@ -15,10 +15,12 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Rosters from "./Components/Roster/Rosters";
+import AddTask from "./Components/Roster/AddTask";
 
 function App() {
   // obj to be populated on successful signup
   let [userObj, setObj] = useState(undefined);
+  let [task, setAddTask] = useState(false);
 
   // boolean for showing signup
   let [register, setSignup] = useState(false);
@@ -81,8 +83,6 @@ function App() {
                     />
                   )}
 
-                  {/* <Button className='GoButton' >Login</Button> */}
-
                   <div style={{ marginTop: "1rem" }}>
                     <p style={{ textAlign: "center" }}>
                       {" "}
@@ -137,14 +137,12 @@ function App() {
             {/* path for room screen */}
             <Route path="/room/:code">
               <NavBar setSettings={setSettings} />
-              {/* modal for user settings*/}
               {settings && <Settings hideSettings={hideSettings} />}
-
-              
             </Route>
-            
+
             <Route path="/room/:code/roster" exact>
-                  <Rosters/>
+              <Rosters addTask={setAddTask} />
+              {task && <AddTask />}
             </Route>
 
             {/* path for incompatable path */}
