@@ -13,7 +13,7 @@ describe("Test the root path", () => {
   test("It should response the GET method", async (done) => {
     const res = await request(app).get("/");
 
-    expect(res.statusCode).toBe(201);
+    expect(res.statusCode).toBe(200);
     expect(res.text).toBe("This is the index for the Flatmates server");
     done();
   });
