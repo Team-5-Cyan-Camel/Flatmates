@@ -42,6 +42,13 @@ router.post("/", async function (req, res, next) {
 /* POST a request to join a room */
 router.post("/join", async function (req, res, next) {
   const user = await getUserOfCookie(req, res);
+  console.log("AHHHHHH");
+  console.log(req.body);
+  if (!req.body.roomCode) {
+    return res
+      .status(400)
+      .json({ message: "bad request, missing room code to join" });
+  }
   if (user.roomCode != null) {
     // TODO: should this ever happen, frontend can prevent this??
     return res
