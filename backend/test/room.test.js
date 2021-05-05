@@ -161,9 +161,12 @@ describe("Tests the endpoints dealing with room when loggied in", () => {
         .set("Cookie", cookie)
         .send(req)
         .set("Accept", "application/json");
+      console.log("BEFORE EACH");
+      console.log(res.body);
     });
 
     test("GET get room details", async (done) => {
+      console.log("GET ROOM TEST");
       const req = {};
       const res = await request(app)
         .get("/room")
@@ -177,6 +180,7 @@ describe("Tests the endpoints dealing with room when loggied in", () => {
     });
 
     test("DELETE delete room", async (done) => {
+      console.log("DELETE ROOM TEST");
       const req = {};
       const res = await request(app)
         .delete("/room")
@@ -189,6 +193,7 @@ describe("Tests the endpoints dealing with room when loggied in", () => {
     });
 
     test("POST join room", async (done) => {
+      console.log("JOIN ROOM TEST");
       // 2nd user joins the room
       // (created by the default user used in the tests)
       const [res, secondUsrCookie] = await joinRoom();
@@ -199,8 +204,8 @@ describe("Tests the endpoints dealing with room when loggied in", () => {
     });
 
     test("PATCH leave room", async (done) => {
+      console.log("LEAVE ROOM TEST");
       const [res, secondUsrCookie] = await joinRoom();
-
       var req2 = {};
       var res2 = await request(app)
         .patch("/room/leave")
@@ -214,6 +219,7 @@ describe("Tests the endpoints dealing with room when loggied in", () => {
     });
 
     test("PATCH kick a user from room", async (done) => {
+      console.log("KICK FROM ROOM TEST");
       const [res, secondUsrCookie] = await joinRoom();
 
       // original user kicks the 2nd user
@@ -259,6 +265,9 @@ describe("Tests the endpoints dealing with room when loggied in", () => {
         .set("Cookie", cookie)
         .send(req)
         .set("Accept", "application/json");
+
+      console.log("AFTER EACH");
+      console.log(res.body);
     });
   });
 });
