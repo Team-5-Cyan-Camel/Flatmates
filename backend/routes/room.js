@@ -86,6 +86,7 @@ router.patch("/leave", async function (req, res, next) {
     });
   }
   let room;
+  updateTaskUserIndex(user)
   try {
     await Room.updateOne(
       { _id: user.roomCode },
@@ -176,8 +177,14 @@ router.patch("/kick", async function (req, res, next) {
       message: "User is not room host so cannot kick",
     });
   }
+  if (user.username == req.body.username) {
+    return res.status(403).json({
+      message: "Dont kick yourself",
+    });
+  }
 
   let room;
+  updateTaskUserIndex(user)
   try {
     userToKick = await User.findOne({ username: req.body.username });
 
@@ -220,5 +227,25 @@ async function getUserOfCookie(req, res) {
     resolve(user);
   });
 }
+
+async function updateTaskUserIndex(user) {
+  return new Promise(async (resolve) => {
+    // Obtain room based on user
+    let room = await Room.findOne({ _id: user.roomCode })
+    for(let i = 0; i<room.rosters.length; i++){
+      let userIndex = room.rosters[i].assignedUsers.indexOf(user._id);
+      for (let j = 0; j < room.rosters[i].tasks.length; j++) {
+        if(room.rosters[i].tasks[j].userIndex==userIndex){
+          room.rosters[i].tasks[j].userIndex=-1;
+        }else if(room.rosters[i].tasks[j].userIndex>userIndex){
+          room.rosters[i].tasks[j].userIndex--;
+        }
+      }
+    }
+    await room.save();
+    resolve();
+  });
+}
+
 
 module.exports = router;
