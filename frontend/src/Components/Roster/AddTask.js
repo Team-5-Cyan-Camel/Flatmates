@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaTimes as Cross } from "react-icons/fa";
-import styles from "./AddTask.module.css";
+import styles from "./RosterModal.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 
