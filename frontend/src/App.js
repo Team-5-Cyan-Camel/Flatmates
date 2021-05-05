@@ -14,6 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
+import Rosters from "./Components/Roster/Rosters";
 
 function App() {
   // obj to be populated on successful signup
@@ -139,33 +140,13 @@ function App() {
               {/* modal for user settings*/}
               {settings && <Settings hideSettings={hideSettings} />}
 
-              <Card
-                id="Card-field"
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Card.Header
-                  as="h5"
-                  id="Card-Header"
-                  className="text-center"
-                  style={{ width: "100%" }}
-                >
-                  {" "}
-                  main page
-                </Card.Header>
-
-                <Card.Body
-                  style={{
-                    display: "Grid",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "90%",
-                  }}
-                ></Card.Body>
-              </Card>
+              
             </Route>
+            
+            <Route path="/room/:code/roster" exact>
+                  <Rosters/>
+            </Route>
+
             {/* path for incompatable path */}
             <Route path="*">
               <Redirect to="/" />
