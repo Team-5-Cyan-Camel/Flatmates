@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaTimes as Cross } from "react-icons/fa";
 import styles from "./AddTask.module.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
 
 const modalRoot = document.querySelector("#modal-root");
 
 const AddTask = ({ show }) => {
+  let [title, setTitle] = useState("");
+  let [description, setDescription] = useState("");
+  let [dueType, setDueType] = useState("");
+  let [due, setDue] = useState("");
+
   return ReactDOM.createPortal(
     <div className={styles.modalContainer}>
       <Card
@@ -34,7 +41,47 @@ const AddTask = ({ show }) => {
             justifyContent: "center",
             width: "90%",
           }}
-        ></Card.Body>
+        >
+          <form>
+            <input
+              class="TaskInputField"
+              type="text"
+              name="Title"
+              placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <br></br>
+            <input
+              class="TaskInputField"
+              type="text"
+              name="Description"
+              placeholder="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <br></br>
+            <input
+              class="TaskInputField"
+              type="text"
+              name="DueType"
+              placeholder="Due Type"
+              value={dueType}
+              onChange={(e) => setDueType(e.target.value)}
+            />
+            <br></br>
+            <input
+              class="TaskInputField"
+              type="text"
+              name="Due"
+              placeholder="Due"
+              value={due}
+              onChange={(e) => setDue(e.target.value)}
+            />
+            <br></br>
+          </form>
+          <Button className="GoButton">Create Task</Button>
+        </Card.Body>
       </Card>
     </div>,
     modalRoot
