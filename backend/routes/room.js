@@ -58,8 +58,8 @@ router.post("/join", async function (req, res, next) {
     await Room.updateOne(
       { _id: req.body.roomCode },
       {$push: {
-          "users": user._id,
-          "rosters.$[].assignedUsers": user._id
+        "users": user._id,
+        "rosters.$[].assignedUsers": user._id
       }}
     );
     user.roomCode = req.body.roomCode;
@@ -89,7 +89,10 @@ router.patch("/leave", async function (req, res, next) {
   try {
     await Room.updateOne(
       { _id: user.roomCode },
-      { $pull: { Users: user._id } }
+      {$pull: {
+        "users": user._id,
+        "rosters.$[].assignedUsers": user._id
+      }}
     );
     user.roomCode = null;
     await user.save();
