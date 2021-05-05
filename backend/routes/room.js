@@ -34,8 +34,6 @@ router.post("/", async function (req, res, next) {
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-
-  // TODO: add user to room in socket.io
 });
 
 /* POST a request to join a room */
@@ -57,19 +55,20 @@ router.post("/join", async function (req, res, next) {
   try {
     await Room.updateOne(
       { _id: req.body.roomCode },
-      {$push: {
-        "users": user._id,
-        "rosters.$[].assignedUsers": user._id
-      }}
+      {
+        $push: {
+          "users": user._id,
+          "rosters.$[].assignedUsers": user._id
+        }
+      }
     );
     user.roomCode = req.body.roomCode;
     await user.save();
+    await socketRoomUpdate(user.roomCode)
     return res.status(200).json({ message: "success" });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-
-  // TODO: send notification on socket.io and add user to socket.io room
 });
 
 /* PATCH room details and remove the user from the room, if they are not host */
@@ -90,18 +89,21 @@ router.patch("/leave", async function (req, res, next) {
   try {
     await Room.updateOne(
       { _id: user.roomCode },
-      {$pull: {
-        "users": user._id,
-        "rosters.$[].assignedUsers": user._id
-      }}
+      {
+        $pull: {
+          "users": user._id,
+          "rosters.$[].assignedUsers": user._id
+        }
+      }
     );
+    let roomCode = user.roomCode;
     user.roomCode = null;
     await user.save();
+    await socketRoomUpdate(roomCode)
     return res.status(200).json({ message: "success" });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  // TODO: remove user from socket.io room, notify other users
 });
 
 /* GET all information for a room */
@@ -190,20 +192,36 @@ router.patch("/kick", async function (req, res, next) {
 
     await Room.updateOne(
       { _id: userToKick.roomCode },
-      {$pull: {
-        "users": userToKick._id,
-        "rosters.$[].assignedUsers": userToKick._id
-      }}
+      {
+        $pull: {
+          "users": userToKick._id,
+          "rosters.$[].assignedUsers": userToKick._id
+        }
+      }
 
     );
     userToKick.roomCode = null;
     await userToKick.save();
+    await socketRoomUpdate(user.roomCode)
     return res.status(200).json({ message: "success" });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  // TODO: remove user from socket.io room, notify other users
 });
+
+async function socketRoomUpdate(roomCode) {
+  return new Promise(async resolve => {
+    if (global.io) {
+      let room = await Room.findOne({ _id: roomCode })
+        .populate("users", "_id username name")
+        .populate("rosters.assignedUsers", "_id username name");
+
+      roomCode = JSON.stringify(room._id).replace(/(^")|("$)/g, "");
+      global.io.in(roomCode).emit('room_update', room);
+    }
+    resolve();
+  });
+}
 
 async function getUserOfCookie(req, res) {
   return new Promise(async (resolve) => {
@@ -232,12 +250,12 @@ async function updateTaskUserIndex(user) {
   return new Promise(async (resolve) => {
     // Obtain room based on user
     let room = await Room.findOne({ _id: user.roomCode })
-    for(let i = 0; i<room.rosters.length; i++){
+    for (let i = 0; i < room.rosters.length; i++) {
       let userIndex = room.rosters[i].assignedUsers.indexOf(user._id);
       for (let j = 0; j < room.rosters[i].tasks.length; j++) {
-        if(room.rosters[i].tasks[j].userIndex==userIndex){
-          room.rosters[i].tasks[j].userIndex=-1;
-        }else if(room.rosters[i].tasks[j].userIndex>userIndex){
+        if (room.rosters[i].tasks[j].userIndex == userIndex) {
+          room.rosters[i].tasks[j].userIndex = -1;
+        } else if (room.rosters[i].tasks[j].userIndex > userIndex) {
           room.rosters[i].tasks[j].userIndex--;
         }
       }
