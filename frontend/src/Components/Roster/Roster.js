@@ -1,12 +1,40 @@
 import React, {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import '../src/App.css';
+import UserTask from './UserTask';
 import '../../App.css';
+
+// {
+//     _id: 'dahkasjha71',
+//     title: 'Roster1',
+//     assignedUsers: ['371291731289', '131231231231'],
+//     tasks: [
+//       {
+//         _id: 'adjkshdkaj13',
+//         title: 'Cheesing',
+//         description: 'Grate the cheese',
+//         userIndex: 0,
+//         dueType: 'Weekly',
+//         due: '24/02/21',
+//       },
+//       {
+//         _id: 'adjkshdkaj14',
+//         title: 'Carroting',
+//         description: 'Grate the Carrot',
+//         userIndex: 1,
+//         dueType: 'Weekly',
+//         due: '24/02/21',
+//       },
+//     ],
+//   },
 
 const Roster = ({data}) => {
   useEffect(() => {
-    console.log(data.assignedUsers);
+    // console.log(
+    //   data.tasks.filter((data) => {
+    //     return data.userIndex === 0;
+    //   });
+    // );
   }, []);
 
   return (
@@ -35,10 +63,25 @@ const Roster = ({data}) => {
             justifyContent: 'center',
             width: '90%',
           }}
-        ></Card.Body>
+        >
+          {data.assignedUsers.map((e, i) => {
+            return (
+              <UserTask
+                name={e}
+                task={data.tasks.filter((data) => {
+                  return data.userIndex === i;
+                })}
+              />
+            );
+          })}
+        </Card.Body>
       </Card>
     </>
   );
 };
 
 export default Roster;
+
+// data.tasks.filter((data) => {
+//     return data.userIndex === 0;
+//   });

@@ -58,7 +58,6 @@ const Rosters = () => {
 
   useEffect(() => {
     // get roster data
-    // console.log(Rosters.rosters.length);
     if (Rosters.rosters !== undefined && Rosters.rosters.length !== 0) {
       setDisplayRoster(Rosters.rosters[0]);
     }
