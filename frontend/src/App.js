@@ -11,7 +11,6 @@ import NavBar from "./Components/Lobby/NavBar";
 import "./Components/Lobby/NavBar.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";

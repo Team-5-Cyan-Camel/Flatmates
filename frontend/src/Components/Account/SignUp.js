@@ -100,10 +100,11 @@ const SignUp = ({ cancel, setObj }) => {
               />
               <br></br>
               {/* <input type="submit" value="Create Account!" /> */}
-              <Button className="GoButton" onClick={onSubmit}>
+
+            </form>
+            <Button className="GoButton" onClick={onSubmit}>
                 Create
               </Button>
-            </form>
           </Card.Body>
         </Card>
       </div>

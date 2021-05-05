@@ -30,11 +30,10 @@ const JoinRoom = () => {
           onChange={(e) => setCode(e.target.value)}
         />
         <br />
-        <input className='GoButton' type="submit" value="Join Room!" />
       </form>
       <Button
 
-className='GoButton'
+className='GoButton' onClick={joinRoom}
 >Join</Button>
     </>
   );

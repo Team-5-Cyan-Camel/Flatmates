@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
@@ -52,10 +53,11 @@ const Login = ({ setObj }) => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br></br>
-        <Button className="GoButton" onClick={login}>
+
+      </Form>
+      <Button className="GoButton" onClick={login}>
           Login
         </Button>
-      </Form>
     </>
   );
 };
