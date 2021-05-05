@@ -54,37 +54,33 @@ const Rosters = () => {
       },
     ],
   });
-  let [DispalyRoster, setDisplayRoster] = useState('undefined');
+  let [DisplayRoster, setDisplayRoster] = useState('undefined');
 
   useEffect(() => {
     // get roster data
     // console.log(Rosters.rosters.length);
-    if (Rosters.rosters.length !== 0) {
+    if (Rosters.rosters !== undefined && Rosters.rosters.length !== 0) {
       setDisplayRoster(Rosters.rosters[0]);
     }
   }, []);
 
   const roster = (title) => {
     for (var roster of Rosters.rosters) {
-      //   console.log(roster);
-
       if (roster.title === title) {
         setDisplayRoster(roster);
-        // console.log(roster);
         break;
       }
     }
-    // setDisplayRoster(position);
   };
 
   return (
     <>
-      <SelectRoster rosters={Rosters.rosters} setRoster={roster} />
-      {/* <Roster data={Rosters.rosters[DispalyRoster]} /> */}
-      <Roster data={DispalyRoster} />
-      {/* {Rosters.rosters.map((e)=>{
-                return <Roster data={e}/>
-            })} */}
+      {Rosters.rosters !== undefined && (
+        <SelectRoster rosters={Rosters.rosters} setRoster={roster} />
+      )}
+
+      <button>Add Roster+</button>
+      {Rosters.rosters !== undefined && <Roster data={DisplayRoster} />}
     </>
   );
 };

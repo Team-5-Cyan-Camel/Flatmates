@@ -11,10 +11,10 @@ const SelectRoster = ({rosters, setRoster}) => {
           justifyContent: 'center',
         }}
       >
-        {rosters.map((e) => [
-          <button onClick={() => setRoster(e.title)}>{e.title}</button>,
-        ])}
-        <button>+</button>
+        {rosters !== undefined &&
+          rosters.map((e) => [
+            <button onClick={() => setRoster(e.title)}>{e.title}</button>,
+          ])}
       </Card>
     </>
   );
