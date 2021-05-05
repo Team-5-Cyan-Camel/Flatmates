@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
 
 const UserTask = ({name, task}) => {
   console.log(task);
@@ -34,6 +35,8 @@ const UserTask = ({name, task}) => {
           {task.map((e) => {
             return <p>{e.title}</p>;
           })}
+
+          <Button className='GoButton'>Add Task</Button>
         </Card.Body>
       </Card>
     </>

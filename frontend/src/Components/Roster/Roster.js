@@ -1,32 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
 import UserTask from './UserTask';
 import '../../App.css';
-
-// {
-//     _id: 'dahkasjha71',
-//     title: 'Roster1',
-//     assignedUsers: ['371291731289', '131231231231'],
-//     tasks: [
-//       {
-//         _id: 'adjkshdkaj13',
-//         title: 'Cheesing',
-//         description: 'Grate the cheese',
-//         userIndex: 0,
-//         dueType: 'Weekly',
-//         due: '24/02/21',
-//       },
-//       {
-//         _id: 'adjkshdkaj14',
-//         title: 'Carroting',
-//         description: 'Grate the Carrot',
-//         userIndex: 1,
-//         dueType: 'Weekly',
-//         due: '24/02/21',
-//       },
-//     ],
-//   },
 
 const Roster = ({data}) => {
   useEffect(() => {}, []);
@@ -53,7 +30,7 @@ const Roster = ({data}) => {
 
           <Card.Body
             style={{
-              display: 'Grid',
+              display: 'Flex',
               alignItems: 'center',
               justifyContent: 'center',
               width: '90%',
@@ -69,6 +46,7 @@ const Roster = ({data}) => {
                 />
               );
             })}
+            <Button className='GoButton'>Add User</Button>
           </Card.Body>
         </Card>
       )}

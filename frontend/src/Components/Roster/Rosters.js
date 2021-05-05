@@ -43,6 +43,14 @@ const Rosters = () => {
             due: '24/02/21',
           },
           {
+            _id: 'adjkshdkaj13',
+            title: 'Roster 2 asoasdasdsmfa',
+            description: 'Grate the cheese',
+            userIndex: 0,
+            dueType: 'Weekly',
+            due: '24/02/21',
+          },
+          {
             _id: 'adjkshdkaj14',
             title: 'Roster 2a asdasd',
             description: 'Grate the Carrot',
@@ -81,7 +89,6 @@ const Rosters = () => {
         <SelectRoster rosters={Rosters.rosters} setRoster={roster} />
       )}
 
-      <button>Add Roster+</button>
       {Rosters.rosters !== 'undefined' && DisplayRoster !== 'undefined' && (
         <Roster data={DisplayRoster} />
       )}
