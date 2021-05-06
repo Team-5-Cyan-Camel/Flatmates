@@ -19,12 +19,6 @@ const GenerateRoom = () => {
       .catch(function (error) {
         console.log(error);
       });
-
-    // at api call, go to room
-    // if (doesnotexist) {
-    //   return <Redirect to="/room/TEST" />;
-    // }
-    // history.push("/room/TEMP");
   };
 
   return (
