@@ -79,6 +79,7 @@ describe("Tests the endpoints dealing with user", () => {
     const req = {
       username: "test-register",
       password: "test-password",
+      name: "Human"
     };
     const res = await request(app)
       .post("/user/register")

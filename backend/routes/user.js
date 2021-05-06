@@ -28,26 +28,13 @@ router.post("/register", async function (req, res, next) {
 router.post("/login", async function (req, res, next) {
   // Obtain user
   let user;
-
-  // Attempt to get user through cookies first
-  if (req.cookies.sessionID) {
-    try {
-      user = await User.findOne({ sessionID: req.cookies.sessionID });
-    } catch (err) {
-      return res.status(500).json({ message: err.message });
-    }
-  }
-
-  // If unable to get through cookies, use param username and password
-  if (!user) {
-    try {
-      user = await User.findOne({
-        username: req.body.username,
-        password: req.body.password,
-      });
-    } catch (err) {
-      return res.status(500).json({ message: err.message });
-    }
+  try {
+    user = await User.findOne({
+      username: req.body.username,
+      password: req.body.password,
+    });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
   }
 
   // If user does not exist, credentials were incorrect
