@@ -2,20 +2,20 @@ import Roster from "./Roster";
 import React, { useState, useEffect } from "react";
 import SelectRoster from "./SelectRoster";
 
-const Rosters = ({ rosters }) => {
+const Rosters = ({ rosters, updateDb }) => {
   // set default rosters
   let [Rosters, setRosters] = useState(rosters);
 
   //TODO need to fix this harding of first position
   //   let [DisplayRoster, setDisplayRoster] = useState(Rosters.rosters[0]);
-  let [DisplayRoster, setDisplayRoster] = useState("undefined");
+  let [DisplayRoster, setDisplayRoster] = useState(null);
 
   useEffect(() => {
     console.log(Rosters);
     // get roster data
-    if (Rosters.rosters !== "undefined" && Rosters.rosters.length !== 0) {
-      setDisplayRoster(Rosters.rosters[0]);
-    }
+    // if (Rosters !== null && Rosters.rosters.length !== 0) {
+    //   setDisplayRoster(Rosters.rosters[0]);
+    // }
   }, []);
 
   const roster = (title) => {
@@ -29,11 +29,9 @@ const Rosters = ({ rosters }) => {
 
   return (
     <>
-      {Rosters.rosters !== "undefined" && (
-        <SelectRoster rosters={Rosters.rosters} setRoster={roster} />
-      )}
+      <SelectRoster rosters={Rosters} setRoster={roster} updateDb={updateDb} />
 
-      {Rosters.rosters !== "undefined" && DisplayRoster !== "undefined" && (
+      {Rosters !== null && DisplayRoster !== null && (
         <Roster data={DisplayRoster} />
       )}
     </>

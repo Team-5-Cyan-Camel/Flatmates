@@ -36,6 +36,10 @@ function App() {
     setSettings(false);
   };
 
+  const updateDb = () => {
+    setUpdate(!update);
+  };
+
   return (
     <div className="BackGroundImage">
       <Container>
@@ -147,7 +151,7 @@ function App() {
             </Route>
 
             <Route path="/room/:code/roster" exact>
-              <Rosters rosters={room} />
+              <Rosters rosters={room} updateDb={updateDb} />
             </Route>
 
             {/* path for incompatable path */}

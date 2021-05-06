@@ -28,8 +28,8 @@ const SelectRoster = ({ rosters, setRoster }) => {
           }}
         >
           {/* <div class='topnav' style={{display: 'flex'}}> */}
-          {rosters !== "undefined" &&
-            rosters.map((e) => [
+          {rosters !== null &&
+            rosters.rosters.map((e) => [
               <Button className="GoButton" onClick={() => setRoster(e.title)}>
                 {e.title}
               </Button>,
