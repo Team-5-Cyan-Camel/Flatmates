@@ -8,6 +8,15 @@ const NavBar = ({ setSettings }) => {
   const leave = () => {
     // ask for confirmation
     console.log("leave");
+    axios
+      .patch("leave")
+      .then((res) => {
+        console.log(res);
+        // history.push("/");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const signOut = () => {
