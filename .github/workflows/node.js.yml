@@ -33,7 +33,7 @@ jobs:
         working-directory: ./backend
         run: npm run test
         env:
-          MONGODB_USERNAME: $MONGODB_USERNAME
-          MONGODB_PASSWORD: $MONGODB_PASSWORD
+          MONGODB_USERNAME: $({secrets.MONGODB_USERNAME})
+          MONGODB_PASSWORD: $({secrets.MONGODB_PASSWORD})
           PORT: 3001
 
