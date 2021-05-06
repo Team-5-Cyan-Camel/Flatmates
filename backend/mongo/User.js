@@ -20,7 +20,10 @@ const userSchema = mongoose.Schema({
     default: null,
   },
   email: String,
-  name: String,
+  name: {
+    type: String,
+    required: true,
+  },
   phoneNumber: String,
   socketID: String,
   sessionID: String,

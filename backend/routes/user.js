@@ -38,7 +38,7 @@ router.post("/login", async function (req, res, next) {
   }
 
   // If user does not exist, credentials were incorrect
-  if (user === null) {
+  if (!user) {
     return res.status(401).json({ message: "Incorrect username or password" });
   }
 
