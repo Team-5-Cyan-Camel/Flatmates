@@ -7,6 +7,7 @@ import Login from "./Components/Account/Login";
 import GenerateRoom from "./Components/Code/GenerateRoom";
 import JoinRoom from "./Components/Code/JoinRoom";
 import NavBar from "./Components/Lobby/NavBar";
+import Room from "./Components/Room/Room";
 
 import "./Components/Lobby/NavBar.css";
 
@@ -24,6 +25,8 @@ function App() {
   // boolean for showing signup
   let [register, setSignup] = useState(false);
   let [settings, setSettings] = useState(false);
+  let [update, setUpdate] = useState(true);
+  let [room, setRoom] = useState(null);
 
   const cancelSignup = () => {
     setSignup(false);
@@ -139,8 +142,12 @@ function App() {
               {settings && <Settings hideSettings={hideSettings} />}
             </Route>
 
+            <Route path="/room/:code" exact>
+              <Room update={update} setRoom={setRoom} />
+            </Route>
+
             <Route path="/room/:code/roster" exact>
-              <Rosters />
+              <Rosters rosters={room} />
             </Route>
 
             {/* path for incompatable path */}

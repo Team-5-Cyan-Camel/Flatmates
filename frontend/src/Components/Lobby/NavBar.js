@@ -1,6 +1,7 @@
 import { Link, useHistory, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import { useState, useEffect } from "react";
 
 const NavBar = ({ setSettings }) => {
   const history = useHistory();
@@ -43,22 +44,27 @@ const NavBar = ({ setSettings }) => {
         console.log(error);
       });
   };
+
   return (
     <>
       <nav class="topnav" style={{ display: "flex" }}>
         {/* list for features */}
         <ul>
-          <a>
+          {/* <a>
             <Link to={"/room/" + code + "/reminder"}>Reminders</Link>
+          </a> */}
+
+          <a>
+            <Link to={"/room/" + code}>Room</Link>
           </a>
 
           <a>
             <Link to={"/room/" + code + "/roster"}>Roster</Link>
           </a>
 
-          <a>
+          {/* <a>
             <Link to={"/room/" + code + "/budget"}>Message Budget</Link>
-          </a>
+          </a> */}
 
           <a>
             <Link to={"/room/" + code + "/message"}>Message Board</Link>
