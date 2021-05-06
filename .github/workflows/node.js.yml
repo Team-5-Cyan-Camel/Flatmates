@@ -29,10 +29,14 @@ jobs:
         working-directory: ./backend
         run: npm ci
 
+      - name: Make env
+        working-directory: ./backend
+        run: |
+          touch .env
+          echo MONGODB_USERNAME =${{ secrets.MONGODB_USERNAME }} >> .env
+          echo MONGODB_PASSWORD =${{ secrets.MONGODB_PASSWORD }} >> .env
+          echo PORT = 3001 >> .env
+
       - name: Run backend tests
         working-directory: ./backend
         run: npm run test
-        env:
-          MONGODB_USERNAME: $MONGODB_USERNAME
-          MONGODB_PASSWORD: $MONGODB_PASSWORD
-          PORT: 3001
