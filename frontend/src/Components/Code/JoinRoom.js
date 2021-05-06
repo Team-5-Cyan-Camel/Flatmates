@@ -1,28 +1,38 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
-import Button from 'react-bootstrap/Button';
-
+import Button from "react-bootstrap/Button";
 
 const JoinRoom = () => {
   const history = useHistory();
-  let [code, setCode] = useState(undefined);
+  let [code, setCode] = useState("");
 
   const joinRoom = (e) => {
     console.log("Join provided room");
     e.preventDefault();
     // check if code is set
-    if (code !== undefined) {
-      // need to check if room code exist
-      // if does
-      history.push("/room/" + code);
+    let roomCode = {
+      roomCode: code,
+    };
+    if (code !== "") {
+      axios
+        .post("room/join", roomCode)
+        .then((res) => {
+          console.log(res);
+          history.push("/room/" + code);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   };
   return (
     <>
       <form onSubmit={joinRoom}>
         <h3>Join Room</h3>
-        <input class = 'AccountInputField'
+        <input
+          class="AccountInputField"
           type="text"
           name="code"
           placeholder="Enter Code"
@@ -31,10 +41,9 @@ const JoinRoom = () => {
         />
         <br />
       </form>
-      <Button
-
-className='GoButton' onClick={joinRoom}
->Join</Button>
+      <Button className="GoButton" onClick={joinRoom}>
+        Join
+      </Button>
     </>
   );
 };
