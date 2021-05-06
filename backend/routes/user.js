@@ -3,6 +3,17 @@ var router = express.Router();
 var User = require("../mongo/User");
 var uuid = require("uuid");
 
+/* GET user information from cookie. */
+router.get("/", async function (req, res, next) {
+  // Obtain user
+  let user = await User.findOne({ sessionID: req.cookies.sessionID }, "_id username name email phoneNumber isHost roomCode");
+  if (!user) {
+    return res.status(401).json({ message: "Invalid cookies" });
+  } else {
+    return res.status(200).json(user);
+  }
+});
+
 /* POST user register. */
 router.post("/register", async function (req, res, next) {
   const newUser = new User({
