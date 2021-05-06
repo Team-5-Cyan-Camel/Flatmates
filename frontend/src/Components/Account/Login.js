@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 const Login = ({ setObj }) => {
   let [user, setUser] = useState(undefined);
@@ -32,8 +33,9 @@ const Login = ({ setObj }) => {
 
   return (
     <>
-      <Form style={{  marginLeft:'1em',  marginRight:'1em' }} onSubmit={login}>
-        <input class = 'AccountInputField'
+      <Form style={{ marginLeft: "1em", marginRight: "1em" }}>
+        <input
+          class="AccountInputField"
           type="text"
           name="username"
           placeholder="Username"
@@ -41,7 +43,8 @@ const Login = ({ setObj }) => {
           onChange={(e) => setUser(e.target.value)}
         />
         <br></br>
-        <input class = 'AccountInputField'
+        <input
+          class="AccountInputField"
           type="password"
           id="password"
           name="password"
@@ -51,16 +54,10 @@ const Login = ({ setObj }) => {
         />
         <br></br>
 
-      {/* add code 
-      wtf is this wong????!?!
-      <input type="submit" value="Login" />
-      */}
-<input type="submit" value="Login" />
-
-
-
-
       </Form>
+      <Button className="GoButton" onClick={login}>
+          Login
+        </Button>
     </>
   );
 };

@@ -1,15 +1,16 @@
-import ReactDOM from "react-dom";
-import { FaTimes as Cross } from "react-icons/fa";
-import styles from "./Settings.module.css";
+import React from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
+import AddTask from "./AddTask";
 
-const modalRoot = document.querySelector("#modal-root");
+import Button from "react-bootstrap/Button";
 
-const Settings = ({ hideSettings }) => {
-  return ReactDOM.createPortal(
-    <div className={styles.modalContainer}>
-      {/* add code */}
+const UserTask = ({ task, name }) => {
+  let [makeTask, setMakeTask] = useState(false);
+
+  return (
+    <>
       <Card
         id="Card-field"
         style={{
@@ -24,8 +25,7 @@ const Settings = ({ hideSettings }) => {
           style={{ width: "100%" }}
         >
           {" "}
-          Settings
-          <Cross onClick={hideSettings} />
+          {name}
         </Card.Header>
 
         <Card.Body
@@ -35,11 +35,20 @@ const Settings = ({ hideSettings }) => {
             justifyContent: "center",
             width: "90%",
           }}
-        ></Card.Body>
+        >
+          {task.map((e) => {
+            return <p>{e.title}</p>;
+          })}
+
+          <Button className="GoButton" onClick={() => setMakeTask(true)}>
+            Add Task
+          </Button>
+        </Card.Body>
       </Card>
-    </div>,
-    modalRoot
+
+      {makeTask && <AddTask show={setMakeTask} />}
+    </>
   );
 };
 
-export default Settings;
+export default UserTask;
