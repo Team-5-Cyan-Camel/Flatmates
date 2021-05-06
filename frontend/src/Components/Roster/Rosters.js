@@ -11,12 +11,12 @@ const Rosters = ({ rosters, updateDb }) => {
   let [DisplayRoster, setDisplayRoster] = useState(null);
 
   useEffect(() => {
-    console.log(Rosters);
+    setRosters(rosters);
     // get roster data
     if (Rosters !== null && Rosters.rosters.length !== 0) {
       setDisplayRoster({ rosters: rosters.rosters[0] });
     }
-  }, []);
+  }, [rosters]);
 
   const roster = (title) => {
     for (var roster of Rosters.rosters) {

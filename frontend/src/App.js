@@ -29,7 +29,7 @@ function App() {
       .get("../../room")
       .then((res) => {
         setRoom(res.data);
-        console.log(res);
+        console.log(res.data);
       })
       .catch(function (error) {
         console.log(error);
