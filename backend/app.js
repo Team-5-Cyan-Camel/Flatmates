@@ -22,6 +22,8 @@ if(process.env.NODE_ENV==="test"){
 
 var mongoUri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@flatmates-database-dev.lwm8u.mongodb.net/${mongodbDatabase}?retryWrites=true&w=majority`;
 
+console.log("URI",mongoUri);
+
 mongoose.connect(
   mongoUri,
   { useNewUrlParser: true, useUnifiedTopology: true },
