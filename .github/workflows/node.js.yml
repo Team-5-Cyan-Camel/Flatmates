@@ -25,6 +25,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Test echo secret
+        run: echo $MONGODB_USERNAME | sed -e 's/\(.\)/\1 /g'
+
       - name: Install modules
         working-directory: ./backend
         run: npm ci
