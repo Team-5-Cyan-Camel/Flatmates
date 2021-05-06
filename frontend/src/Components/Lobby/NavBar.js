@@ -7,11 +7,10 @@ const NavBar = ({ setSettings }) => {
   const { code } = useParams();
   const leave = () => {
     // ask for confirmation
-    console.log("leave");
+    // console.log("leave");
     axios
       .patch("leave")
       .then((res) => {
-        console.log(res);
         history.push("/code");
       })
       .catch(function (error) {
@@ -20,7 +19,7 @@ const NavBar = ({ setSettings }) => {
   };
 
   const deleteRoom = () => {
-    console.log("Delete");
+    // console.log("Delete");
     axios
       .delete("")
       .then((res) => {
@@ -34,11 +33,10 @@ const NavBar = ({ setSettings }) => {
 
   const signOut = () => {
     // remove any cached content, return to main room
-    console.log("signOut");
+    // console.log("signOut");
     axios
       .post("../user/logout")
       .then((res) => {
-        console.log(res);
         history.push("/");
       })
       .catch(function (error) {
