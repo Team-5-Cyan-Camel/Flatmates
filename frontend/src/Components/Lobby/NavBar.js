@@ -1,24 +1,51 @@
 import { Link, useHistory, useParams } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-
+import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 const NavBar = ({ setSettings }) => {
   const history = useHistory();
   const { code } = useParams();
   const leave = () => {
     // ask for confirmation
-    console.log("leave");
+    // console.log("leave");
+    axios
+      .patch("leave")
+      .then((res) => {
+        history.push("/code");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const deleteRoom = () => {
+    // console.log("Delete");
+    axios
+      .delete("../room")
+      .then((res) => {
+        console.log(res);
+        history.push("/code");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const signOut = () => {
     // remove any cached content, return to main room
-    console.log("signOut");
-    // history.push("/");
+    // console.log("signOut");
+    axios
+      .post("../user/logout")
+      .then((res) => {
+        history.push("/");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   return (
     <>
-
-      <nav class="topnav" style={{ display:'flex' }}>
+      <nav class="topnav" style={{ display: "flex" }}>
         {/* list for features */}
         <ul>
           <a>
@@ -39,14 +66,22 @@ const NavBar = ({ setSettings }) => {
         </ul>
 
         {/* list for actions */}
-        <ul style={{ marginLeft:'3rem' }}>
+        <ul style={{ marginLeft: "3rem" }}>
+          <Button className="navbutton" onClick={() => setSettings(true)}>
+            Settings
+          </Button>
 
-            <Button className='navbutton' onClick={() => setSettings(true)}>Settings</Button>
+          <Button className="navbutton" onClick={leave}>
+            Leave Room
+          </Button>
 
-            <Button className='navbutton' onClick={leave}>Leave Room</Button>
+          <Button className="navbutton" onClick={deleteRoom}>
+            Delete Room
+          </Button>
 
-            <Button className='navbutton' onClick={signOut}>Sign Out</Button>
-
+          <Button className="navbutton" onClick={signOut}>
+            Sign Out
+          </Button>
         </ul>
       </nav>
     </>
