@@ -12,6 +12,19 @@ const NavBar = ({ setSettings }) => {
       .patch("leave")
       .then((res) => {
         console.log(res);
+        history.push("/code");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const deleteRoom = () => {
+    console.log("Delete");
+    axios
+      .delete("")
+      .then((res) => {
+        console.log(res);
         // history.push("/");
       })
       .catch(function (error) {
