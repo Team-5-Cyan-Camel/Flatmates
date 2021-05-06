@@ -30,7 +30,7 @@ const Login = ({ setObj }) => {
       .then((res) => {
         console.log(res);
         let roomcode = res.data.roomCode;
-        if (roomcode != "") {
+        if (roomcode !== null) {
           history.push("/room/" + roomcode);
         } else {
           history.push("/code");
