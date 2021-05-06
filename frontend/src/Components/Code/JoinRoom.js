@@ -24,9 +24,7 @@ const JoinRoom = () => {
         })
         .catch(function (error) {
           console.log(error);
-          alert("Code does not exist. Please try again");
         });
-      // history.push("/room/" + code);
     }
   };
   return (
