@@ -4,6 +4,12 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { FaTimes as Cross } from "react-icons/fa";
 
+import "../../App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+
 const modalRoot = document.querySelector("#modal-root");
 
 const SignUp = ({ cancel, setObj }) => {
@@ -36,39 +42,69 @@ const SignUp = ({ cancel, setObj }) => {
       <div></div>
 
       <div className={styles.form}>
-        <form onSubmit={onSubmit}>
-          <h3>
-            Create Account! <Cross onClick={cancel} />
-          </h3>
-          <hr />
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
-          />
-          <br></br>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <br></br>{" "}
-          <input
-            type="password"
-            id="passwordC"
-            name="passwordC"
-            placeholder="Confirm Password"
-            value={passwordC}
-            onChange={(e) => setPasswordC(e.target.value)}
-          />
-          <br></br>
-          <input type="submit" value="Create Account!" />
-        </form>
+        <Card
+          id="Card-field"
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Card.Header
+            as="h5"
+            id="Card-Header"
+            className="text-center"
+            style={{ width: "100%" }}
+          >
+            {" "}
+            Create Account <Cross onClick={cancel} />
+          </Card.Header>
+
+          <Card.Body
+            style={{
+              display: "Grid",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "90%",
+            }}
+          >
+            <form>
+              <hr />
+              <input
+                class="AccountInputField"
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={user}
+                onChange={(e) => setUser(e.target.value)}
+              />
+              <br></br>
+              <input
+                class="AccountInputField"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <br></br>{" "}
+              <input
+                class="AccountInputField"
+                type="password"
+                id="passwordC"
+                name="passwordC"
+                placeholder="Confirm Password"
+                value={passwordC}
+                onChange={(e) => setPasswordC(e.target.value)}
+              />
+              <br></br>
+              {/* <input type="submit" value="Create Account!" /> */}
+            </form>
+            <Button className="GoButton" onClick={onSubmit}>
+              Create
+            </Button>
+          </Card.Body>
+        </Card>
       </div>
     </div>,
     modalRoot
