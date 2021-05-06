@@ -45,16 +45,16 @@ const Roster = ({ data }) => {
               width: "90%",
             }}
           >
-            {/* {data.assignedUsers.map((e, i) => {
+            {data.assignedUsers.map((e, i) => {
               return (
                 <UserTask
-                  name={e}
+                  name={e.name}
                   task={data.tasks.filter((data) => {
                     return data.userIndex === i;
                   })}
                 />
               );
-            })} */}
+            })}
             <Button className="GoButton" onClick={addUser}>
               Add Yourself
             </Button>

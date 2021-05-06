@@ -14,10 +14,6 @@ const Login = ({ setObj }) => {
 
   const login = (e) => {
     e.preventDefault();
-    console.log("check login");
-    console.log(user);
-    console.log(password);
-
     //  check if user account exist (axios)
 
     const userIn = {
@@ -28,7 +24,6 @@ const Login = ({ setObj }) => {
     axios
       .post("user/login", userIn)
       .then((res) => {
-        console.log(res);
         let roomcode = res.data.roomCode;
         if (roomcode !== null) {
           history.push("/room/" + roomcode);

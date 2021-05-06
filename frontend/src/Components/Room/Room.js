@@ -7,9 +7,8 @@ const Room = ({ update, setRoom }) => {
     axios
       .get("./")
       .then((res) => {
-        console.log(res.data);
         setRoom(res.data);
-        console.log(res.data.rosters);
+        // console.log(res.data.rosters);
       })
       .catch(function (error) {
         console.log(error);

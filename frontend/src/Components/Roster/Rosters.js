@@ -21,7 +21,6 @@ const Rosters = ({ rosters, updateDb }) => {
   const roster = (title) => {
     for (var roster of Rosters.rosters) {
       if (roster.title === title) {
-        console.log(roster);
         setDisplayRoster({ rosters: roster });
         break;
       }
