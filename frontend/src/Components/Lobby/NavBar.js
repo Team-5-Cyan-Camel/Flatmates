@@ -21,10 +21,10 @@ const NavBar = ({ setSettings }) => {
   const deleteRoom = () => {
     // console.log("Delete");
     axios
-      .delete("")
+      .delete("../room")
       .then((res) => {
         console.log(res);
-        // history.push("/");
+        history.push("/code");
       })
       .catch(function (error) {
         console.log(error);
@@ -73,6 +73,10 @@ const NavBar = ({ setSettings }) => {
 
           <Button className="navbutton" onClick={leave}>
             Leave Room
+          </Button>
+
+          <Button className="navbutton" onClick={deleteRoom}>
+            Delete Room
           </Button>
 
           <Button className="navbutton" onClick={signOut}>
