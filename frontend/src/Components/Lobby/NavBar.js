@@ -41,7 +41,7 @@ const NavBar = ({ setSettings, setUpdate }) => {
     // remove any cached content, return to main room
     // console.log("signOut");
     axios
-      .post("../user/logout")
+      .post("../../user/logout")
       .then((res) => {
         history.push("/");
       })
