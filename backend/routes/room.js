@@ -39,8 +39,6 @@ router.post("/", async function (req, res, next) {
 /* POST a request to join a room */
 router.post("/join", async function (req, res, next) {
   const user = await getUserOfCookie(req, res);
-  console.log("AHHHHHH");
-  console.log(req.body);
   if (!req.body.roomCode) {
     return res
       .status(400)
@@ -57,14 +55,14 @@ router.post("/join", async function (req, res, next) {
       { _id: req.body.roomCode },
       {
         $push: {
-          "users": user._id,
-          "rosters.$[].assignedUsers": user._id
-        }
+          users: user._id,
+          "rosters.$[].assignedUsers": user._id,
+        },
       }
     );
     user.roomCode = req.body.roomCode;
     await user.save();
-    await socketRoomUpdate(user.roomCode)
+    await socketRoomUpdate(user.roomCode);
     return res.status(200).json({ message: "success" });
   } catch (err) {
     return res.status(500).json({ message: err.message });
@@ -85,21 +83,21 @@ router.patch("/leave", async function (req, res, next) {
     });
   }
   let room;
-  updateTaskUserIndex(user)
+  updateTaskUserIndex(user);
   try {
     await Room.updateOne(
       { _id: user.roomCode },
       {
         $pull: {
-          "users": user._id,
-          "rosters.$[].assignedUsers": user._id
-        }
+          users: user._id,
+          "rosters.$[].assignedUsers": user._id,
+        },
       }
     );
     let roomCode = user.roomCode;
     user.roomCode = null;
     await user.save();
-    await socketRoomUpdate(roomCode)
+    await socketRoomUpdate(roomCode);
     return res.status(200).json({ message: "success" });
   } catch (err) {
     return res.status(500).json({ message: err.message });
@@ -186,7 +184,7 @@ router.patch("/kick", async function (req, res, next) {
   }
 
   let room;
-  updateTaskUserIndex(user)
+  updateTaskUserIndex(user);
   try {
     userToKick = await User.findOne({ username: req.body.username });
 
@@ -194,15 +192,14 @@ router.patch("/kick", async function (req, res, next) {
       { _id: userToKick.roomCode },
       {
         $pull: {
-          "users": userToKick._id,
-          "rosters.$[].assignedUsers": userToKick._id
-        }
+          users: userToKick._id,
+          "rosters.$[].assignedUsers": userToKick._id,
+        },
       }
-
     );
     userToKick.roomCode = null;
     await userToKick.save();
-    await socketRoomUpdate(user.roomCode)
+    await socketRoomUpdate(user.roomCode);
     return res.status(200).json({ message: "success" });
   } catch (err) {
     return res.status(500).json({ message: err.message });
@@ -210,14 +207,14 @@ router.patch("/kick", async function (req, res, next) {
 });
 
 async function socketRoomUpdate(roomCode) {
-  return new Promise(async resolve => {
+  return new Promise(async (resolve) => {
     if (global.io) {
       let room = await Room.findOne({ _id: roomCode })
         .populate("users", "_id username name")
         .populate("rosters.assignedUsers", "_id username name");
 
       roomCode = JSON.stringify(room._id).replace(/(^")|("$)/g, "");
-      global.io.in(roomCode).emit('room_update', room);
+      global.io.in(roomCode).emit("room_update", room);
     }
     resolve();
   });
@@ -249,7 +246,7 @@ async function getUserOfCookie(req, res) {
 async function updateTaskUserIndex(user) {
   return new Promise(async (resolve) => {
     // Obtain room based on user
-    let room = await Room.findOne({ _id: user.roomCode })
+    let room = await Room.findOne({ _id: user.roomCode });
     for (let i = 0; i < room.rosters.length; i++) {
       let userIndex = room.rosters[i].assignedUsers.indexOf(user._id);
       for (let j = 0; j < room.rosters[i].tasks.length; j++) {
@@ -264,6 +261,5 @@ async function updateTaskUserIndex(user) {
     resolve();
   });
 }
-
 
 module.exports = router;
