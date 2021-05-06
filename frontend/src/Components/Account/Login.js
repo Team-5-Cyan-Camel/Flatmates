@@ -1,14 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 const Login = ({ setObj }) => {
-  let [user, setUser] = useState(undefined);
-  let [password, setPassword] = useState(undefined);
+  let [user, setUser] = useState("");
+  let [password, setPassword] = useState("");
   const history = useHistory();
 
   const login = (e) => {
@@ -18,17 +19,26 @@ const Login = ({ setObj }) => {
     console.log(password);
 
     //  check if user account exist (axios)
-    // if exist, set userObj. login to room
-    // setObj(userObj);
 
-    // if no code, go to room code
-    history.push("/code");
+    const userIn = {
+      username: user,
+      password: password,
+    };
 
-    // if has code, go to room
-    // history.push("/room/"+roomCode);
-
-    // then if wanted, remove pasword stored
-    setPassword(undefined);
+    axios
+      .post("user/login", userIn)
+      .then((res) => {
+        console.log(res);
+        let roomcode = res.data.roomCode;
+        if (roomcode !== null) {
+          history.push("/room/" + roomcode);
+        } else {
+          history.push("/code");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
@@ -53,11 +63,10 @@ const Login = ({ setObj }) => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br></br>
-
       </Form>
       <Button className="GoButton" onClick={login}>
-          Login
-        </Button>
+        Login
+      </Button>
     </>
   );
 };
