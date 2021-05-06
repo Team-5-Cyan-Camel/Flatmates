@@ -6,7 +6,9 @@ import UserTask from "./UserTask";
 import "../../App.css";
 
 const Roster = ({ data }) => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(data);
+  }, []);
 
   const addUser = () => {
     // use axios to add a new user
@@ -43,7 +45,7 @@ const Roster = ({ data }) => {
               width: "90%",
             }}
           >
-            {data.assignedUsers.map((e, i) => {
+            {/* {data.assignedUsers.map((e, i) => {
               return (
                 <UserTask
                   name={e}
@@ -52,7 +54,7 @@ const Roster = ({ data }) => {
                   })}
                 />
               );
-            })}
+            })} */}
             <Button className="GoButton" onClick={addUser}>
               Add Yourself
             </Button>

@@ -13,15 +13,16 @@ const Rosters = ({ rosters, updateDb }) => {
   useEffect(() => {
     console.log(Rosters);
     // get roster data
-    // if (Rosters !== null && Rosters.rosters.length !== 0) {
-    //   setDisplayRoster(Rosters.rosters[0]);
-    // }
+    if (Rosters !== null && Rosters.rosters.length !== 0) {
+      setDisplayRoster({ rosters: rosters.rosters[0] });
+    }
   }, []);
 
   const roster = (title) => {
     for (var roster of Rosters.rosters) {
       if (roster.title === title) {
-        setDisplayRoster(roster);
+        console.log(roster);
+        setDisplayRoster({ rosters: roster });
         break;
       }
     }
@@ -32,7 +33,7 @@ const Rosters = ({ rosters, updateDb }) => {
       <SelectRoster rosters={Rosters} setRoster={roster} updateDb={updateDb} />
 
       {Rosters !== null && DisplayRoster !== null && (
-        <Roster data={DisplayRoster} />
+        <Roster data={DisplayRoster.rosters} />
       )}
     </>
   );
