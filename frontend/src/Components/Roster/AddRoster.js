@@ -10,7 +10,7 @@ import axios from "axios";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const AddRoster = ({ show }) => {
+const AddRoster = ({ show, updateDb }) => {
   let [chore, setChore] = useState("");
 
   const addRoster = () => {
@@ -28,6 +28,8 @@ const AddRoster = ({ show }) => {
       .post("../../roster", addRos)
       .then((res) => {
         console.log(res);
+        updateDb();
+        show(false);
       })
       .catch(function (error) {
         console.log(error);

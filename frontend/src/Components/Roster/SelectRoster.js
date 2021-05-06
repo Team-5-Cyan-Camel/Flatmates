@@ -6,7 +6,7 @@ import "../Lobby/NavBar.css";
 import AddRoster from "./AddRoster";
 import { useState } from "react";
 
-const SelectRoster = ({ rosters, setRoster }) => {
+const SelectRoster = ({ rosters, setRoster, updateDb }) => {
   let [makeRoster, setMakeRoster] = useState(false);
 
   return (
@@ -29,8 +29,12 @@ const SelectRoster = ({ rosters, setRoster }) => {
         >
           {/* <div class='topnav' style={{display: 'flex'}}> */}
           {rosters !== null &&
-            rosters.rosters.map((e) => [
-              <Button className="GoButton" onClick={() => setRoster(e.title)}>
+            rosters.rosters.map((e, i) => [
+              <Button
+                key={i}
+                className="GoButton"
+                onClick={() => setRoster(e.title)}
+              >
                 {e.title}
               </Button>,
             ])}
@@ -41,7 +45,7 @@ const SelectRoster = ({ rosters, setRoster }) => {
         </Card.Body>
       </Card>
       {/* )} */}
-      {makeRoster && <AddRoster show={setMakeRoster} />}
+      {makeRoster && <AddRoster show={setMakeRoster} updateDb={updateDb} />}
     </>
   );
 };

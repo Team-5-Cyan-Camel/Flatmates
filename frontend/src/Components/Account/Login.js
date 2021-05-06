@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-const Login = ({ setObj }) => {
+const Login = () => {
   let [user, setUser] = useState("");
   let [password, setPassword] = useState("");
   const history = useHistory();

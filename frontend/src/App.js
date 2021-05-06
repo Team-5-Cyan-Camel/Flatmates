@@ -8,25 +8,33 @@ import GenerateRoom from "./Components/Code/GenerateRoom";
 import JoinRoom from "./Components/Code/JoinRoom";
 import NavBar from "./Components/Lobby/NavBar";
 import Room from "./Components/Room/Room";
+import axios from "axios";
 
 import "./Components/Lobby/NavBar.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Rosters from "./Components/Roster/Rosters";
-import AddTask from "./Components/Roster/AddTask";
 
 function App() {
-  // obj to be populated on successful signup
-  let [userObj, setObj] = useState(undefined);
-
   // boolean for showing signup
   let [register, setSignup] = useState(false);
   let [settings, setSettings] = useState(false);
-  let [update, setUpdate] = useState(true);
+  let [update, setUpdate] = useState(1);
   let [room, setRoom] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("../../room")
+      .then((res) => {
+        setRoom(res.data);
+        console.log(res);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [update]);
 
   const cancelSignup = () => {
     setSignup(false);
@@ -37,7 +45,8 @@ function App() {
   };
 
   const updateDb = () => {
-    setUpdate(!update);
+    console.log("update");
+    setUpdate(update++);
   };
 
   return (
@@ -78,14 +87,13 @@ function App() {
                     width: "90%",
                   }}
                 >
-                  <Login setObj={setObj} />
+                  <Login />
                   {/* modal for login*/}
                   {register && (
                     <SignUp
                       style={{ width: "100px" }}
                       dismissOnClickOutside={true}
                       cancel={cancelSignup}
-                      setObj={setObj}
                     />
                   )}
 
@@ -142,7 +150,7 @@ function App() {
 
             {/* path for room screen */}
             <Route path="/room/:code">
-              <NavBar setSettings={setSettings} />
+              <NavBar setSettings={setSettings} setUpdate={setUpdate} />
               {settings && <Settings hideSettings={hideSettings} />}
             </Route>
 

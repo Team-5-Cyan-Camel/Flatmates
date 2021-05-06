@@ -48,6 +48,7 @@ const Roster = ({ data }) => {
             {data.assignedUsers.map((e, i) => {
               return (
                 <UserTask
+                  key={i}
                   name={e.name}
                   task={data.tasks.filter((data) => {
                     return data.userIndex === i;

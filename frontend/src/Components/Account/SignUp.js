@@ -13,7 +13,7 @@ import Card from "react-bootstrap/Card";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const SignUp = ({ cancel, setObj }) => {
+const SignUp = ({ cancel }) => {
   const history = useHistory();
   let [user, setUser] = useState("");
   let [password, setPassword] = useState("");

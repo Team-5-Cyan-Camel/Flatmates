@@ -3,9 +3,14 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const NavBar = ({ setSettings }) => {
+const NavBar = ({ setSettings, setUpdate }) => {
   const history = useHistory();
   const { code } = useParams();
+
+  useEffect(() => {
+    setUpdate();
+  }, []);
+
   const leave = () => {
     // ask for confirmation
     // console.log("leave");
