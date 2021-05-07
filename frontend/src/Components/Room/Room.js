@@ -32,7 +32,7 @@ const Room = ({ update, room }) => {
 
         <Card.Body
           style={{
-            display: "Grid",
+            display: "Flex",
             alignItems: "center",
             justifyContent: "center",
             width: "90%",
