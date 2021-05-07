@@ -33,7 +33,7 @@ const Rosters = ({ rosters, updateDb }) => {
       <SelectRoster rosters={Rosters} setRoster={roster} updateDb={updateDb} />
 
       {Rosters !== null && DisplayRoster !== null && (
-        <Roster data={DisplayRoster.rosters} />
+        <Roster data={DisplayRoster.rosters} updateDb={updateDb} />
       )}
     </>
   );

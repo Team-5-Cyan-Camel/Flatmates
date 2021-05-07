@@ -10,7 +10,7 @@ import axios from "axios";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const AddTask = ({ show, rid, pid }) => {
+const AddTask = ({ show, rid, pid, updateDb }) => {
   let [title, setTitle] = useState("");
   let [description, setDescription] = useState("");
 
@@ -30,6 +30,8 @@ const AddTask = ({ show, rid, pid }) => {
       .post("../../../roster/task", newTask)
       .then((res) => {
         console.log(res);
+        show(false);
+        updateDb();
       })
       .catch(function (error) {
         console.log(error);

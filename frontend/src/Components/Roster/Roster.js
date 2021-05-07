@@ -6,7 +6,7 @@ import UserTask from "./UserTask";
 import "../../App.css";
 import axios from "axios";
 
-const Roster = ({ data }) => {
+const Roster = ({ data, updateDb }) => {
   // let [inTask, setInTask] = useState(false);
 
   // useEffect(() => {
@@ -67,6 +67,7 @@ const Roster = ({ data }) => {
                   rid={data._id}
                   pid={e._id}
                   name={e.name}
+                  updateDb={updateDb}
                   task={data.tasks.filter((data) => {
                     return data.userIndex === i;
                   })}
