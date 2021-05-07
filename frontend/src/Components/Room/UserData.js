@@ -1,16 +1,9 @@
 import React from "react";
-import axios from "axios";
-import UserData from "./UserData";
-import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 
-const Room = ({ update, room }) => {
-  useEffect(() => {
-    console.log(room);
-  }, []);
-
+const UserData = ({ data }) => {
   return (
     <>
       <Card
@@ -27,7 +20,7 @@ const Room = ({ update, room }) => {
           style={{ width: "100%" }}
         >
           {" "}
-          Members
+          {data.name}
         </Card.Header>
 
         <Card.Body
@@ -38,13 +31,12 @@ const Room = ({ update, room }) => {
             width: "90%",
           }}
         >
-          {room.users.map((e) => {
-            return <UserData data={e} />;
-          })}
+          <p>Phone Number: {data.phoneNumber}</p>
+          <p>Email: {data.email}</p>
         </Card.Body>
       </Card>
     </>
   );
 };
 
-export default Room;
+export default UserData;
