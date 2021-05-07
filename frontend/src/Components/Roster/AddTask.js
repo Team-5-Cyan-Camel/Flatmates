@@ -19,32 +19,32 @@ const AddTask = ({ show, rid, pid }) => {
   }, []);
 
   const makeTask = () => {
+    // axios
+    //   .get("../../user")
+    //   .then((res) => {
+    //     console.log(res.data);
+
+    const newTask = {
+      title: title,
+      description: description,
+      rosterID: rid,
+      assignedUserID: pid,
+
+      // assignedUserID: res.data._id,
+    };
+
     axios
-      .get("../../user")
+      .post("../../../roster/task", newTask)
       .then((res) => {
-        console.log(res.data._id);
-
-        const newTask = {
-          title: title,
-          description: description,
-          rosterID: rid,
-          assignedUserID: pid,
-
-          // assignedUserID: res.data._id,
-        };
-
-        axios
-          .post("../../../roster/task", newTask)
-          .then((res) => {
-            console.log(res);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        console.log(res);
       })
       .catch(function (error) {
         console.log(error);
       });
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
   };
 
   return ReactDOM.createPortal(
