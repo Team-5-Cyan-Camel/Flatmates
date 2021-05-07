@@ -1,13 +1,31 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddTask from "./AddTask";
+import { FaTimes as Cross } from "react-icons/fa";
+import axios from "axios";
 
 import Button from "react-bootstrap/Button";
 
-const UserTask = ({ task, name }) => {
+const UserTask = ({ task, name, rid, pid, updateDb }) => {
   let [makeTask, setMakeTask] = useState(false);
+
+  const deleteTask = (id) => {
+    const delTask = {
+      rosterID: rid,
+      taskID: id,
+    };
+
+    axios
+      .delete("/roster/task", { data: delTask })
+      .then((res) => {
+        updateDb();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -37,7 +55,12 @@ const UserTask = ({ task, name }) => {
           }}
         >
           {task.map((e) => {
-            return <p>{e.title}</p>;
+            return (
+              <p>
+                <Cross onClick={() => deleteTask(e._id)} />
+                {e.title}
+              </p>
+            );
           })}
 
           <Button className="GoButton" onClick={() => setMakeTask(true)}>
@@ -46,7 +69,9 @@ const UserTask = ({ task, name }) => {
         </Card.Body>
       </Card>
 
-      {makeTask && <AddTask show={setMakeTask} />}
+      {makeTask && (
+        <AddTask show={setMakeTask} rid={rid} pid={pid} updateDb={updateDb} />
+      )}
     </>
   );
 };

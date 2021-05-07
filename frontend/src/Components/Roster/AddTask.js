@@ -6,14 +6,37 @@ import { FaTimes as Cross } from "react-icons/fa";
 import styles from "./RosterModal.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const AddTask = ({ show }) => {
+const AddTask = ({ show, rid, pid, updateDb }) => {
   let [title, setTitle] = useState("");
   let [description, setDescription] = useState("");
-  let [dueType, setDueType] = useState("");
-  let [due, setDue] = useState("");
+
+  useEffect(() => {
+    console.log(pid);
+  }, []);
+
+  const makeTask = () => {
+    const newTask = {
+      title: title,
+      description: description,
+      rosterID: rid,
+      assignedUserID: pid,
+    };
+
+    axios
+      .post("../../../roster/task", newTask)
+      .then((res) => {
+        console.log(res);
+        show(false);
+        updateDb();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return ReactDOM.createPortal(
     <div className={styles.modalContainer}>
@@ -62,26 +85,10 @@ const AddTask = ({ show }) => {
                 onChange={(e) => setDescription(e.target.value)}
               />
               <br></br>
-              <input
-                class="TaskInputField"
-                type="text"
-                name="DueType"
-                placeholder="Due Type"
-                value={dueType}
-                onChange={(e) => setDueType(e.target.value)}
-              />
-              <br></br>
-              <input
-                class="TaskInputField"
-                type="text"
-                name="Due"
-                placeholder="Due"
-                value={due}
-                onChange={(e) => setDue(e.target.value)}
-              />
-              <br></br>
             </form>
-            <Button className="GoButton">Create Task</Button>
+            <Button className="GoButton" onClick={makeTask}>
+              Create Task
+            </Button>
           </Card.Body>
         </Card>
       </div>

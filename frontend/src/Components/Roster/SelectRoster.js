@@ -4,10 +4,27 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import "../Lobby/NavBar.css";
 import AddRoster from "./AddRoster";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { FaTimes as Cross } from "react-icons/fa";
+import axios from "axios";
 
-const SelectRoster = ({ rosters, setRoster }) => {
+const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
   let [makeRoster, setMakeRoster] = useState(false);
+
+  const deleteRoster = (id) => {
+    const rostDel = {
+      rosterID: id,
+    };
+
+    axios
+      .delete("/roster", { data: rostDel })
+      .then((res) => {
+        updateDb();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -28,20 +45,25 @@ const SelectRoster = ({ rosters, setRoster }) => {
           }}
         >
           {/* <div class='topnav' style={{display: 'flex'}}> */}
-          {rosters !== "undefined" &&
-            rosters.map((e) => [
-              <Button className="GoButton" onClick={() => setRoster(e.title)}>
-                {e.title}
+          {rosters !== null &&
+            rosters.rosters.map((e, i) => [
+              <Button
+                key={i}
+                className="GoButton"
+                onClick={() => setRoster(e.title)}
+              >
+                {e.title}{" "}
+                {isHost && <Cross onClick={() => deleteRoster(e._id)} />}
               </Button>,
             ])}
           <Button className="GoButton" onClick={() => setMakeRoster(true)}>
-            Add+
+            Add
           </Button>
           {/* </div> */}
         </Card.Body>
       </Card>
       {/* )} */}
-      {makeRoster && <AddRoster show={setMakeRoster} />}
+      {makeRoster && <AddRoster show={setMakeRoster} updateDb={updateDb} />}
     </>
   );
 };
