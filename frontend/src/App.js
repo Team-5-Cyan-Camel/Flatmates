@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("../../room")
+      .get("/room")
       .then((res) => {
         setRoom(res.data);
         // console.log(res.data.host);
