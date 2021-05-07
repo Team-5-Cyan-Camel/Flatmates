@@ -117,6 +117,17 @@
 }
 
 
+.MakeCentreRoster {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+  justify-content: center;
+
+}
+
+
 /* StartPage */
 .StartTitle {
   color: white;
@@ -148,6 +159,26 @@
 .GoButton:hover {
   background: #a7a7a7 !important;
 }
+
+
+
+.NavBarButton {
+  cursor: pointer;
+  outline: none;
+  font-size: 1.3em !important;
+  border-radius: 0.5rem;
+  border-color: black !important;
+  border-width: 1.5px !important;
+
+  background-color: #696969 !important;
+  white-space: nowrap;
+}
+
+.NavBarButton:hover {
+  background: #a7a7a7 !important;
+}
+
+
 
 #Card-field {
   background-color: #64676e;

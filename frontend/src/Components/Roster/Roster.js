@@ -42,6 +42,8 @@ const Roster = ({ data, updateDb, isHost }) => {
           style={{
             alignItems: "center",
             justifyContent: "center",
+            height:"60vh",
+            maxHeight:"70vh",
           }}
         >
           <Card.Header
@@ -50,7 +52,7 @@ const Roster = ({ data, updateDb, isHost }) => {
             className="text-center"
             style={{ width: "100%" }}
           >
-            {" "}
+            {" "}adasdasdsss      s
             {data.title}
           </Card.Header>
 
@@ -60,8 +62,9 @@ const Roster = ({ data, updateDb, isHost }) => {
               alignItems: "center",
               justifyContent: "center",
               width: "90%",
+              maxHeight: "100%"
             }}
-          >
+          > 
             {data.assignedUsers.map((e, i) => {
               return (
                 <UserTask

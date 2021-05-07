@@ -34,6 +34,8 @@ const UserTask = ({ task, name, rid, pid, updateDb }) => {
         style={{
           alignItems: "center",
           justifyContent: "center",
+          width: "20rem",
+          maxHeight: "100%",
         }}
       >
         <Card.Header
@@ -51,21 +53,54 @@ const UserTask = ({ task, name, rid, pid, updateDb }) => {
             display: "Grid",
             alignItems: "center",
             justifyContent: "center",
-            width: "90%",
-          }}
-        >
+            height: "100%",
+            padding:"0!important",
+            
+          }}>
+
+
+
+
+
+
+
+            <div style={{overflow:"hidden", maxHeight:"100%",}}>
           {task.map((e) => {
             return (
-              <p>
-                <Cross onClick={() => deleteTask(e._id)} />
-                {e.title}
-              </p>
+              
+
+              <Card
+              id="Card-field"
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+
+        <Card.Body
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            width: "60%",
+            outlineColor: "black",
+          }}>
+                      <p>
+                        <Cross onClick={() => deleteTask(e._id)} />
+                        {e.title}
+                      </p>
+      </Card.Body>
+      </Card>
             );
           })}
+
 
           <Button className="GoButton" onClick={() => setMakeTask(true)}>
             Add Task
           </Button>
+
+</div>
+
+
         </Card.Body>
       </Card>
 

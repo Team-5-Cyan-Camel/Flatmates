@@ -57,11 +57,12 @@ function App() {
   return (
     <div className="BackGroundImage">
       <Container>
-        <div className="MakeCentre">
+        
           {/* path for main page */}
 
           <Router>
             <Route path="/" exact>
+            <div className="MakeCentre">
               <h1 className="StartTitle">
                 Flatmates
                 <small style={{ fontSize: "1.5rem" }}>1.0</small>
@@ -118,10 +119,12 @@ function App() {
                   </div>
                 </Card.Body>
               </Card>
+              </div>
             </Route>
 
             {/* path for room code to give */}
             <Route path="/code" exact>
+            <div className="MakeCentre">
               <Card
                 id="Card-field"
                 style={{
@@ -151,10 +154,12 @@ function App() {
                   <JoinRoom />
                 </Card.Body>
               </Card>
+              </div>
             </Route>
 
             {/* path for room screen */}
             <Route path="/room/:code">
+            
               <NavBar
                 setSettings={setSettings}
                 isHost={isHost}
@@ -168,7 +173,9 @@ function App() {
             </Route>
 
             <Route path="/room/:code/roster" exact>
-              <Rosters rosters={room} isHost={isHost} updateDb={updateDb} />
+            <div className="MakeCentreRoster">
+              helloasdasdasd
+              <Rosters rosters={room} isHost={isHost} updateDb={updateDb} /></div>
             </Route>
 
             {/* path for incompatable path */}
@@ -176,7 +183,7 @@ function App() {
               <Redirect to="/" />
             </Route>
           </Router>
-        </div>
+        
       </Container>
     </div>
   );

@@ -29,7 +29,7 @@ const Rosters = ({ rosters, updateDb, isHost }) => {
   };
 
   return (
-    <>
+    <div>
       <SelectRoster
         isHost={isHost}
         rosters={Rosters}
@@ -44,7 +44,7 @@ const Rosters = ({ rosters, updateDb, isHost }) => {
           updateDb={updateDb}
         />
       )}
-    </>
+    </div>
   );
 };
 
