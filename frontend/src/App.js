@@ -33,7 +33,7 @@ function App() {
       axios
         .get("/room")
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setRoom(res.data);
           setHostId(res.data.host);
           // console.log(res.data);
@@ -48,7 +48,7 @@ function App() {
     axios
       .get("/room")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setRoom(res.data);
         setHostId(res.data.host);
         // console.log(res.data);

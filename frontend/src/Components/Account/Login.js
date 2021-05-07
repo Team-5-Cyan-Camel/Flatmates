@@ -16,7 +16,7 @@ const Login = () => {
     axios
       .get("/user")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.roomCode !== null) {
           history.push("/room/" + res.data.roomCode);
         } else {

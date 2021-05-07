@@ -10,13 +10,13 @@ import { socket, SocketContext } from "../../Context/socketContext";
 
 const Room = ({ update, room, setIsHost, hostId }) => {
   let [isHost, setHost] = useState(false);
-  console.log(room);
+  // console.log(room);
   // console.log(room.users);
   useEffect(() => {
     axios
       .get("/user")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setIsHost(res.data.isHost);
         setHost(res.data.isHost);
       })
