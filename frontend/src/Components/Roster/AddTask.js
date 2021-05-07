@@ -19,18 +19,11 @@ const AddTask = ({ show, rid, pid }) => {
   }, []);
 
   const makeTask = () => {
-    // axios
-    //   .get("../../user")
-    //   .then((res) => {
-    //     console.log(res.data);
-
     const newTask = {
       title: title,
       description: description,
       rosterID: rid,
       assignedUserID: pid,
-
-      // assignedUserID: res.data._id,
     };
 
     axios
@@ -41,10 +34,6 @@ const AddTask = ({ show, rid, pid }) => {
       .catch(function (error) {
         console.log(error);
       });
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
   };
 
   return ReactDOM.createPortal(

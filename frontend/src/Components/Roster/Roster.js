@@ -4,11 +4,27 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import UserTask from "./UserTask";
 import "../../App.css";
+import axios from "axios";
 
 const Roster = ({ data }) => {
+  let [inTask, setInTask] = useState(false);
+
   useEffect(() => {
-    console.log(data);
-    console.log(data._id);
+    console.log(data.assignedUsers);
+    axios
+      .get("../../user")
+      .then((res) => {
+        console.log(res.data._id);
+        data.assignedUsers.map((e) => {
+          if (e._id === res.data._id) {
+            console.log("FOUND");
+            setInTask(true);
+          }
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }, []);
 
   const addUser = () => {
@@ -59,9 +75,11 @@ const Roster = ({ data }) => {
                 />
               );
             })}
-            <Button className="GoButton" onClick={addUser}>
-              Add Yourself
-            </Button>
+            {!inTask && (
+              <Button className="GoButton" onClick={addUser}>
+                Add Yourself
+              </Button>
+            )}
           </Card.Body>
         </Card>
       )}
