@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -11,6 +11,22 @@ const Login = () => {
   let [user, setUser] = useState("");
   let [password, setPassword] = useState("");
   const history = useHistory();
+
+  useEffect(() => {
+    axios
+      .get("/user")
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.roomCode !== null) {
+          history.push("/room/" + res.data.roomCode);
+        } else {
+          history.push("/code");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   const login = (e) => {
     e.preventDefault();
