@@ -49,9 +49,11 @@ const Room = ({ update, room, setIsHost, hostId }) => {
             width: "90%",
           }}
         >
-          {room.users.map((e) => {
-            return <UserData data={e} hostId={hostId} isHost={isHost} />;
-          })}
+          {/* TODO VERY HACKY */}
+          {room !== null &&
+            room.users.map((e) => {
+              return <UserData data={e} hostId={hostId} isHost={isHost} />;
+            })}
         </Card.Body>
       </Card>
     </>
