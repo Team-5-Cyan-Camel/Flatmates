@@ -48,7 +48,7 @@ const SignUp = ({ cancel }) => {
     };
 
     axios
-      .post("user/register", newUser)
+      .post("/user/register", newUser)
       .then((res) => {
         console.log(res);
         //call cancel to reset state

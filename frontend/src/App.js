@@ -9,9 +9,7 @@ import JoinRoom from "./Components/Code/JoinRoom";
 import NavBar from "./Components/Lobby/NavBar";
 import Room from "./Components/Room/Room";
 import axios from "axios";
-
 import "./Components/Lobby/NavBar.css";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
@@ -31,9 +29,11 @@ function App() {
     // <<<<<<< HEAD
     socket.on("update", () => {
       console.log("socketio called update");
+      setUpdate(!update);
       axios
         .get("/room")
         .then((res) => {
+          console.log(res.data);
           setRoom(res.data);
           setHostId(res.data.host);
           // console.log(res.data);
@@ -42,6 +42,20 @@ function App() {
           console.log(error);
         });
     });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("/room")
+      .then((res) => {
+        console.log(res.data);
+        setRoom(res.data);
+        setHostId(res.data.host);
+        // console.log(res.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }, []);
 
   const cancelSignup = () => {
@@ -132,7 +146,6 @@ function App() {
                     justifyContent: "center",
                   }}
                 >
-                  {/* <<<<<<< HEAD */}
                   <Card.Header
                     as="h5"
                     id="Card-Header"
@@ -190,45 +203,6 @@ function App() {
         </Container>
       </div>
     </SocketContext.Provider>
-    // =======
-    //                   <GenerateRoom />
-    //                   <JoinRoom />
-    //                 </Card.Body>
-    //               </Card>
-    //             </Route>
-
-    //             {/* path for room screen */}
-    //             <Route path="/room/:code">
-    //               <NavBar
-    //                 setSettings={setSettings}
-    //                 isHost={isHost}
-    //                 setUpdate={setUpdate}
-    //               />
-    //               {settings && <Settings hideSettings={hideSettings} />}
-    //             </Route>
-
-    //             <Route path="/room/:code" exact>
-    //               <Room
-    //                 update={update}
-    //                 room={room}
-    //                 hostId={hostId}
-    //                 setIsHost={setIsHost}
-    //               />
-    //             </Route>
-
-    //             <Route path="/room/:code/roster" exact>
-    //               <Rosters rosters={room} isHost={isHost} updateDb={updateDb} />
-    //             </Route>
-
-    //             {/* path for incompatable path */}
-    //             <Route path="*">
-    //               <Redirect to="/" />
-    //             </Route>
-    //           </Router>
-    //         </div>
-    //       </Container>
-    //     </div>
-    // >>>>>>> 2376b2576f98da8ac699322bf31a797273940f55
   );
 }
 

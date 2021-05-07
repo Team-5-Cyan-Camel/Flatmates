@@ -20,8 +20,7 @@ const UserTask = ({ task, name, rid, pid, updateDb }) => {
 
     axios
       .delete("/roster/task", { data: delTask })
-      .then((res) => {
-      })
+      .then((res) => {})
       .catch(function (error) {
         console.log(error);
       });
