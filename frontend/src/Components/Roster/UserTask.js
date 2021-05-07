@@ -10,6 +10,7 @@ import Button from "react-bootstrap/Button";
 
 const UserTask = ({ task, name, rid, pid, updateDb }) => {
   let [makeTask, setMakeTask] = useState(false);
+  console.log(task);
 
   const deleteTask = (id) => {
     const delTask = {
@@ -58,7 +59,7 @@ const UserTask = ({ task, name, rid, pid, updateDb }) => {
             return (
               <p>
                 <Cross onClick={() => deleteTask(e._id)} />
-                {e.title}
+                {e.title} {": "} {e.description === "" ? "N/A" : e.description}
               </p>
             );
           })}

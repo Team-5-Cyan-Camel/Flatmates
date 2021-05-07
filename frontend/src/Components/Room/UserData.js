@@ -1,27 +1,28 @@
 import React from "react";
-import axios from "axios";
-import UserData from "./UserData";
-import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import { FaTimes as Cross } from "react-icons/fa";
+import axios from "axios";
+import Form from "react-bootstrap/Form";
 
-const Room = ({ update, room, setIsHost, hostId }) => {
-  let [isHost, setHost] = useState(false);
-  useEffect(() => {
+const UserData = ({ data, isHost, hostId }) => {
+  const kickMember = (username) => {
+    console.log("KICLKK");
+    console.log(data);
+    console.log(username);
+    const kickUser = {
+      username: username,
+    };
     axios
-      .get("/user")
+      .patch("/room/kick", kickUser)
       .then((res) => {
         console.log(res.data);
-        setIsHost(res.data.isHost);
-        setHost(res.data.isHost);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
-
+  };
   return (
     <>
       <Card
@@ -38,7 +39,10 @@ const Room = ({ update, room, setIsHost, hostId }) => {
           style={{ width: "100%" }}
         >
           {" "}
-          Members
+          {data.name}{" "}
+          {isHost && hostId !== data._id && (
+            <Cross onClick={() => kickMember(data.username)} />
+          )}
         </Card.Header>
 
         <Card.Body
@@ -49,15 +53,16 @@ const Room = ({ update, room, setIsHost, hostId }) => {
             width: "90%",
           }}
         >
-          {/* TODO VERY HACKY */}
-          {room !== null &&
-            room.users.map((e) => {
-              return <UserData data={e} hostId={hostId} isHost={isHost} />;
-            })}
+          <Form>
+            <p>Number: {data.phoneNumber === "" ? "N/A" : data.phoneNumber}</p>
+            <br></br>
+            <p>Email: {data.email === "" ? "N/A" : data.email}</p>
+            <br></br>
+          </Form>
         </Card.Body>
       </Card>
     </>
   );
 };
 
-export default Room;
+export default UserData;
