@@ -5,6 +5,7 @@ const taskSchema = require("./Task").schema;
 const rosterSchema = mongoose.Schema({
   title: {
     type: String,
+    unique: true,
   },
   tasks: {
     type: [taskSchema],
