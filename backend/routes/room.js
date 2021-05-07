@@ -115,7 +115,7 @@ router.get("/", async function (req, res, next) {
   let room;
   try {
     room = await Room.findOne({ _id: user.roomCode })
-      .populate("users", "_id username name")
+      .populate("users", "_id username name email phoneNumber")
       .populate("rosters.assignedUsers", "_id username name");
     return res.status(200).json(room);
   } catch (err) {
@@ -210,7 +210,7 @@ async function socketRoomUpdate(roomCode) {
   return new Promise(async (resolve) => {
     if (global.io) {
       let room = await Room.findOne({ _id: roomCode })
-        .populate("users", "_id username name")
+        .populate("users", "_id username name email phoneNumber")
         .populate("rosters.assignedUsers", "_id username name");
 
       roomCode = JSON.stringify(room._id).replace(/(^")|("$)/g, "");
