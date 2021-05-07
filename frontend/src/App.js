@@ -164,7 +164,7 @@ function App() {
             </Route>
 
             <Route path="/room/:code" exact>
-              <Room update={update} room={room} />
+              <Room update={update} room={room} setIsHost={setIsHost} />
             </Route>
 
             <Route path="/room/:code/roster" exact>

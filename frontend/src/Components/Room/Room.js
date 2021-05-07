@@ -5,10 +5,20 @@ import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+import { FaTimes as Cross } from "react-icons/fa";
 
-const Room = ({ update, room }) => {
+const Room = ({ update, room, setIsHost }) => {
+  let [isHost, setHost] = useState(false);
   useEffect(() => {
-    console.log(room);
+    axios
+      .get("/user")
+      .then((res) => {
+        setIsHost(res.data.isHost);
+        setHost(res.data.isHost);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }, []);
 
   return (
@@ -39,7 +49,7 @@ const Room = ({ update, room }) => {
           }}
         >
           {room.users.map((e) => {
-            return <UserData data={e} />;
+            return <UserData data={e} isHost={isHost} />;
           })}
         </Card.Body>
       </Card>
