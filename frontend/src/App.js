@@ -26,25 +26,20 @@ function App() {
   let [room, setRoom] = useState(null);
   const [isHost, setIsHost] = useState(false);
 
-
   useEffect(() => {
     socket.on('update', () => {
       console.log("socketio called update")
-      updateDb();
+      axios
+        .get("../../room")
+        .then((res) => {
+          setRoom(res.data);
+          // console.log(res.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     });
   }, []);
-
-  useEffect(() => {
-    axios
-      .get("../../room")
-      .then((res) => {
-        setRoom(res.data);
-        // console.log(res.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [update]);
 
   const cancelSignup = () => {
     setSignup(false);
@@ -56,11 +51,6 @@ function App() {
 
   const setHost = (res) => {
     setIsHost(res);
-  };
-
-  const updateDb = () => {
-    console.log("update");
-    setUpdate(!update);
   };
 
   return (
