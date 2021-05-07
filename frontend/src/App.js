@@ -21,7 +21,7 @@ function App() {
   // boolean for showing signup
   let [register, setSignup] = useState(false);
   let [settings, setSettings] = useState(false);
-  let [update, setUpdate] = useState(1);
+  const [update, setUpdate] = useState(false);
   let [room, setRoom] = useState(null);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function App() {
       .get("../../room")
       .then((res) => {
         setRoom(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -46,7 +46,7 @@ function App() {
 
   const updateDb = () => {
     console.log("update");
-    setUpdate(update++);
+    setUpdate(!update);
   };
 
   return (
