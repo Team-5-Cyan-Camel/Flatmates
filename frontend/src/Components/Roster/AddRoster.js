@@ -6,11 +6,35 @@ import { FaTimes as Cross } from "react-icons/fa";
 import styles from "./RosterModal.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const AddRoster = ({ show }) => {
+const AddRoster = ({ show, updateDb }) => {
   let [chore, setChore] = useState("");
+
+  const addRoster = () => {
+    if (chore === "") {
+      return;
+    }
+
+    // console.log(chore);
+
+    const addRos = {
+      title: chore,
+    };
+
+    axios
+      .post("../../roster", addRos)
+      .then((res) => {
+        console.log(res);
+        updateDb();
+        show(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return ReactDOM.createPortal(
     <div className={styles.modalContainer}>
@@ -51,7 +75,9 @@ const AddRoster = ({ show }) => {
               />
               <br></br>
             </form>
-            <Button className="GoButton">Create Roster</Button>
+            <Button className="GoButton" onClick={addRoster}>
+              Create Roster
+            </Button>
           </Card.Body>
         </Card>
       </div>

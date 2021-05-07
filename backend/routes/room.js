@@ -2,10 +2,11 @@ var express = require("express");
 var Room = require("../mongo/Room");
 var User = require("../mongo/User");
 var router = express.Router();
+var getUserOfCookie = require("./utils/getUserFromCookie");
 
 /* POST a room to be created */
-router.post("/", async function (req, res, next) {
-  const user = await getUserOfCookie(req, res);
+router.post("/", getUserOfCookie, async function (req, res, next) {
+  const user = req.user;
 
   if (user.roomCode) {
     return res
@@ -37,8 +38,8 @@ router.post("/", async function (req, res, next) {
 });
 
 /* POST a request to join a room */
-router.post("/join", async function (req, res, next) {
-  const user = await getUserOfCookie(req, res);
+router.post("/join", getUserOfCookie, async function (req, res, next) {
+  const user = req.user;
   if (!req.body.roomCode) {
     return res
       .status(400)
@@ -70,8 +71,8 @@ router.post("/join", async function (req, res, next) {
 });
 
 /* PATCH room details and remove the user from the room, if they are not host */
-router.patch("/leave", async function (req, res, next) {
-  const user = await getUserOfCookie(req, res);
+router.patch("/leave", getUserOfCookie, async function (req, res, next) {
+  const user = req.user;
   if (!user.roomCode) {
     return res
       .status(403)
@@ -105,8 +106,8 @@ router.patch("/leave", async function (req, res, next) {
 });
 
 /* GET all information for a room */
-router.get("/", async function (req, res, next) {
-  const user = await getUserOfCookie(req, res);
+router.get("/", getUserOfCookie, async function (req, res, next) {
+  const user = req.user;
   if (!user.roomCode) {
     return res
       .status(403)
@@ -124,8 +125,8 @@ router.get("/", async function (req, res, next) {
 });
 
 /* DELETE a room, only the host may do this */
-router.delete("/", async function (req, res, next) {
-  const user = await getUserOfCookie(req, res);
+router.delete("/", getUserOfCookie, async function (req, res, next) {
+  const user = req.user;
   if (!user.roomCode) {
     return res
       .status(403)
@@ -165,8 +166,8 @@ router.delete("/", async function (req, res, next) {
 });
 
 /* PACTH room details and remove the user from the room, if they are not host */
-router.patch("/kick", async function (req, res, next) {
-  const user = await getUserOfCookie(req, res);
+router.patch("/kick", getUserOfCookie, async function (req, res, next) {
+  const user = req.user;
   if (!user.roomCode) {
     return res
       .status(403)
@@ -217,29 +218,6 @@ async function socketRoomUpdate(roomCode) {
       global.io.in(roomCode).emit("room_update", room);
     }
     resolve();
-  });
-}
-
-async function getUserOfCookie(req, res) {
-  return new Promise(async (resolve) => {
-    // Obtain user based on session cookie
-
-    if (req.cookies.sessionID === undefined) {
-      return res.status(401).json({ message: "Not logged in" });
-    }
-    let user;
-    try {
-      user = await User.findOne({
-        sessionID: req.cookies.sessionID,
-      });
-    } catch (err) {
-      return res.status(500).json({ message: err.message });
-    }
-    // If user does not exist, session cookie is expired or invalid
-    if (user === null) {
-      return res.status(401).json({ message: "Invalid Session" });
-    }
-    resolve(user);
   });
 }
 

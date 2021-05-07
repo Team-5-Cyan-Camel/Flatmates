@@ -7,23 +7,35 @@ import Login from "./Components/Account/Login";
 import GenerateRoom from "./Components/Code/GenerateRoom";
 import JoinRoom from "./Components/Code/JoinRoom";
 import NavBar from "./Components/Lobby/NavBar";
+import Room from "./Components/Room/Room";
+import axios from "axios";
 
 import "./Components/Lobby/NavBar.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Rosters from "./Components/Roster/Rosters";
-import AddTask from "./Components/Roster/AddTask";
 
 function App() {
-  // obj to be populated on successful signup
-  let [userObj, setObj] = useState(undefined);
-
   // boolean for showing signup
   let [register, setSignup] = useState(false);
   let [settings, setSettings] = useState(false);
+  const [update, setUpdate] = useState(false);
+  let [room, setRoom] = useState(null);
+  const [isHost, setIsHost] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get("../../room")
+      .then((res) => {
+        setRoom(res.data);
+        // console.log(res.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [update]);
 
   const cancelSignup = () => {
     setSignup(false);
@@ -31,6 +43,15 @@ function App() {
 
   const hideSettings = () => {
     setSettings(false);
+  };
+
+  const setHost = (res) => {
+    setIsHost(res);
+  };
+
+  const updateDb = () => {
+    console.log("update");
+    setUpdate(!update);
   };
 
   return (
@@ -71,14 +92,13 @@ function App() {
                     width: "90%",
                   }}
                 >
-                  <Login setObj={setObj} />
+                  <Login />
                   {/* modal for login*/}
                   {register && (
                     <SignUp
                       style={{ width: "100px" }}
                       dismissOnClickOutside={true}
                       cancel={cancelSignup}
-                      setObj={setObj}
                     />
                   )}
 
@@ -135,12 +155,20 @@ function App() {
 
             {/* path for room screen */}
             <Route path="/room/:code">
-              <NavBar setSettings={setSettings} />
+              <NavBar
+                setSettings={setSettings}
+                isHost={isHost}
+                setUpdate={setUpdate}
+              />
               {settings && <Settings hideSettings={hideSettings} />}
             </Route>
 
+            <Route path="/room/:code" exact>
+              <Room update={update} setHost={setHost} />
+            </Route>
+
             <Route path="/room/:code/roster" exact>
-              <Rosters />
+              <Rosters rosters={room} isHost={isHost} updateDb={updateDb} />
             </Route>
 
             {/* path for incompatable path */}
