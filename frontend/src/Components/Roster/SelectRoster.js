@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import "../Lobby/NavBar.css";
 import AddRoster from "./AddRoster";
 import { useState, useEffect } from "react";
+import { FaTimes as Cross } from "react-icons/fa";
+import axios from "axios";
 
 const SelectRoster = ({ rosters, setRoster, updateDb }) => {
   let [makeRoster, setMakeRoster] = useState(false);
@@ -12,6 +14,25 @@ const SelectRoster = ({ rosters, setRoster, updateDb }) => {
   useEffect(() => {
     console.log(rosters);
   }, []);
+
+  const deleteRoster = (id) => {
+    console.log("RESR");
+    //make an alert
+
+    const rostDel = {
+      rosterID: id,
+    };
+
+    axios
+      .delete("/roster", { data: rostDel })
+      .then((res) => {
+        // console.log(res.data);
+        updateDb();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -39,7 +60,7 @@ const SelectRoster = ({ rosters, setRoster, updateDb }) => {
                 className="GoButton"
                 onClick={() => setRoster(e.title)}
               >
-                {e.title}
+                {e.title} <Cross onClick={() => deleteRoster(e._id)} />
               </Button>,
             ])}
           <Button className="GoButton" onClick={() => setMakeRoster(true)}>
