@@ -30,7 +30,12 @@ const Rosters = ({ rosters, updateDb, isHost }) => {
 
   return (
     <>
-      <SelectRoster rosters={Rosters} setRoster={roster} updateDb={updateDb} />
+      <SelectRoster
+        isHost={isHost}
+        rosters={Rosters}
+        setRoster={roster}
+        updateDb={updateDb}
+      />
 
       {Rosters !== null && DisplayRoster !== null && (
         <Roster

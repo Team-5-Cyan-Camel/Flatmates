@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { FaTimes as Cross } from "react-icons/fa";
 import axios from "axios";
 
-const SelectRoster = ({ rosters, setRoster, updateDb }) => {
+const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
   let [makeRoster, setMakeRoster] = useState(false);
 
   const deleteRoster = (id) => {
@@ -52,7 +52,8 @@ const SelectRoster = ({ rosters, setRoster, updateDb }) => {
                 className="GoButton"
                 onClick={() => setRoster(e.title)}
               >
-                {e.title} <Cross onClick={() => deleteRoster(e._id)} />
+                {e.title}{" "}
+                {isHost && <Cross onClick={() => deleteRoster(e._id)} />}
               </Button>,
             ])}
           <Button className="GoButton" onClick={() => setMakeRoster(true)}>
