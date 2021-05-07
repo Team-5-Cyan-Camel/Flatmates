@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const NavBar = ({ setSettings, setUpdate }) => {
+const NavBar = ({ setSettings, setUpdate, isHost }) => {
   const history = useHistory();
   const { code } = useParams();
 
@@ -82,13 +82,15 @@ const NavBar = ({ setSettings, setUpdate }) => {
             Settings
           </Button>
 
-          <Button className="navbutton" onClick={leave}>
-            Leave Room
-          </Button>
-
-          <Button className="navbutton" onClick={deleteRoom}>
-            Delete Room
-          </Button>
+          {isHost ? (
+            <Button className="navbutton" onClick={deleteRoom}>
+              Delete Room
+            </Button>
+          ) : (
+            <Button className="navbutton" onClick={leave}>
+              Leave Room
+            </Button>
+          )}
 
           <Button className="navbutton" onClick={signOut}>
             Sign Out

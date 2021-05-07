@@ -155,7 +155,11 @@ function App() {
 
             {/* path for room screen */}
             <Route path="/room/:code">
-              <NavBar setSettings={setSettings} setUpdate={setUpdate} />
+              <NavBar
+                setSettings={setSettings}
+                isHost={isHost}
+                setUpdate={setUpdate}
+              />
               {settings && <Settings hideSettings={hideSettings} />}
             </Route>
 
