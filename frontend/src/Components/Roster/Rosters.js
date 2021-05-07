@@ -2,7 +2,7 @@ import Roster from "./Roster";
 import React, { useState, useEffect } from "react";
 import SelectRoster from "./SelectRoster";
 
-const Rosters = ({ rosters, updateDb }) => {
+const Rosters = ({ rosters, updateDb, isHost }) => {
   // set default rosters
   let [Rosters, setRosters] = useState(rosters);
 
@@ -33,7 +33,11 @@ const Rosters = ({ rosters, updateDb }) => {
       <SelectRoster rosters={Rosters} setRoster={roster} updateDb={updateDb} />
 
       {Rosters !== null && DisplayRoster !== null && (
-        <Roster data={DisplayRoster.rosters} updateDb={updateDb} />
+        <Roster
+          data={DisplayRoster.rosters}
+          isHost={isHost}
+          updateDb={updateDb}
+        />
       )}
     </>
   );

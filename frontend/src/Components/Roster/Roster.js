@@ -6,19 +6,19 @@ import UserTask from "./UserTask";
 import "../../App.css";
 import axios from "axios";
 
-const Roster = ({ data, updateDb }) => {
-  let [isHost, setIsHost] = useState(false);
+const Roster = ({ data, updateDb, isHost }) => {
+  let [ifHost, setIsHost] = useState(isHost);
 
-  useEffect(() => {
-    axios
-      .get("/user")
-      .then((res) => {
-        setIsHost(res.data.isHost);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/user")
+  //     .then((res) => {
+  //       setIsHost(res.data.isHost);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   const rotate = () => {
     const rotateRep = {
@@ -28,7 +28,6 @@ const Roster = ({ data, updateDb }) => {
     axios
       .patch("/roster/rotate", rotateRep)
       .then((res) => {
-        console.log(res);
         updateDb();
       })
       .catch(function (error) {
@@ -77,7 +76,7 @@ const Roster = ({ data, updateDb }) => {
                 />
               );
             })}
-            {isHost && (
+            {ifHost && (
               <Button className="GoButton" onClick={rotate}>
                 Rotate Task!
               </Button>

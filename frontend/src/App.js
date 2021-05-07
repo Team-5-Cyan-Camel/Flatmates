@@ -23,6 +23,7 @@ function App() {
   let [settings, setSettings] = useState(false);
   const [update, setUpdate] = useState(false);
   let [room, setRoom] = useState(null);
+  const [isHost, setIsHost] = useState(false);
 
   useEffect(() => {
     axios
@@ -42,6 +43,10 @@ function App() {
 
   const hideSettings = () => {
     setSettings(false);
+  };
+
+  const setHost = (res) => {
+    setIsHost(res);
   };
 
   const updateDb = () => {
@@ -155,11 +160,11 @@ function App() {
             </Route>
 
             <Route path="/room/:code" exact>
-              <Room update={update} setRoom={setRoom} />
+              <Room update={update} setHost={setHost} />
             </Route>
 
             <Route path="/room/:code/roster" exact>
-              <Rosters rosters={room} updateDb={updateDb} />
+              <Rosters rosters={room} isHost={isHost} updateDb={updateDb} />
             </Route>
 
             {/* path for incompatable path */}
