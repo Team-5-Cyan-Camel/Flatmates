@@ -15,7 +15,7 @@ const NavBar = ({ setSettings, setUpdate }) => {
     // ask for confirmation
     // console.log("leave");
     axios
-      .patch("leave")
+      .patch("/room/leave")
       .then((res) => {
         history.push("/code");
       })
@@ -27,7 +27,7 @@ const NavBar = ({ setSettings, setUpdate }) => {
   const deleteRoom = () => {
     // console.log("Delete");
     axios
-      .delete("../room")
+      .delete("/room")
       .then((res) => {
         console.log(res);
         history.push("/code");
