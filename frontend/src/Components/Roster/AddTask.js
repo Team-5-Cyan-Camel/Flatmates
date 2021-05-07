@@ -27,7 +27,7 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
     };
 
     axios
-      .post("../../../roster/task", newTask)
+      .post("/roster/task", newTask)
       .then((res) => {
         console.log(res);
         show(false);

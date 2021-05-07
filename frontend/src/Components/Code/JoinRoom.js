@@ -17,7 +17,7 @@ const JoinRoom = () => {
     };
     if (code !== "") {
       axios
-        .post("room/join", roomCode)
+        .post("/room/join", roomCode)
         .then((res) => {
           console.log(res);
           history.push("/room/" + code);

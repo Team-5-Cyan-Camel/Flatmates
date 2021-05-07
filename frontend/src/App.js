@@ -16,7 +16,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Rosters from "./Components/Roster/Rosters";
-import { SocketContext, socket } from './Context/socketContext';
+import { SocketContext, socket } from "./Context/socketContext";
 
 function App() {
   // boolean for showing signup
@@ -25,14 +25,17 @@ function App() {
   const [update, setUpdate] = useState(false);
   let [room, setRoom] = useState(null);
   const [isHost, setIsHost] = useState(false);
+  let [hostId, setHostId] = useState(null);
 
   useEffect(() => {
-    socket.on('update', () => {
-      console.log("socketio called update")
+    // <<<<<<< HEAD
+    socket.on("update", () => {
+      console.log("socketio called update");
       axios
-        .get("../../room")
+        .get("/room")
         .then((res) => {
           setRoom(res.data);
+          setHostId(res.data.host);
           // console.log(res.data);
         })
         .catch(function (error) {
@@ -64,7 +67,7 @@ function App() {
               <Route path="/" exact>
                 <h1 className="StartTitle">
                   Flatmates
-                <small style={{ fontSize: "1.5rem" }}>1.0</small>
+                  <small style={{ fontSize: "1.5rem" }}>1.0</small>
                 </h1>
 
                 <Card
@@ -81,8 +84,8 @@ function App() {
                     style={{ width: "100%" }}
                   >
                     {" "}
-                  Sign in
-                </Card.Header>
+                    Sign in
+                  </Card.Header>
 
                   <Card.Body
                     style={{
@@ -105,8 +108,8 @@ function App() {
                     <div style={{ marginTop: "1rem" }}>
                       <p style={{ textAlign: "center" }}>
                         {" "}
-                      Dont have an account?
-                      <a
+                        Dont have an account?
+                        <a
                           style={{ marginLeft: "10px", color: "white" }}
                           href="#"
                           onClick={() => setSignup(true)}
@@ -129,6 +132,7 @@ function App() {
                     justifyContent: "center",
                   }}
                 >
+                  {/* <<<<<<< HEAD */}
                   <Card.Header
                     as="h5"
                     id="Card-Header"
@@ -136,8 +140,8 @@ function App() {
                     style={{ width: "100%" }}
                   >
                     {" "}
-                  Sign in
-                </Card.Header>
+                    Sign in
+                  </Card.Header>
 
                   <Card.Body
                     style={{
@@ -163,12 +167,18 @@ function App() {
                 {settings && <Settings hideSettings={hideSettings} />}
               </Route>
 
-              <Route path="/room/:code" exact>
-                <Room update={update} setHost={setHost} />
+              <Route path="/room/:code/users" exact>
+                <Room
+                  update={update}
+                  hostId={hostId}
+                  room={room}
+                  setIsHost={setIsHost}
+                  setHost={setHost}
+                />
               </Route>
 
               <Route path="/room/:code/roster" exact>
-                <Rosters rosters={room} isHost={isHost} updateDb={updateDb} />
+                <Rosters rosters={room} isHost={isHost} />
               </Route>
 
               {/* path for incompatable path */}
@@ -180,6 +190,45 @@ function App() {
         </Container>
       </div>
     </SocketContext.Provider>
+    // =======
+    //                   <GenerateRoom />
+    //                   <JoinRoom />
+    //                 </Card.Body>
+    //               </Card>
+    //             </Route>
+
+    //             {/* path for room screen */}
+    //             <Route path="/room/:code">
+    //               <NavBar
+    //                 setSettings={setSettings}
+    //                 isHost={isHost}
+    //                 setUpdate={setUpdate}
+    //               />
+    //               {settings && <Settings hideSettings={hideSettings} />}
+    //             </Route>
+
+    //             <Route path="/room/:code" exact>
+    //               <Room
+    //                 update={update}
+    //                 room={room}
+    //                 hostId={hostId}
+    //                 setIsHost={setIsHost}
+    //               />
+    //             </Route>
+
+    //             <Route path="/room/:code/roster" exact>
+    //               <Rosters rosters={room} isHost={isHost} updateDb={updateDb} />
+    //             </Route>
+
+    //             {/* path for incompatable path */}
+    //             <Route path="*">
+    //               <Redirect to="/" />
+    //             </Route>
+    //           </Router>
+    //         </div>
+    //       </Container>
+    //     </div>
+    // >>>>>>> 2376b2576f98da8ac699322bf31a797273940f55
   );
 }
 

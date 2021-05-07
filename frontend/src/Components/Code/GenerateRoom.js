@@ -9,7 +9,7 @@ const GenerateRoom = () => {
     // sends request to generate a room
     // redirects to the room with the code
     axios
-      .post("room")
+      .post("/room")
       .then((res) => {
         history.push("/room/" + res.data.roomCode);
       })

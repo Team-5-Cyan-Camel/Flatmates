@@ -25,7 +25,7 @@ const AddRoster = ({ show, updateDb }) => {
     };
 
     axios
-      .post("../../roster", addRos)
+      .post("/roster", addRos)
       .then((res) => {
         console.log(res);
         show(false);
