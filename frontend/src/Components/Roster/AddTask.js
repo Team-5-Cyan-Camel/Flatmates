@@ -10,24 +10,37 @@ import axios from "axios";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const AddTask = ({ show, id }) => {
+const AddTask = ({ show, rid, pid }) => {
   let [title, setTitle] = useState("");
   let [description, setDescription] = useState("");
 
+  useEffect(() => {
+    console.log(pid);
+  }, []);
+
   const makeTask = () => {
-    const newTask = {
-      title: title,
-      description: description,
-      rosterID: id,
-      assignedUserID: 0,
-    };
-
-    console.log(newTask);
-
     axios
-      .post("../../../roster/task", newTask)
+      .get("../../user")
       .then((res) => {
-        console.log(res);
+        console.log(res.data._id);
+
+        const newTask = {
+          title: title,
+          description: description,
+          rosterID: rid,
+          assignedUserID: pid,
+
+          // assignedUserID: res.data._id,
+        };
+
+        axios
+          .post("../../../roster/task", newTask)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       })
       .catch(function (error) {
         console.log(error);

@@ -4,10 +4,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import "../Lobby/NavBar.css";
 import AddRoster from "./AddRoster";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SelectRoster = ({ rosters, setRoster, updateDb }) => {
   let [makeRoster, setMakeRoster] = useState(false);
+
+  useEffect(() => {
+    console.log(rosters);
+  }, []);
 
   return (
     <>

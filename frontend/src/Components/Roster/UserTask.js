@@ -6,7 +6,7 @@ import AddTask from "./AddTask";
 
 import Button from "react-bootstrap/Button";
 
-const UserTask = ({ task, name, id }) => {
+const UserTask = ({ task, name, rid, pid }) => {
   let [makeTask, setMakeTask] = useState(false);
   return (
     <>
@@ -45,7 +45,7 @@ const UserTask = ({ task, name, id }) => {
         </Card.Body>
       </Card>
 
-      {makeTask && <AddTask show={setMakeTask} id={id} />}
+      {makeTask && <AddTask show={setMakeTask} rid={rid} pid={pid} />}
     </>
   );
 };

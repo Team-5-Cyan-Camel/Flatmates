@@ -50,7 +50,8 @@ const Roster = ({ data }) => {
               return (
                 <UserTask
                   key={i}
-                  id={data._id}
+                  rid={data._id}
+                  pid={e._id}
                   name={e.name}
                   task={data.tasks.filter((data) => {
                     return data.userIndex === i;
