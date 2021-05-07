@@ -7,31 +7,34 @@ import "../../App.css";
 import axios from "axios";
 
 const Roster = ({ data, updateDb }) => {
-  // let [inTask, setInTask] = useState(false);
+  let [isHost, setIsHost] = useState(false);
 
-  // useEffect(() => {
-  //   console.log(data.assignedUsers);
-  //   axios
-  //     .get("../../user")
-  //     .then((res) => {
-  //       data.assignedUsers.map((e) => {
-  //         if (e._id === res.data._id) {
-  //           setInTask(true);
-  //         }
-  //       });
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("/user")
+      .then((res) => {
+        setIsHost(res.data.isHost);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
-  const addUser = () => {
-    // use axios to add a new user
-    // this class should always know how many existing users there are?
-    // may need to pass it down as aparameter
-    console.log(addUser);
+  const rotate = () => {
+    const rotateRep = {
+      rosterID: data._id,
+    };
+
+    axios
+      .patch("/roster/rotate", rotateRep)
+      .then((res) => {
+        console.log(res);
+        updateDb();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
-
   return (
     <>
       {data !== "undefined" && (
@@ -74,11 +77,11 @@ const Roster = ({ data, updateDb }) => {
                 />
               );
             })}
-            {/* {inTask && (
-              <Button className="GoButton" onClick={addUser}>
-                Add Yourself
+            {isHost && (
+              <Button className="GoButton" onClick={rotate}>
+                Rotate Task!
               </Button>
-            )} */}
+            )}
           </Card.Body>
         </Card>
       )}
