@@ -28,7 +28,6 @@ const AddRoster = ({ show, updateDb }) => {
       .post("../../roster", addRos)
       .then((res) => {
         console.log(res);
-        updateDb();
         show(false);
       })
       .catch(function (error) {

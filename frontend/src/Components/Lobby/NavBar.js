@@ -1,14 +1,17 @@
 import { Link, useHistory, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import {SocketContext} from '../../Context/socketContext';
 
 const NavBar = ({ setSettings, setUpdate, isHost }) => {
   const history = useHistory();
   const { code } = useParams();
+  const socket = useContext(SocketContext);
 
   useEffect(() => {
     setUpdate();
+    socket.emit("enter_room", {roomID: code});
   }, []);
 
   const leave = () => {
@@ -22,6 +25,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
       .catch(function (error) {
         console.log(error);
       });
+      socket.emit("leave_room", {roomID: code});
   };
 
   const deleteRoom = () => {
@@ -35,6 +39,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
       .catch(function (error) {
         console.log(error);
       });
+      socket.emit("leave_room", {roomID: code});
   };
 
   const signOut = () => {
@@ -48,6 +53,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
       .catch(function (error) {
         console.log(error);
       });
+      socket.emit("leave_room", {roomID: code});
   };
 
   return (

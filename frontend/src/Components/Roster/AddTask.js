@@ -31,7 +31,6 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
       .then((res) => {
         console.log(res);
         show(false);
-        updateDb();
       })
       .catch(function (error) {
         console.log(error);

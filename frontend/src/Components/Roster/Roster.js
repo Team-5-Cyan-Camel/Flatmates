@@ -28,7 +28,6 @@ const Roster = ({ data, updateDb, isHost }) => {
     axios
       .patch("/roster/rotate", rotateRep)
       .then((res) => {
-        updateDb();
       })
       .catch(function (error) {
         console.log(error);

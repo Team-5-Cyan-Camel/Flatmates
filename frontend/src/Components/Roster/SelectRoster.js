@@ -19,7 +19,6 @@ const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
     axios
       .delete("/roster", { data: rostDel })
       .then((res) => {
-        updateDb();
       })
       .catch(function (error) {
         console.log(error);
