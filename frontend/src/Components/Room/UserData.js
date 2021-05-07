@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import { FaTimes as Cross } from "react-icons/fa";
 import axios from "axios";
+import Form from "react-bootstrap/Form";
 
 const UserData = ({ data, isHost, hostId }) => {
   const kickMember = (username) => {
@@ -52,8 +53,12 @@ const UserData = ({ data, isHost, hostId }) => {
             width: "90%",
           }}
         >
-          <p>Phone Number: {data.phoneNumber}</p>
-          <p>Email: {data.email}</p>
+          <Form>
+            <p>Number: {data.phoneNumber === "" ? "N/A" : data.phoneNumber}</p>
+            <br></br>
+            <p>Email: {data.email === "" ? "N/A" : data.email}</p>
+            <br></br>
+          </Form>
         </Card.Body>
       </Card>
     </>
