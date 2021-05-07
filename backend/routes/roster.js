@@ -4,9 +4,10 @@ var User = require("../mongo/User");
 var Room = require("../mongo/Room");
 var Roster = require("../mongo/Roster");
 const Task = require("../mongo/Task");
+var getUserOfCookie = require("./utils/getUserFromCookie");
 
 /* POST new roster. */
-router.post("/", getUser, getRoom, async function (req, res, next) {
+router.post("/", getUserOfCookie, getRoom, async function (req, res, next) {
   const newRoster = new Roster({
     title: req.body.title,
     tasks: [],
@@ -27,7 +28,7 @@ router.post("/", getUser, getRoom, async function (req, res, next) {
 /* DELETE specified roster. */
 router.delete(
   "/",
-  getUser,
+  getUserOfCookie,
   getRoom,
   getRoster,
   async function (req, res, next) {
@@ -46,7 +47,7 @@ router.delete(
 /* PATCH rotate a specified roster. */
 router.patch(
   "/rotate",
-  getUser,
+  getUserOfCookie,
   getRoom,
   getRoster,
   async function (req, res, next) {
@@ -66,7 +67,7 @@ router.patch(
 /* POST add a new task to a roster. */
 router.post(
   "/task",
-  getUser,
+  getUserOfCookie,
   getRoom,
   getRoster,
   async function (req, res, next) {
@@ -104,7 +105,7 @@ router.post(
 /* DELETE remove task from roster. */
 router.delete(
   "/task",
-  getUser,
+  getUserOfCookie,
   getRoom,
   getRoster,
   async function (req, res, next) {
@@ -124,15 +125,6 @@ function socketRosterUpdate(roomID, roster) {
   if (global.io) {
     roomID = JSON.stringify(roomID).replace(/(^")|("$)/g, "");
     global.io.in(roomID).emit("roster_update", roster);
-  }
-}
-
-async function getUser(req, res, next) {
-  req.user = await User.findOne({ sessionID: req.cookies.sessionID });
-  if (!req.user) {
-    return res.status(401).json({ message: "Invalid cookies" });
-  } else {
-    next();
   }
 }
 
