@@ -24,12 +24,15 @@ function App() {
   const [update, setUpdate] = useState(false);
   let [room, setRoom] = useState(null);
   const [isHost, setIsHost] = useState(false);
+  let [hostId, setHostId] = useState(null);
 
   useEffect(() => {
     axios
       .get("../../room")
       .then((res) => {
         setRoom(res.data);
+        // console.log(res.data.host);
+        setHostId(res.data.host);
         // console.log(res.data);
       })
       .catch(function (error) {
@@ -164,7 +167,12 @@ function App() {
             </Route>
 
             <Route path="/room/:code" exact>
-              <Room update={update} room={room} setIsHost={setIsHost} />
+              <Room
+                update={update}
+                room={room}
+                hostId={hostId}
+                setIsHost={setIsHost}
+              />
             </Route>
 
             <Route path="/room/:code/roster" exact>

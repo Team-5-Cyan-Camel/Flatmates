@@ -7,12 +7,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import { FaTimes as Cross } from "react-icons/fa";
 
-const Room = ({ update, room, setIsHost }) => {
+const Room = ({ update, room, setIsHost, hostId }) => {
   let [isHost, setHost] = useState(false);
   useEffect(() => {
     axios
       .get("/user")
       .then((res) => {
+        console.log(res.data);
         setIsHost(res.data.isHost);
         setHost(res.data.isHost);
       })
@@ -49,7 +50,7 @@ const Room = ({ update, room, setIsHost }) => {
           }}
         >
           {room.users.map((e) => {
-            return <UserData data={e} isHost={isHost} />;
+            return <UserData data={e} hostId={hostId} isHost={isHost} />;
           })}
         </Card.Body>
       </Card>

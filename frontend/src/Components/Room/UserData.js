@@ -4,7 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import { FaTimes as Cross } from "react-icons/fa";
 
-const UserData = ({ data, isHost }) => {
+const UserData = ({ data, isHost, hostId }) => {
+  console.log(data);
   return (
     <>
       <Card
@@ -21,7 +22,7 @@ const UserData = ({ data, isHost }) => {
           style={{ width: "100%" }}
         >
           {" "}
-          {data.name} {isHost && <Cross />}
+          {data.name} {isHost && hostId !== data._id && <Cross />}
         </Card.Header>
 
         <Card.Body
