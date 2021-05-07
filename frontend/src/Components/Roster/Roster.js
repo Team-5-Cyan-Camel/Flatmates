@@ -8,6 +8,7 @@ import "../../App.css";
 const Roster = ({ data }) => {
   useEffect(() => {
     console.log(data);
+    console.log(data._id);
   }, []);
 
   const addUser = () => {
@@ -49,6 +50,7 @@ const Roster = ({ data }) => {
               return (
                 <UserTask
                   key={i}
+                  id={data._id}
                   name={e.name}
                   task={data.tasks.filter((data) => {
                     return data.userIndex === i;

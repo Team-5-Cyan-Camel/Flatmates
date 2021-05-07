@@ -18,7 +18,7 @@ const AddRoster = ({ show, updateDb }) => {
       return;
     }
 
-    console.log(chore);
+    // console.log(chore);
 
     const addRos = {
       title: chore,
