@@ -11,14 +11,7 @@ import axios from "axios";
 const SelectRoster = ({ rosters, setRoster, updateDb }) => {
   let [makeRoster, setMakeRoster] = useState(false);
 
-  useEffect(() => {
-    console.log(rosters);
-  }, []);
-
   const deleteRoster = (id) => {
-    console.log("RESR");
-    //make an alert
-
     const rostDel = {
       rosterID: id,
     };
@@ -26,7 +19,6 @@ const SelectRoster = ({ rosters, setRoster, updateDb }) => {
     axios
       .delete("/roster", { data: rostDel })
       .then((res) => {
-        // console.log(res.data);
         updateDb();
       })
       .catch(function (error) {
@@ -64,7 +56,7 @@ const SelectRoster = ({ rosters, setRoster, updateDb }) => {
               </Button>,
             ])}
           <Button className="GoButton" onClick={() => setMakeRoster(true)}>
-            Add+
+            Add
           </Button>
           {/* </div> */}
         </Card.Body>

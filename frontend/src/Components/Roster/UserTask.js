@@ -11,25 +11,15 @@ import Button from "react-bootstrap/Button";
 const UserTask = ({ task, name, rid, pid, updateDb }) => {
   let [makeTask, setMakeTask] = useState(false);
 
-  useEffect(() => {
-    console.log(task);
-  }, []);
-
   const deleteTask = (id) => {
-    console.log(rid);
-    console.log(id);
-
     const delTask = {
       rosterID: rid,
       taskID: id,
     };
 
-    console.log(delTask);
-
     axios
       .delete("/roster/task", { data: delTask })
       .then((res) => {
-        // console.log(res.data);
         updateDb();
       })
       .catch(function (error) {
