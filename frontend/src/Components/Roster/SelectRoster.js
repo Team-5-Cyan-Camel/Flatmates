@@ -9,8 +9,8 @@ import { FaTimes as Cross } from "react-icons/fa";
 import axios from "axios";
 import "../Lobby/NavBar.css";
 
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 import { Link, NavLink, useHistory, useParams } from "react-router-dom";
 
 const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
@@ -23,9 +23,7 @@ const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
 
     axios
       .delete("/roster", { data: rostDel })
-      .then((res) => {
-        updateDb();
-      })
+      .then((res) => {})
       .catch(function (error) {
         console.log(error);
       });
@@ -35,52 +33,26 @@ const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
     <>
       {/* {rosters !== "undefined" && ( */}
 
-
-
-
-
-
-        <Navbar bg="dark" variant="dark" style={{padding:"0", }} >
-    <Nav className="mr-auto">
-    {rosters !== null &&
-
-
+      <Navbar bg="dark" variant="dark" style={{ padding: "0" }}>
+        <Nav className="mr-auto">
+          {rosters !== null &&
             rosters.rosters.map((e, i) => [
-
               <Nav.Link
                 key={i}
                 onClick={() => setRoster(e.title)}
-                style={{outline: "1px solid black ", outlineColor:"black", }}
+                style={{ outline: "1px solid black ", outlineColor: "black" }}
               >
                 {e.title}{" "}
                 {isHost && <Cross onClick={() => deleteRoster(e._id)} />}
-                </Nav.Link>
-
+              </Nav.Link>,
             ])}
 
-
           {/* </div> */}
-          
-
-
-
-
-         </Nav>
-                  <Button className="NavBarButton"  onClick={() => setMakeRoster(true)}>
-            add
-          </Button>
-
-  </Navbar>
-
-
-
-
-
-
-
-
-
-
+        </Nav>
+        <Button className="NavBarButton" onClick={() => setMakeRoster(true)}>
+          add
+        </Button>
+      </Navbar>
 
       {/* )} */}
       {makeRoster && <AddRoster show={setMakeRoster} updateDb={updateDb} />}

@@ -210,12 +210,14 @@ router.patch("/kick", getUserOfCookie, async function (req, res, next) {
 async function socketRoomUpdate(roomCode) {
   return new Promise(async (resolve) => {
     if (global.io) {
-      let room = await Room.findOne({ _id: roomCode })
-        .populate("users", "_id username name email phoneNumber")
-        .populate("rosters.assignedUsers", "_id username name");
+      // let room = await Room.findOne({ _id: roomCode })
+      //   .populate("users", "_id username name email phoneNumber")
+      //   .populate("rosters.assignedUsers", "_id username name");
+      roomID = JSON.stringify(roomCode._id).replace(/(^")|("$)/g, "");
+      global.io.in(roomID).emit("update");
+      console.log("socketio called update");
 
-      roomCode = JSON.stringify(room._id).replace(/(^")|("$)/g, "");
-      global.io.in(roomCode).emit("room_update", room);
+      // global.io.in(roomCode).emit("room_update", room);
     }
     resolve();
   });

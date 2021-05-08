@@ -6,10 +6,8 @@ import axios from "axios";
 const GenerateRoom = () => {
   const history = useHistory();
   const MakeRoom = () => {
-    // sends request to generate a room
-    // redirects to the room with the code
     axios
-      .post("room")
+      .post("/room")
       .then((res) => {
         history.push("/room/" + res.data.roomCode);
       })

@@ -20,7 +20,7 @@ beforeAll(async () => {
 
 afterEach(() => {
     for (let i = 0; i < 2; i++) {
-        clientSockets[i].off('roster_update');
+        clientSockets[i].off('update');
     }
 });
 
@@ -32,7 +32,7 @@ describe("Tests the socket responses dealing with roster", () => {
     test("POST and DELETE new roster socket", async done => {
         let resCounter = 0;
         for (let i = 0; i < 2; i++) {
-            clientSockets[i].on('roster_update', (roster) => {
+            clientSockets[i].on('update', (roster) => {
                 resCounter++;
                 if(resCounter==4){
                     done();
@@ -54,7 +54,7 @@ describe("Tests the socket responses dealing with roster", () => {
     test("PATCH rotate a roster socket", async done => {
         let resCounter = 0;
         for (let i = 0; i < 2; i++) {
-            clientSockets[i].on('roster_update', (roster) => {
+            clientSockets[i].on('update', (roster) => {
                 resCounter++;
                 if(resCounter==2){
                     done();
@@ -71,7 +71,7 @@ describe("Tests the socket responses dealing with roster", () => {
     test("POST and DELETE new task socket", async done => {
         let resCounter = 0;
         for (let i = 0; i < 2; i++) {
-            clientSockets[i].on('roster_update', (roster) => {
+            clientSockets[i].on('update', (roster) => {
                 resCounter++;
                 if(resCounter==4){
                     done();

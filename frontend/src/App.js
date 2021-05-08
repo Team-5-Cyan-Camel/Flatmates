@@ -9,13 +9,12 @@ import JoinRoom from "./Components/Code/JoinRoom";
 import NavBar from "./Components/Lobby/NavBar";
 import Room from "./Components/Room/Room";
 import axios from "axios";
-
 import "./Components/Lobby/NavBar.css";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Rosters from "./Components/Roster/Rosters";
+import { SocketContext, socket } from "./Context/socketContext";
 
 function App() {
   // boolean for showing signup
@@ -27,18 +26,37 @@ function App() {
   let [hostId, setHostId] = useState(null);
 
   useEffect(() => {
+    // <<<<<<< HEAD
+    socket.on("update", () => {
+      console.log("socketio called update");
+      setUpdate(!update);
+      axios
+        .get("/room")
+        .then((res) => {
+          // console.log(res.data);
+          setRoom(res.data);
+          setHostId(res.data.host);
+          // console.log(res.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    });
+  }, []);
+
+  useEffect(() => {
     axios
       .get("/room")
       .then((res) => {
+        // console.log(res.data);
         setRoom(res.data);
-        // console.log(res.data.host);
         setHostId(res.data.host);
         // console.log(res.data);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, [update]);
+  }, []);
 
   const cancelSignup = () => {
     setSignup(false);
@@ -52,19 +70,13 @@ function App() {
     setIsHost(res);
   };
 
-  const updateDb = () => {
-    console.log("update");
-    setUpdate(!update);
-  };
-
   return (
-    <div className="BackGroundImage">
+    <SocketContext.Provider value={socket}>
+      <div className="BackGroundImage">
+        {/* path for main page */}
 
-        
-          {/* path for main page */}
-
-          <Router>
-            <Route path="/" exact>
+        <Router>
+          <Route path="/" exact>
             <div className="MakeCentre">
               <h1 className="StartTitle">
                 Flatmates
@@ -90,10 +102,8 @@ function App() {
 
                 <Card.Body
                   style={{
-                    display: "Grid",
                     alignItems: "center",
                     justifyContent: "center",
-                    width: "90%",
                   }}
                 >
                   <Login />
@@ -122,11 +132,11 @@ function App() {
                   </div>
                 </Card.Body>
               </Card>
-              </div>
-            </Route>
+            </div>
+          </Route>
 
-            {/* path for room code to give */}
-            <Route path="/code" exact>
+          {/* path for room code to give */}
+          <Route path="/code" exact>
             <div className="MakeCentre">
               <Card
                 id="Card-field"
@@ -147,32 +157,28 @@ function App() {
 
                 <Card.Body
                   style={{
-                    display: "Grid",
                     alignItems: "center",
                     justifyContent: "center",
-                    width: "90%",
                   }}
                 >
                   <GenerateRoom />
                   <JoinRoom />
                 </Card.Body>
               </Card>
-              </div>
-            </Route>
+            </div>
+          </Route>
 
-            {/* path for room screen */}
-            <Route path="/room/:code">
-            
-              <NavBar
-                setSettings={setSettings}
-                isHost={isHost}
-                setUpdate={setUpdate}
-              />
-              {settings && <Settings hideSettings={hideSettings} />}
-            </Route>
+          {/* path for room screen */}
+          <Route path="/room/:code">
+            <NavBar
+              setSettings={setSettings}
+              isHost={isHost}
+              setUpdate={setUpdate}
+            />
+            {settings && <Settings hideSettings={hideSettings} />}
+          </Route>
 
-            <Route path="/room/:code" exact>
-
+          <Route path="/room/:code" exact>
             <div className="MakeCentre">
               <Room
                 update={update}
@@ -180,26 +186,23 @@ function App() {
                 hostId={hostId}
                 setIsHost={setIsHost}
               />
-</div>
+            </div>
+          </Route>
 
-
-            </Route>
-
-            <Route path="/room/:code/roster" exact>
+          <Route path="/room/:code/roster" exact>
             <div className="MakeCentre">
               helloasdasdasd
-              <Rosters rosters={room} isHost={isHost} updateDb={updateDb} />
-              </div>
-            </Route>
-            
-            {/* path for incompatable path */}
-            <Route path="*">
-              <Redirect to="/" />
-            </Route>
-          </Router>
-        
+              <Rosters rosters={room} isHost={isHost} />
+            </div>
+          </Route>
 
-    </div>
+          {/* path for incompatable path */}
+          <Route path="*">
+            <Redirect to="/" />
+          </Route>
+        </Router>
+      </div>
+    </SocketContext.Provider>
   );
 }
 

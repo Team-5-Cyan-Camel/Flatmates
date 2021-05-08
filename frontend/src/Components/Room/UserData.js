@@ -5,23 +5,25 @@ import Button from "react-bootstrap/Button";
 import { FaTimes as Cross } from "react-icons/fa";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
+import { socket, SocketContext } from "../../Context/socketContext";
 
 const UserData = ({ data, isHost, hostId }) => {
   const kickMember = (username) => {
-    console.log("KICLKK");
-    console.log(data);
-    console.log(username);
+    // console.log("KICLKK");
+    // console.log(data);
+    // console.log(username);
     const kickUser = {
       username: username,
     };
     axios
       .patch("/room/kick", kickUser)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch(function (error) {
         console.log(error);
       });
+    socket.emit("update");
   };
   return (
     <>
