@@ -5,7 +5,7 @@ var uuid = require("uuid");
 var getUserOfCookie = require("./utils/getUserFromCookie");
 
 /* GET user information from cookie. */
-router.get("/",getUserOfCookie, async function (req, res, next) {
+router.get("/", getUserOfCookie, async function (req, res, next) {
   return res.status(200).json(req.user);
 });
 
@@ -60,6 +60,20 @@ router.post("/login", async function (req, res, next) {
     inRoom: user.roomCode ? true : false,
     roomCode: user.roomCode,
   });
+});
+
+/* PATCH update user */
+router.patch("/update", getUserOfCookie, async function (req, res, next) {
+  if (req.body.email) { req.user.email = req.body.email };
+  if (req.body.phoneNumber) { req.user.phoneNumber = req.body.phoneNumber };
+  if (req.body.name) { req.user.name = req.body.name };
+
+  try {
+    let user = await req.user.save();
+    return res.status(200).json(user);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
 });
 
 /* POST user logout */
