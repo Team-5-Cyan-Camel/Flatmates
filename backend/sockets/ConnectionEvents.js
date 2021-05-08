@@ -7,5 +7,9 @@ module.exports = function (io) {
         socket.on('leave_room', (req) => {
             socket.leave(req.roomID);
         });
+
+        socket.on('message', (req) => {
+            io.in(req.roomID).emit('message_update', `${req.username}: ${req.message}`);
+        });
     });
 }
