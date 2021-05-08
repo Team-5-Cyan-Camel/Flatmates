@@ -8,6 +8,7 @@ import GenerateRoom from "./Components/Code/GenerateRoom";
 import JoinRoom from "./Components/Code/JoinRoom";
 import NavBar from "./Components/Lobby/NavBar";
 import Room from "./Components/Room/Room";
+import MessageBoard from "./Components/MessageBoard/MessageBoard"
 import axios from "axios";
 
 import "./Components/Lobby/NavBar.css";
@@ -178,6 +179,11 @@ function App() {
             <Route path="/room/:code/roster" exact>
               <Rosters rosters={room} isHost={isHost} updateDb={updateDb} />
             </Route>
+
+            <Route path="/room/:code/message" exact>
+              <MessageBoard />
+            </Route>
+
 
             {/* path for incompatable path */}
             <Route path="*">
