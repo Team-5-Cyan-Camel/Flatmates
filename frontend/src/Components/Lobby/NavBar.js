@@ -1,7 +1,7 @@
-import { Link, NavLink, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { SocketContext } from "../../Context/socketContext";
 
 import Navbar from "react-bootstrap/Navbar";
@@ -30,7 +30,6 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
   };
 
   const deleteRoom = () => {
-    // console.log("Delete");
     axios
       .delete("/room")
       .then((res) => {
@@ -44,8 +43,6 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
   };
 
   const signOut = () => {
-    // remove any cached content, return to main room
-    // console.log("signOut");
     axios
       .post("/user/logout")
       .then((res) => {

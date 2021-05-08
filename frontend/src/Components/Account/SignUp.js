@@ -24,7 +24,6 @@ const SignUp = ({ cancel }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("Creating account");
     // // check if passwords are the same
     //TODO CHANGE STYLING ALERT IS AWFUL
     if (user === "") {
@@ -50,7 +49,6 @@ const SignUp = ({ cancel }) => {
     axios
       .post("/user/register", newUser)
       .then((res) => {
-        console.log(res);
         //call cancel to reset state
         cancel();
         history.push("/code");
