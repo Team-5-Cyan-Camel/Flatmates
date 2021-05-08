@@ -1,8 +1,11 @@
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, NavLink, useHistory, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { SocketContext } from "../../Context/socketContext";
+
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 
 const NavBar = ({ setSettings, setUpdate, isHost }) => {
   const history = useHistory();
@@ -56,38 +59,42 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
 
   return (
     <>
-      <nav className="topnav" style={{ display: "flex" }}>
-        {/* list for features */}
-        <ul>
-          <a>
-            <Link to={"/room/" + code}>Room</Link>
-          </a>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Link to={"/room/" + code}>Room</Link>
 
-          <a>
-            <Link to={"/room/" + code + "/roster"}>Roster</Link>
-          </a>
-        </ul>
+          <Nav.Link to={"/room/" + code}>test</Nav.Link>
+          <Nav.Link href="#Roster">Roster</Nav.Link>
+          <Link to={"/room/" + code + "/roster"}>Roster</Link>
+        </Nav>
 
-        {/* list for actions */}
-        <ul style={{ marginLeft: "3rem" }}>
-          <Button className="navbutton" onClick={() => setSettings(true)}>
-            Settings
+        <Button
+          className="GoButton"
+          style={{ margin: "0" }}
+          onClick={() => setSettings(true)}
+        >
+          Settings
+        </Button>
+
+        {isHost ? (
+          <Button
+            className="GoButton"
+            style={{ margin: "0" }}
+            onClick={deleteRoom}
+          >
+            Delete Room
           </Button>
-
-          {isHost ? (
-            <Button className="navbutton" onClick={deleteRoom}>
-              Delete Room
-            </Button>
-          ) : (
-            <Button className="navbutton" onClick={leave}>
-              Leave Room
-            </Button>
-          )}
-          <Button className="navbutton" onClick={signOut}>
-            Sign Out
+        ) : (
+          <Button className="GoButton" style={{ margin: "0" }} onClick={leave}>
+            Leave Room
           </Button>
-        </ul>
-      </nav>
+        )}
+
+        <Button className="GoButton" style={{ margin: "0" }} onClick={signOut}>
+          Sign Out
+        </Button>
+      </Navbar>
     </>
   );
 };

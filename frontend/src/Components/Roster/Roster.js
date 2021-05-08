@@ -27,8 +27,7 @@ const Roster = ({ data, updateDb, isHost }) => {
 
     axios
       .patch("/roster/rotate", rotateRep)
-      .then((res) => {
-      })
+      .then((res) => {})
       .catch(function (error) {
         console.log(error);
       });
@@ -41,24 +40,46 @@ const Roster = ({ data, updateDb, isHost }) => {
           style={{
             alignItems: "center",
             justifyContent: "center",
+            height: "60vh",
+            maxHeight: "70vh",
+            borderTopRightRadius: "0",
+            borderTopLeftRadius: "0",
           }}
         >
           <Card.Header
             as="h5"
             id="Card-Header"
             className="text-center"
-            style={{ width: "100%" }}
+            style={{
+              width: "100%",
+              borderTopRightRadius: "0",
+              borderTopLeftRadius: "0",
+              alignItems: "center",
+              justifyContent: "center",
+              display: "grid",
+              gridTemplateColumns: "1fr 7fr 1fr",
+            }}
           >
-            {" "}
+            <div></div> asdasd
             {data.title}
+            {ifHost && (
+              <Button
+                className="GoButton"
+                style={{ margin: "0" }}
+                onClick={rotate}
+              >
+                rotate
+              </Button>
+            )}
           </Card.Header>
 
           <Card.Body
             style={{
               display: "Flex",
-              alignItems: "center",
+              alignItems: "flex-start",
               justifyContent: "center",
               width: "90%",
+              maxHeight: "100%",
             }}
           >
             {data.assignedUsers.map((e, i) => {
@@ -75,11 +96,6 @@ const Roster = ({ data, updateDb, isHost }) => {
                 />
               );
             })}
-            {ifHost && (
-              <Button className="GoButton" onClick={rotate}>
-                Rotate Task!
-              </Button>
-            )}
           </Card.Body>
         </Card>
       )}
