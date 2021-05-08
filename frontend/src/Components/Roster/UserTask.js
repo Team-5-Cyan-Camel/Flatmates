@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AddTask from "./AddTask";
 import { FaTimes as Cross } from "react-icons/fa";
 import axios from "axios";
@@ -51,53 +51,41 @@ const UserTask = ({ task, name, rid, pid, updateDb }) => {
             alignItems: "center",
             justifyContent: "center",
             height: "100%",
-            padding:"0!important",
-            
-          }}>
+            padding: "0!important",
+          }}
+        >
+          <div style={{ overflow: "hidden", maxHeight: "100%" }}>
+            {task.map((e) => {
+              return (
+                <Card
+                  id="Card-field"
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Card.Body
+                    style={{
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "60%",
+                      outlineColor: "black",
+                    }}
+                  >
+                    <p>
+                      <Cross onClick={() => deleteTask(e._id)} />
+                      {e.title} {": "}{" "}
+                      {e.description === "" ? "N/A" : e.description}
+                    </p>
+                  </Card.Body>
+                </Card>
+              );
+            })}
 
-
-
-
-
-
-
-            <div style={{overflow:"hidden", maxHeight:"100%",}}>
-          {task.map((e) => {
-            return (
-              
-
-              <Card
-              id="Card-field"
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-
-        <Card.Body
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            width: "60%",
-            outlineColor: "black",
-          }}>
-              <p>
-                <Cross onClick={() => deleteTask(e._id)} />
-                {e.title} {": "} {e.description === "" ? "N/A" : e.description}
-              </p>
-      </Card.Body>
-      </Card>
-            );
-          })}
-
-
-          <Button className="GoButton" onClick={() => setMakeTask(true)}>
-            Add Task
-          </Button>
-
-</div>
-
-
+            <Button className="GoButton" onClick={() => setMakeTask(true)}>
+              Add Task
+            </Button>
+          </div>
         </Card.Body>
       </Card>
 

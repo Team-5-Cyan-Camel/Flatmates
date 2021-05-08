@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
@@ -8,17 +8,6 @@ import axios from "axios";
 
 const Roster = ({ data, updateDb, isHost }) => {
   let [ifHost, setIsHost] = useState(isHost);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("/user")
-  //     .then((res) => {
-  //       setIsHost(res.data.isHost);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, []);
 
   const rotate = () => {
     const rotateRep = {
@@ -104,7 +93,3 @@ const Roster = ({ data, updateDb, isHost }) => {
 };
 
 export default Roster;
-
-// data.tasks.filter((data) => {
-//     return data.userIndex === 0;
-//   });
