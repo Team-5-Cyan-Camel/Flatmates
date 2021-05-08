@@ -6,17 +6,30 @@ import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { socket, SocketContext } from "../../Context/socketContext";
 
-const Room = ({ update, room, setIsHost, hostId }) => {
+const Room = ({ setIsHost }) => {
   let [isHost, setHost] = useState(false);
+  const [room, setRoom] = useState(null);
+  const [hostId, setHostId] = useState(null);
   // console.log(room);
   // console.log(room.users);
   useEffect(() => {
     axios
       .get("/user")
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         setIsHost(res.data.isHost);
         setHost(res.data.isHost);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    axios
+      .get("/room")
+      .then((res) => {
+        // console.log(res.data);
+        setRoom(res.data);
+        setHostId(res.data.host);
+        // console.log(res.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -26,7 +39,7 @@ const Room = ({ update, room, setIsHost, hostId }) => {
 
   return (
     <>
-      {/* <Card
+      <Card
         id="Card-field"
         style={{
           alignItems: "center",
@@ -56,7 +69,7 @@ const Room = ({ update, room, setIsHost, hostId }) => {
               return <UserData data={e} hostId={hostId} isHost={isHost} />;
             })}
         </Card.Body>
-      </Card> */}
+      </Card>
     </>
   );
 };

@@ -60,7 +60,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
         {/* list for features */}
         <ul>
           <a>
-            <Link to={"/room/" + code + "/users"}>Room</Link>
+            <Link to={"/room/" + code}>Room</Link>
           </a>
 
           <a>

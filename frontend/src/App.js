@@ -180,9 +180,8 @@ function App() {
                 {settings && <Settings hideSettings={hideSettings} />}
               </Route>
 
-              <Route path="/room/:code/users" exact>
+              <Route path="/room/:code" exact>
                 <Room
-                  update={update}
                   hostId={hostId}
                   room={room}
                   setIsHost={setIsHost}
