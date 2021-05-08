@@ -44,22 +44,41 @@ const Roster = ({ data, updateDb, isHost }) => {
             justifyContent: "center",
             height:"60vh",
             maxHeight:"70vh",
+            borderTopRightRadius: "0",
+            borderTopLeftRadius: "0",
+
           }}
         >
-          <Card.Header
+          <Card.Header 
             as="h5"
             id="Card-Header"
             className="text-center"
-            style={{ width: "100%" }}
+            style={{ width: "100%",
+            borderTopRightRadius: "0",
+            borderTopLeftRadius: "0",
+            alignItems: "center",
+            justifyContent: "center",
+            display: "grid",
+            gridTemplateColumns: "1fr 7fr 1fr",
+
+
+          }}
           >
-            {" "}adasdasdsss      s
+            <div></div>
+            {" "}asdasd
             {data.title}
+            {ifHost && (
+              <Button style={{display:"flex",flex:2 }} className="NavBarButton" onClick={rotate}>
+                rotate
+              </Button>
+            )}
+
           </Card.Header>
 
           <Card.Body
             style={{
               display: "Flex",
-              alignItems: "center",
+              alignItems: "flex-start",
               justifyContent: "center",
               width: "90%",
               maxHeight: "100%"
@@ -79,11 +98,7 @@ const Roster = ({ data, updateDb, isHost }) => {
                 />
               );
             })}
-            {ifHost && (
-              <Button className="GoButton" onClick={rotate}>
-                Rotate Task!
-              </Button>
-            )}
+
           </Card.Body>
         </Card>
       )}

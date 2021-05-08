@@ -59,7 +59,7 @@ function App() {
 
   return (
     <div className="BackGroundImage">
-      <Container>
+
         
           {/* path for main page */}
 
@@ -172,27 +172,33 @@ function App() {
             </Route>
 
             <Route path="/room/:code" exact>
+
+            <div className="MakeCentre">
               <Room
                 update={update}
                 room={room}
                 hostId={hostId}
                 setIsHost={setIsHost}
               />
+</div>
+
+
             </Route>
 
             <Route path="/room/:code/roster" exact>
-            <div className="MakeCentreRoster">
+            <div className="MakeCentre">
               helloasdasdasd
-              <Rosters rosters={room} isHost={isHost} updateDb={updateDb} /></div>
+              <Rosters rosters={room} isHost={isHost} updateDb={updateDb} />
+              </div>
             </Route>
-
+            
             {/* path for incompatable path */}
             <Route path="*">
               <Redirect to="/" />
             </Route>
           </Router>
         
-      </Container>
+
     </div>
   );
 }

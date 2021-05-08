@@ -172,6 +172,8 @@
 
   background-color: #696969 !important;
   white-space: nowrap;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 .NavBarButton:hover {
