@@ -48,7 +48,7 @@ const SignUp = ({ cancel }) => {
     };
 
     axios
-      .post("user/register", newUser)
+      .post("/user/register", newUser)
       .then((res) => {
         console.log(res);
         //call cancel to reset state
@@ -95,7 +95,7 @@ const SignUp = ({ cancel }) => {
             <form>
               <hr />
               <input
-                class="AccountInputField"
+                className="AccountInputField"
                 type="text"
                 name="username"
                 placeholder="Username"
@@ -104,7 +104,7 @@ const SignUp = ({ cancel }) => {
               />
               <br></br>
               <input
-                class="AccountInputField"
+                className="AccountInputField"
                 type="password"
                 id="password"
                 name="password"
@@ -114,7 +114,7 @@ const SignUp = ({ cancel }) => {
               />
               <br></br>{" "}
               <input
-                class="AccountInputField"
+                className="AccountInputField"
                 type="password"
                 id="passwordC"
                 name="passwordC"
@@ -124,7 +124,7 @@ const SignUp = ({ cancel }) => {
               />
               <br></br>
               <input
-                class="AccountInputField"
+                className="AccountInputField"
                 type="text"
                 name="name"
                 placeholder="Name"
@@ -133,7 +133,7 @@ const SignUp = ({ cancel }) => {
               />
               <br></br>
               <input
-                class="AccountInputField"
+                className="AccountInputField"
                 type="text"
                 name="pNumber"
                 placeholder="Phone Number"
@@ -142,7 +142,7 @@ const SignUp = ({ cancel }) => {
               />
               <br></br>
               <input
-                class="AccountInputField"
+                className="AccountInputField"
                 type="text"
                 name="email"
                 placeholder="Email"

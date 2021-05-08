@@ -1,19 +1,20 @@
 import { Link, useHistory, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { SocketContext } from "../../Context/socketContext";
 
 const NavBar = ({ setSettings, setUpdate, isHost }) => {
   const history = useHistory();
   const { code } = useParams();
+  const socket = useContext(SocketContext);
 
   useEffect(() => {
     setUpdate();
+    socket.emit("enter_room", { roomID: code });
   }, []);
 
   const leave = () => {
-    // ask for confirmation
-    // console.log("leave");
     axios
       .patch("/room/leave")
       .then((res) => {
@@ -22,6 +23,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
       .catch(function (error) {
         console.log(error);
       });
+    socket.emit("leave_room", { roomID: code });
   };
 
   const deleteRoom = () => {
@@ -35,44 +37,34 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
       .catch(function (error) {
         console.log(error);
       });
+    socket.emit("leave_room", { roomID: code });
   };
 
   const signOut = () => {
     // remove any cached content, return to main room
     // console.log("signOut");
     axios
-      .post("../../user/logout")
+      .post("/user/logout")
       .then((res) => {
         history.push("/");
       })
       .catch(function (error) {
         console.log(error);
       });
+    socket.emit("leave_room", { roomID: code });
   };
 
   return (
     <>
-      <nav class="topnav" style={{ display: "flex" }}>
+      <nav className="topnav" style={{ display: "flex" }}>
         {/* list for features */}
         <ul>
-          {/* <a>
-            <Link to={"/room/" + code + "/reminder"}>Reminders</Link>
-          </a> */}
-
           <a>
             <Link to={"/room/" + code}>Room</Link>
           </a>
 
           <a>
             <Link to={"/room/" + code + "/roster"}>Roster</Link>
-          </a>
-
-          {/* <a>
-            <Link to={"/room/" + code + "/budget"}>Message Budget</Link>
-          </a> */}
-
-          <a>
-            <Link to={"/room/" + code + "/message"}>Message Board</Link>
           </a>
         </ul>
 
@@ -91,7 +83,6 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
               Leave Room
             </Button>
           )}
-
           <Button className="navbutton" onClick={signOut}>
             Sign Out
           </Button>
