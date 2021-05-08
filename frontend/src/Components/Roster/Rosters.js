@@ -2,6 +2,7 @@ import Roster from "./Roster";
 import React, { useState, useEffect } from "react";
 import SelectRoster from "./SelectRoster";
 
+
 const Rosters = ({ rosters, updateDb, isHost }) => {
   // set default rosters
   let [Rosters, setRosters] = useState(rosters);
@@ -29,7 +30,7 @@ const Rosters = ({ rosters, updateDb, isHost }) => {
   };
 
   return (
-    <>
+    <div>
       <SelectRoster
         isHost={isHost}
         rosters={Rosters}
@@ -44,7 +45,7 @@ const Rosters = ({ rosters, updateDb, isHost }) => {
           updateDb={updateDb}
         />
       )}
-    </>
+    </div>
   );
 };
 
