@@ -21,7 +21,7 @@ const Chatbox = ({messageList, setMessageList }) => {
     return (
         <Card >
             <Card.Header title="MessageBoard" />
-            <Card.Body >
+            <Card.Body style={{"overflow-y": "scroll" , "height": "75vh"}} >
                 <ListGroup>
                     {messageList.map((message, index) => {
                         return (
