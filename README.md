@@ -15,6 +15,10 @@ A flat management system to allow flatmates to manage costs, communicate and man
 2. Allow sign in
 3. Allow creating a room
 4. Allow joining an existing room
+5. Allow all users of a room to be seen
+6. Allow a functioning roster
+7. Allow the host to kick members
+8. Allow room members to leave the room
 
 ## GPL v3.0 License
 
