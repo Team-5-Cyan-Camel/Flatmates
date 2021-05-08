@@ -65,7 +65,7 @@ const AddRoster = ({ show, updateDb }) => {
           >
             <form>
               <input
-                class="TaskInputField"
+                className="TaskInputField"
                 type="text"
                 name="Chore"
                 placeholder="Chore"

@@ -18,8 +18,7 @@ const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
 
     axios
       .delete("/roster", { data: rostDel })
-      .then((res) => {
-      })
+      .then((res) => {})
       .catch(function (error) {
         console.log(error);
       });
@@ -43,7 +42,7 @@ const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
             width: "90%",
           }}
         >
-          {/* <div class='topnav' style={{display: 'flex'}}> */}
+          {/* <div className='topnav' style={{display: 'flex'}}> */}
           {rosters !== null &&
             rosters.rosters.map((e, i) => [
               <Button

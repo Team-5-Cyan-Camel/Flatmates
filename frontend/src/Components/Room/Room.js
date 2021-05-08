@@ -4,8 +4,6 @@ import UserData from "./UserData";
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
-import { FaTimes as Cross } from "react-icons/fa";
 import { socket, SocketContext } from "../../Context/socketContext";
 
 const Room = ({ update, room, setIsHost, hostId }) => {
@@ -28,7 +26,7 @@ const Room = ({ update, room, setIsHost, hostId }) => {
 
   return (
     <>
-      <Card
+      {/* <Card
         id="Card-field"
         style={{
           alignItems: "center",
@@ -53,13 +51,12 @@ const Room = ({ update, room, setIsHost, hostId }) => {
             width: "90%",
           }}
         >
-          {/* TODO VERY HACKY */}
           {room !== null &&
             room.users.map((e) => {
               return <UserData data={e} hostId={hostId} isHost={isHost} />;
             })}
         </Card.Body>
-      </Card>
+      </Card> */}
     </>
   );
 };

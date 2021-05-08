@@ -38,7 +38,7 @@ const Login = () => {
     };
 
     axios
-      .post("user/login", userIn)
+      .post("/user/login", userIn)
       .then((res) => {
         let roomcode = res.data.roomCode;
         if (roomcode !== null) {
@@ -56,7 +56,7 @@ const Login = () => {
     <>
       <Form style={{ marginLeft: "1em", marginRight: "1em" }}>
         <input
-          class="AccountInputField"
+          className="AccountInputField"
           type="text"
           name="username"
           placeholder="Username"
@@ -65,7 +65,7 @@ const Login = () => {
         />
         <br></br>
         <input
-          class="AccountInputField"
+          className="AccountInputField"
           type="password"
           id="password"
           name="password"

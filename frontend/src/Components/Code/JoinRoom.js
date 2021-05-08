@@ -32,7 +32,7 @@ const JoinRoom = () => {
       <form onSubmit={joinRoom}>
         <h3>Join Room</h3>
         <input
-          class="AccountInputField"
+          className="AccountInputField"
           type="text"
           name="code"
           placeholder="Enter Code"

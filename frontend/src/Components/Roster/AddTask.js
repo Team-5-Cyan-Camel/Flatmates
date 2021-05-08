@@ -67,7 +67,7 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
           >
             <form>
               <input
-                class="TaskInputField"
+                className="TaskInputField"
                 type="text"
                 name="Title"
                 placeholder="Title"
@@ -76,7 +76,7 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
               />
               <br></br>
               <input
-                class="TaskInputField"
+                className="TaskInputField"
                 type="text"
                 name="Description"
                 placeholder="Description"

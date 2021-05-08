@@ -56,7 +56,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
 
   return (
     <>
-      <nav class="topnav" style={{ display: "flex" }}>
+      <nav className="topnav" style={{ display: "flex" }}>
         {/* list for features */}
         <ul>
           <a>
