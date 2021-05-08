@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,9 +17,6 @@ const AddRoster = ({ show, updateDb }) => {
     if (chore === "") {
       return;
     }
-
-    // console.log(chore);
-
     const addRos = {
       title: chore,
     };
@@ -27,7 +24,6 @@ const AddRoster = ({ show, updateDb }) => {
     axios
       .post("/roster", addRos)
       .then((res) => {
-        console.log(res);
         show(false);
       })
       .catch(function (error) {
