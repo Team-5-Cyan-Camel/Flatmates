@@ -6,17 +6,10 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import { SocketContext } from "../../Context/socketContext";
 
-const Chatbox = ({ }) => {
+const Chatbox = ({messageList, setMessageList }) => {
     const scrollRef = useRef(null);
     const [chatMessage, setChatMessage] = useState('');
-    const [messageList, setMessageList] = useState([]);
     const socket = useContext(SocketContext);
-
-    useEffect(() => {
-        socket.on('message_update', (data) => {
-            setMessageList((prevList) => [...prevList, data]);        
-        });
-    }, []);
 
     // always scroll to bottom of text chat when there are new messages
     useEffect(() => {

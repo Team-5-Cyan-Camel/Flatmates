@@ -15,6 +15,10 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
   useEffect(() => {
     setUpdate();
     socket.emit("enter_room", { roomID: code });
+    return () => {
+      console.log("left room")
+      socket.emit("leave_room", { roomID: code });
+    }
   }, []);
 
   const leave = () => {
@@ -26,7 +30,6 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
       .catch(function (error) {
         console.log(error);
       });
-    socket.emit("leave_room", { roomID: code });
   };
 
   const deleteRoom = () => {
@@ -40,7 +43,6 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
       .catch(function (error) {
         console.log(error);
       });
-    socket.emit("leave_room", { roomID: code });
   };
 
   const signOut = () => {
@@ -54,7 +56,6 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
       .catch(function (error) {
         console.log(error);
       });
-    socket.emit("leave_room", { roomID: code });
   };
 
   return (

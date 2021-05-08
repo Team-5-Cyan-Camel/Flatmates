@@ -14,10 +14,10 @@ module.exports = function (io) {
 
 
         socket.on('leave_room', (req) => {
-            socket.leave(req.roomID);
             console.log("A user left", req.roomID);
             let message = "A user left"
             emitMessageToSocketRoom(io, socket, message)
+            socket.leave(req.roomID);
         });
 
 

@@ -25,6 +25,14 @@ function App() {
   let [room, setRoom] = useState(null);
   const [isHost, setIsHost] = useState(false);
   let [hostId, setHostId] = useState(null);
+  const [messageList, setMessageList] = useState([]);
+
+  useEffect(() => {
+    socket.on('message_update', (data) => {
+      setMessageList((prevList) => [...prevList, data]);
+    });
+  }, []);
+
 
   useEffect(() => {
     // <<<<<<< HEAD
@@ -206,7 +214,9 @@ function App() {
           </Route>
 
           <Route path="/room/:code/message" exact>
-            <MessageBoard />
+            <Container>
+                <MessageBoard messageList={messageList} setMessageList={setMessageList} />
+            </Container>
           </Route>
 
 
