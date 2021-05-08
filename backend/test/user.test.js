@@ -90,4 +90,40 @@ describe("Tests the endpoints dealing with user", () => {
     expect(res.statusCode).toBe(201);
     done();
   });
+
+  test("PATCH update user", async (done) => {
+    const req1 = {
+      "name": "Gerald",
+      "phoneNumber": "12345678",
+      "email": "gerald@gmail.com"
+    };
+    const res1 = await request(app)
+      .patch("/user/update")
+      .set('Cookie', ['sessionID=1'])
+      .send(req1)
+      .set("Accept", "application/json");
+
+    expect(res1.statusCode).toBe(200);
+    expect(res1.body.name).toBe(req1.name);
+    expect(res1.body.phoneNumber).toBe(req1.phoneNumber);
+    expect(res1.body.email).toBe(req1.email);
+
+    const req2 = {
+      "name": "Geraldine",
+      "phoneNumber": "87654321",
+      "email": "geraldine@gmail.com"
+    };
+    const res2 = await request(app)
+      .patch("/user/update")
+      .set('Cookie', ['sessionID=1'])
+      .send(req2)
+      .set("Accept", "application/json");
+
+    expect(res2.statusCode).toBe(200);
+    expect(res2.body.name).toBe(req2.name);
+    expect(res2.body.phoneNumber).toBe(req2.phoneNumber);
+    expect(res2.body.email).toBe(req2.email);
+
+    done();
+  });
 });

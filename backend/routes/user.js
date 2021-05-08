@@ -62,6 +62,7 @@ router.post("/login", async function (req, res, next) {
   });
 });
 
+/* PATCH update user */
 router.patch("/update", getUserOfCookie, async function (req, res, next) {
   if (req.body.email) { req.user.email = req.body.email };
   if (req.body.phoneNumber) { req.user.phoneNumber = req.body.phoneNumber };
@@ -69,7 +70,7 @@ router.patch("/update", getUserOfCookie, async function (req, res, next) {
 
   try {
     let user = await req.user.save();
-    return res.status(201).json(user);
+    return res.status(200).json(user);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
