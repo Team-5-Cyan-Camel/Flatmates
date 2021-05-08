@@ -34,6 +34,20 @@ const Room = ({ setIsHost }) => {
       .catch(function (error) {
         console.log(error);
       });
+    socket.on("update", () => {
+      axios
+        .get("/room")
+        .then((res) => {
+          // console.log(res.data);
+          setRoom(res.data);
+          setHostId(res.data.host);
+          // console.log(res.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    });
+
     socket.emit("update");
   }, []);
 
