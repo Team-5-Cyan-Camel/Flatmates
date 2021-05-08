@@ -57,7 +57,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="home">Navbar</Navbar.Brand>
+        <Navbar.Brand href="home">Navigation</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link>
             <Link to={"/room/" + code}>Room</Link>
