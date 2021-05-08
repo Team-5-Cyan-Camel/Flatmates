@@ -67,6 +67,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
           <Nav.Link to={"/room/" + code}>test</Nav.Link>
           <Nav.Link href="#Roster">Roster</Nav.Link>
           <Link to={"/room/" + code + "/roster"}>Roster</Link>
+          <Link to={"/room/" + code + "/message"}>Message</Link>
         </Nav>
 
         <Button

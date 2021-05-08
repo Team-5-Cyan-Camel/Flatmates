@@ -1,17 +1,20 @@
-import { React, useEffect, useState, useRef } from 'react';
+import { React, useEffect, useState, useRef, useContext } from 'react';
 import Card from "react-bootstrap/Card";
 import ListGroup from 'react-bootstrap/ListGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/InputGroup";
+import { SocketContext } from "../../Context/socketContext";
 
 const Chatbox = ({ }) => {
     const scrollRef = useRef(null);
     const [chatMessage, setChatMessage] = useState('');
     const [messageList, setMessageList] = useState([]);
+    const socket = useContext(SocketContext);
 
     useEffect(() => {
         socket.on('message_update', (data) => {
-            setMessageList(data);
+            setMessageList((prevList) => [...prevList, data]);        
         });
     }, []);
 
@@ -27,7 +30,7 @@ const Chatbox = ({ }) => {
             <Card.Header title="MessageBoard" />
             <Card.Body >
                 <ListGroup>
-                    {messageList.map((message) => {
+                    {messageList.map((message, index) => {
                         return (
                             <ListGroup.Item key={index}>{message}</ListGroup.Item>
                         );
@@ -49,7 +52,7 @@ const Chatbox = ({ }) => {
                             if (e.key === 'Enter' && chatMessage) {
                                 socket.emit('message', {
                                     username: "test-username",
-                                    message: "test-message"
+                                    message: chatMessage
                                 });
                                 setChatMessage('');
                             }
@@ -62,7 +65,7 @@ const Chatbox = ({ }) => {
                                 if (chatMessage) {
                                     socket.emit('message', {
                                         username: "test-username",
-                                        message: "test-message"    
+                                        message: chatMessage    
                                     });
                                     setChatMessage('');
                                 }

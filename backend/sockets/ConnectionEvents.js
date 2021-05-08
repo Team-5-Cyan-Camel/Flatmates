@@ -11,7 +11,14 @@ module.exports = function (io) {
         });
 
         socket.on('message', (req) => {
-            io.in(req.roomID).emit('message_update', `${req.username}: ${req.message}`);
+            // Remove room if it is the socket id itself
+            let rooms = Array.from(socket.rooms).filter(function(item) {
+                return item !== socket.id;
+            });
+            console.log("message sent to",rooms)
+            if (rooms && rooms.length) {
+                io.in(rooms[0]).emit('message_update', `${req.username}: ${req.message}`);
+            }
         });
     });
 }
