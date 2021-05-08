@@ -4,12 +4,15 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { FaTimes as Cross } from "react-icons/fa";
 import axios from "axios";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 import "../../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
+// import Alert from "@material-ui/lab/Alert";
+// import AlertTitle from "@material-ui/lab/AlertTitle";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -28,15 +31,39 @@ const SignUp = ({ cancel }) => {
     // // check if passwords are the same
     //TODO CHANGE STYLING ALERT IS AWFUL
     if (user === "") {
-      alert("Please provide a username");
+      confirmAlert({
+        title: "Username missing",
+        message: "Please provide a username",
+        buttons: [
+          {
+            label: "ok",
+          },
+        ],
+      });
       return;
     }
     if (password !== "" && password !== passwordC) {
-      alert("Your passwords do not match");
+      confirmAlert({
+        title: "Password error",
+        message: "Please provide matching passwords",
+        buttons: [
+          {
+            label: "ok",
+          },
+        ],
+      });
       return;
     }
     if (name === "") {
-      alert("Please provide a name");
+      confirmAlert({
+        title: "Name missing",
+        message: "Please provide a name",
+        buttons: [
+          {
+            label: "ok",
+          },
+        ],
+      });
       return;
     }
     const newUser = {
@@ -56,9 +83,16 @@ const SignUp = ({ cancel }) => {
         history.push("/code");
       })
       .catch(function (error) {
-        alert(
-          "Sorry, that username has been used. Please use another username"
-        );
+        confirmAlert({
+          title: "Username used",
+          message:
+            "Sorry, that username has been used. Please use another username",
+          buttons: [
+            {
+              label: "ok",
+            },
+          ],
+        });
       });
   };
 
