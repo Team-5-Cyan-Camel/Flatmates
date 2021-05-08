@@ -8,7 +8,7 @@ const Rosters = ({ rosters, updateDb, isHost }) => {
 
   useEffect(() => {
     setRosters(rosters);
-    console.log(rosters);
+
     if (Rosters !== null && Rosters.rosters.length !== 0) {
       setDisplayRoster({ rosters: rosters.rosters[0] });
     }
