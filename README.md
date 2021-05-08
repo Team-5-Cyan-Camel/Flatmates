@@ -9,6 +9,13 @@ A flat management system to allow flatmates to manage costs, communicate and man
    Note, if you would like the organization’s file, please contact [In.early.springs@gmail.com](In.early.springs@gmail.com)
 3. In both frontend and backend folders, run `npm install`, followed by `npm start` to start both the frontend and backend.
 
+## Functionality
+
+1. Allow the creation of new accounts
+2. Allow sign in
+3. Allow creating a room
+4. Allow joining an existing room
+
 ## GPL v3.0 License
 
 This codebase is licensed under the General Public License 3.0  
