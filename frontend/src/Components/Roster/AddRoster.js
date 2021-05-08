@@ -25,10 +25,9 @@ const AddRoster = ({ show, updateDb }) => {
     };
 
     axios
-      .post("../../roster", addRos)
+      .post("/roster", addRos)
       .then((res) => {
         console.log(res);
-        updateDb();
         show(false);
       })
       .catch(function (error) {
@@ -66,7 +65,7 @@ const AddRoster = ({ show, updateDb }) => {
           >
             <form>
               <input
-                class="TaskInputField"
+                className="TaskInputField"
                 type="text"
                 name="Chore"
                 placeholder="Chore"

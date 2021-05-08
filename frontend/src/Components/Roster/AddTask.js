@@ -27,11 +27,10 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
     };
 
     axios
-      .post("../../../roster/task", newTask)
+      .post("/roster/task", newTask)
       .then((res) => {
         console.log(res);
         show(false);
-        updateDb();
       })
       .catch(function (error) {
         console.log(error);
@@ -68,7 +67,7 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
           >
             <form>
               <input
-                class="TaskInputField"
+                className="TaskInputField"
                 type="text"
                 name="Title"
                 placeholder="Title"
@@ -77,7 +76,7 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
               />
               <br></br>
               <input
-                class="TaskInputField"
+                className="TaskInputField"
                 type="text"
                 name="Description"
                 placeholder="Description"

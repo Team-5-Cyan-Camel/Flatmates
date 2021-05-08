@@ -9,13 +9,12 @@ import JoinRoom from "./Components/Code/JoinRoom";
 import NavBar from "./Components/Lobby/NavBar";
 import Room from "./Components/Room/Room";
 import axios from "axios";
-
 import "./Components/Lobby/NavBar.css";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Rosters from "./Components/Roster/Rosters";
+import { SocketContext, socket } from "./Context/socketContext";
 
 function App() {
   // boolean for showing signup
@@ -27,18 +26,37 @@ function App() {
   let [hostId, setHostId] = useState(null);
 
   useEffect(() => {
+    // <<<<<<< HEAD
+    socket.on("update", () => {
+      console.log("socketio called update");
+      setUpdate(!update);
+      axios
+        .get("/room")
+        .then((res) => {
+          // console.log(res.data);
+          setRoom(res.data);
+          setHostId(res.data.host);
+          // console.log(res.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    });
+  }, []);
+
+  useEffect(() => {
     axios
       .get("/room")
       .then((res) => {
+        // console.log(res.data);
         setRoom(res.data);
-        // console.log(res.data.host);
         setHostId(res.data.host);
         // console.log(res.data);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, [update]);
+  }, []);
 
   const cancelSignup = () => {
     setSignup(false);
@@ -52,19 +70,14 @@ function App() {
     setIsHost(res);
   };
 
-  const updateDb = () => {
-    console.log("update");
-    setUpdate(!update);
-  };
-
   return (
-    <div className="BackGroundImage">
-      <Container>
-        <div className="MakeCentre">
-          {/* path for main page */}
+    <SocketContext.Provider value={socket}>
+      <div className="BackGroundImage">
+        {/* path for main page */}
 
-          <Router>
-            <Route path="/" exact>
+        <Router>
+          <Route path="/" exact>
+            <div className="MakeCentre">
               <h1 className="StartTitle">
                 Flatmates
                 <small style={{ fontSize: "1.5rem" }}>1.0</small>
@@ -89,10 +102,10 @@ function App() {
 
                 <Card.Body
                   style={{
-                    display: "Grid",
+                    display: "grid",
+                    width: "90%",
                     alignItems: "center",
                     justifyContent: "center",
-                    width: "90%",
                   }}
                 >
                   <Login />
@@ -121,72 +134,83 @@ function App() {
                   </div>
                 </Card.Body>
               </Card>
-            </Route>
+            </div>
+          </Route>
 
-            {/* path for room code to give */}
-            <Route path="/code" exact>
-              <Card
-                id="Card-field"
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Card.Header
-                  as="h5"
-                  id="Card-Header"
-                  className="text-center"
-                  style={{ width: "100%" }}
-                >
-                  {" "}
-                  Sign in
-                </Card.Header>
-
-                <Card.Body
+          {/* path for room code to give */}
+          <Route path="/code" exact>
+            <Container>
+              <div className="MakeCentre">
+                <Card
+                  id="Card-field"
                   style={{
-                    display: "Grid",
                     alignItems: "center",
                     justifyContent: "center",
-                    width: "90%",
                   }}
                 >
-                  <GenerateRoom />
-                  <JoinRoom />
-                </Card.Body>
-              </Card>
-            </Route>
+                  <Card.Header
+                    as="h5"
+                    id="Card-Header"
+                    className="text-center"
+                    style={{ width: "100%" }}
+                  >
+                    {" "}
+                    Sign in
+                  </Card.Header>
 
-            {/* path for room screen */}
-            <Route path="/room/:code">
-              <NavBar
-                setSettings={setSettings}
-                isHost={isHost}
-                setUpdate={setUpdate}
-              />
-              {settings && <Settings hideSettings={hideSettings} />}
-            </Route>
+                  <Card.Body
+                    style={{
+                      display: "grid",
+                      width: "90%",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <GenerateRoom />
+                    <JoinRoom />
+                  </Card.Body>
+                </Card>
+              </div>
+            </Container>
+          </Route>
 
-            <Route path="/room/:code" exact>
+          {/* path for room screen */}
+          <Route path="/room/:code">
+            <NavBar
+              setSettings={setSettings}
+              isHost={isHost}
+              setUpdate={setUpdate}
+            />
+            {settings && <Settings hideSettings={hideSettings} />}
+          </Route>
+
+          <Route path="/room/:code" exact>
+            <div className="MakeCentre">
               <Room
                 update={update}
                 room={room}
                 hostId={hostId}
                 setIsHost={setIsHost}
               />
-            </Route>
+            </div>
+          </Route>
 
-            <Route path="/room/:code/roster" exact>
-              <Rosters rosters={room} isHost={isHost} updateDb={updateDb} />
-            </Route>
+          <Route path="/room/:code/roster" exact>
+            <Container>
+              <div className="MakeCentre">
+                helloasdasdasd
+                <Rosters rosters={room} isHost={isHost} />
+              </div>
+            </Container>
+          </Route>
 
-            {/* path for incompatable path */}
-            <Route path="*">
-              <Redirect to="/" />
-            </Route>
-          </Router>
-        </div>
-      </Container>
-    </div>
+          {/* path for incompatable path */}
+          <Route path="*">
+            <Redirect to="/" />
+          </Route>
+        </Router>
+      </div>
+    </SocketContext.Provider>
   );
 }
 

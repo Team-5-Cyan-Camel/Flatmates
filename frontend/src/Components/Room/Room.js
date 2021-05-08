@@ -4,11 +4,14 @@ import UserData from "./UserData";
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
-import { FaTimes as Cross } from "react-icons/fa";
+import { socket, SocketContext } from "../../Context/socketContext";
 
-const Room = ({ update, room, setIsHost, hostId }) => {
+const Room = ({ setIsHost }) => {
   let [isHost, setHost] = useState(false);
+  const [room, setRoom] = useState(null);
+  const [hostId, setHostId] = useState(null);
+  // console.log(room);
+  // console.log(room.users);
   useEffect(() => {
     axios
       .get("/user")
@@ -20,6 +23,32 @@ const Room = ({ update, room, setIsHost, hostId }) => {
       .catch(function (error) {
         console.log(error);
       });
+    axios
+      .get("/room")
+      .then((res) => {
+        // console.log(res.data);
+        setRoom(res.data);
+        setHostId(res.data.host);
+        // console.log(res.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    socket.on("update", () => {
+      axios
+        .get("/room")
+        .then((res) => {
+          // console.log(res.data);
+          setRoom(res.data);
+          setHostId(res.data.host);
+          // console.log(res.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    });
+
+    socket.emit("update");
   }, []);
 
   return (
@@ -49,7 +78,6 @@ const Room = ({ update, room, setIsHost, hostId }) => {
             width: "90%",
           }}
         >
-          {/* TODO VERY HACKY */}
           {room !== null &&
             room.users.map((e) => {
               return <UserData data={e} hostId={hostId} isHost={isHost} />;

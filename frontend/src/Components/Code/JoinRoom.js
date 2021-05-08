@@ -17,7 +17,7 @@ const JoinRoom = () => {
     };
     if (code !== "") {
       axios
-        .post("room/join", roomCode)
+        .post("/room/join", roomCode)
         .then((res) => {
           console.log(res);
           history.push("/room/" + code);
@@ -32,7 +32,7 @@ const JoinRoom = () => {
       <form onSubmit={joinRoom}>
         <h3>Join Room</h3>
         <input
-          class="AccountInputField"
+          className="AccountInputField"
           type="text"
           name="code"
           placeholder="Enter Code"

@@ -124,7 +124,9 @@ router.delete(
 function socketRosterUpdate(roomID, roster) {
   if (global.io) {
     roomID = JSON.stringify(roomID).replace(/(^")|("$)/g, "");
-    global.io.in(roomID).emit("roster_update", roster);
+    global.io.in(roomID).emit("update");
+    console.log("socketio called update")
+    // global.io.in(roomID).emit("roster_update", roster);
   }
 }
 
