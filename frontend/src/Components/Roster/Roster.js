@@ -27,8 +27,7 @@ const Roster = ({ data, updateDb, isHost }) => {
 
     axios
       .patch("/roster/rotate", rotateRep)
-      .then((res) => {
-      })
+      .then((res) => {})
       .catch(function (error) {
         console.log(error);
       });
@@ -41,37 +40,37 @@ const Roster = ({ data, updateDb, isHost }) => {
           style={{
             alignItems: "center",
             justifyContent: "center",
-            height:"60vh",
-            maxHeight:"70vh",
+            height: "60vh",
+            maxHeight: "70vh",
             borderTopRightRadius: "0",
             borderTopLeftRadius: "0",
-
           }}
         >
-          <Card.Header 
+          <Card.Header
             as="h5"
             id="Card-Header"
             className="text-center"
-            style={{ width: "100%",
-            borderTopRightRadius: "0",
-            borderTopLeftRadius: "0",
-            alignItems: "center",
-            justifyContent: "center",
-            display: "grid",
-            gridTemplateColumns: "1fr 7fr 1fr",
-
-
-          }}
+            style={{
+              width: "100%",
+              borderTopRightRadius: "0",
+              borderTopLeftRadius: "0",
+              alignItems: "center",
+              justifyContent: "center",
+              display: "grid",
+              gridTemplateColumns: "1fr 7fr 1fr",
+            }}
           >
-            <div></div>
-            {" "}asdasd
+            <div></div> asdasd
             {data.title}
             {ifHost && (
-              <Button style={{display:"flex",flex:2 }} className="NavBarButton" onClick={rotate}>
+              <Button
+                className="GoButton"
+                style={{ margin: "0" }}
+                onClick={rotate}
+              >
                 rotate
               </Button>
             )}
-
           </Card.Header>
 
           <Card.Body
@@ -80,9 +79,9 @@ const Roster = ({ data, updateDb, isHost }) => {
               alignItems: "flex-start",
               justifyContent: "center",
               width: "90%",
-              maxHeight: "100%"
+              maxHeight: "100%",
             }}
-          > 
+          >
             {data.assignedUsers.map((e, i) => {
               return (
                 <UserTask
@@ -97,7 +96,6 @@ const Roster = ({ data, updateDb, isHost }) => {
                 />
               );
             })}
-
           </Card.Body>
         </Card>
       )}

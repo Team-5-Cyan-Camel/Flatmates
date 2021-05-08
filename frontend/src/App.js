@@ -102,6 +102,8 @@ function App() {
 
                 <Card.Body
                   style={{
+                    display: "grid",
+                    width: "90%",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
@@ -137,35 +139,39 @@ function App() {
 
           {/* path for room code to give */}
           <Route path="/code" exact>
-            <div className="MakeCentre">
-              <Card
-                id="Card-field"
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Card.Header
-                  as="h5"
-                  id="Card-Header"
-                  className="text-center"
-                  style={{ width: "100%" }}
-                >
-                  {" "}
-                  Sign in
-                </Card.Header>
-
-                <Card.Body
+            <Container>
+              <div className="MakeCentre">
+                <Card
+                  id="Card-field"
                   style={{
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                 >
-                  <GenerateRoom />
-                  <JoinRoom />
-                </Card.Body>
-              </Card>
-            </div>
+                  <Card.Header
+                    as="h5"
+                    id="Card-Header"
+                    className="text-center"
+                    style={{ width: "100%" }}
+                  >
+                    {" "}
+                    Sign in
+                  </Card.Header>
+
+                  <Card.Body
+                    style={{
+                      display: "grid",
+                      width: "90%",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <GenerateRoom />
+                    <JoinRoom />
+                  </Card.Body>
+                </Card>
+              </div>
+            </Container>
           </Route>
 
           {/* path for room screen */}
@@ -190,10 +196,12 @@ function App() {
           </Route>
 
           <Route path="/room/:code/roster" exact>
-            <div className="MakeCentre">
-              helloasdasdasd
-              <Rosters rosters={room} isHost={isHost} />
-            </div>
+            <Container>
+              <div className="MakeCentre">
+                helloasdasdasd
+                <Rosters rosters={room} isHost={isHost} />
+              </div>
+            </Container>
           </Route>
 
           {/* path for incompatable path */}

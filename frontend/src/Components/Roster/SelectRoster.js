@@ -33,7 +33,7 @@ const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
     <>
       {/* {rosters !== "undefined" && ( */}
 
-      <Navbar bg="dark" variant="dark" style={{ padding: "0" }}>
+      <Navbar bg="dark" variant="dark" style={{}}>
         <Nav className="mr-auto">
           {rosters !== null &&
             rosters.rosters.map((e, i) => [
