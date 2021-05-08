@@ -66,6 +66,31 @@ const SignUp = ({ cancel }) => {
       });
       return;
     }
+    if (pNumber === "") {
+      confirmAlert({
+        title: "Phone missing",
+        message: "Please provide a phone number",
+        buttons: [
+          {
+            label: "ok",
+          },
+        ],
+      });
+      return;
+    }
+    if (email === "") {
+      confirmAlert({
+        title: "Email missing",
+        message: "Please provide a email",
+        buttons: [
+          {
+            label: "ok",
+          },
+        ],
+      });
+      return;
+    }
+
     const newUser = {
       username: user,
       password: password,
