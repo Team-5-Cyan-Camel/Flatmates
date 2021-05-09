@@ -17,12 +17,6 @@ const Rosters = ({rosters, isHost}) => {
   }, [rosters]);
 
   useEffect(() => {
-    console.log(rosters);
-    console.log(isHost);
-    socket.emit('update');
-  });
-
-  useEffect(() => {
     axios
       .get('/room')
       .then((res) => {
