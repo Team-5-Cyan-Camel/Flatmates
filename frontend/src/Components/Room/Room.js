@@ -5,6 +5,7 @@ import {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {socket} from '../../Context/socketContext';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Room = ({setIsHost}) => {
   let [isHost, setHost] = useState(false);
@@ -75,7 +76,7 @@ const Room = ({setIsHost}) => {
             width: '90%',
           }}
         >
-          {room !== null &&
+          {room !== null ? (
             room.users.map((e) => {
               return (
                 <UserData
@@ -85,7 +86,10 @@ const Room = ({setIsHost}) => {
                   yourId={yourId}
                 />
               );
-            })}
+            })
+          ) : (
+            <Spinner animation='border' />
+          )}
         </Card.Body>
       </Card>
     </>

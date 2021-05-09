@@ -150,7 +150,6 @@ const SignUp = ({cancel}) => {
             }}
           >
             <form>
-              <hr />
               <input
                 className='AccountInputField'
                 type='text'
