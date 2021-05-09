@@ -23,6 +23,20 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
   }, []);
 
 
+  const copyCode = () => {
+    navigator.clipboard.writeText(code);
+    confirmAlert({
+      title: 'Room Code',
+      message: 'Copied: ' + code + ' to clipboard',
+      buttons: [
+        {
+          label: 'Ok',
+        },
+      ],
+    });
+  };
+
+
   const leave = () => {
     confirmAlert({
       title: 'Leaving Room',
@@ -100,6 +114,14 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
             <Link to={"/room/" + code + "/message"}>Message Board</Link>
           </Nav.Link>
         </Nav>
+
+        <Button
+          className='GoButton'
+          style={{margin: '0'}}
+          onClick={() => copyCode()}
+        >
+          Get Code
+        </Button>
 
         <Button
           className='GoButton'
