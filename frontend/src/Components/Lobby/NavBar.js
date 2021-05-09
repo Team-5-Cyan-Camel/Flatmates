@@ -20,6 +20,15 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
 
   const copyCode = () => {
     navigator.clipboard.writeText(code);
+    confirmAlert({
+      title: 'Room Code',
+      message: 'Copied: ' + code + ' to clipboard',
+      buttons: [
+        {
+          label: 'Ok',
+        },
+      ],
+    });
   };
 
   const leave = () => {
