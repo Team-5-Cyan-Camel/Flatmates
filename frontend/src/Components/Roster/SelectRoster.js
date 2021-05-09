@@ -6,12 +6,15 @@ import "../Lobby/NavBar.css";
 import AddRoster from "./AddRoster";
 import { useState, useEffect } from "react";
 import { FaTimes as Cross } from "react-icons/fa";
+
 import axios from "axios";
 import "../Lobby/NavBar.css";
 
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Link, NavLink, useHistory, useParams } from "react-router-dom";
+
+import { FaPlusCircle as PlusSymbol } from "react-icons/fa";
 
 const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
   let [makeRoster, setMakeRoster] = useState(false);
@@ -40,7 +43,10 @@ const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
               <Nav.Link
                 key={i}
                 onClick={() => setRoster(e.title)}
-                style={{ outline: "1px solid black ", outlineColor: "black" }}
+                style={{
+                  marginLeft: "0.25em",
+                  marginRight: "0.25em",
+                }}
               >
                 {e.title}{" "}
                 {isHost && <Cross onClick={() => deleteRoster(e._id)} />}
@@ -50,7 +56,7 @@ const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
           {/* </div> */}
         </Nav>
         <Button className="NavBarButton" onClick={() => setMakeRoster(true)}>
-          add
+          <PlusSymbol></PlusSymbol>
         </Button>
       </Navbar>
 

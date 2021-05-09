@@ -32,6 +32,9 @@ const UserData = ({ data, isHost, hostId }) => {
         style={{
           alignItems: "center",
           justifyContent: "center",
+          margin: "1em",
+          width: "90%",
+          backgroundColor: "#7e828b",
         }}
       >
         <Card.Header
@@ -49,10 +52,9 @@ const UserData = ({ data, isHost, hostId }) => {
 
         <Card.Body
           style={{
-            display: "Flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "90%",
+            alignItems: "start",
+            justifyContent: "start",
+            width: "100%",
           }}
         >
           <Form>

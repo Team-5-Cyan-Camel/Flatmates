@@ -58,6 +58,8 @@ const Room = ({ setIsHost }) => {
         style={{
           alignItems: "center",
           justifyContent: "center",
+          width: "90%",
+          maxWidth: "50vh",
         }}
       >
         <Card.Header
@@ -72,10 +74,18 @@ const Room = ({ setIsHost }) => {
 
         <Card.Body
           style={{
-            display: "Flex",
+            display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
-            width: "90%",
+
+            marginTop: "0 !important",
+            marginBottom: "auto !important",
+
+            width: "100%",
+            maxHeight: "60vh",
+            overflowY: "auto",
+            paddingLeft: "1em",
+            paddingRight: "1em",
           }}
         >
           {room !== null &&

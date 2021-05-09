@@ -5,6 +5,12 @@ import Button from "react-bootstrap/Button";
 import UserTask from "./UserTask";
 import "../../App.css";
 import axios from "axios";
+import { ArrowRight } from "react-bootstrap-icons";
+
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
+import { FaSyncAlt } from "react-icons/fa";
 
 const Roster = ({ data, updateDb, isHost }) => {
   let [ifHost, setIsHost] = useState(isHost);
@@ -40,10 +46,12 @@ const Roster = ({ data, updateDb, isHost }) => {
           style={{
             alignItems: "center",
             justifyContent: "center",
-            height: "60vh",
-            maxHeight: "70vh",
+            height: "65vh",
+            maxHeight: "80vh",
+            minWidth: "0",
             borderTopRightRadius: "0",
             borderTopLeftRadius: "0",
+            width: "100%",
           }}
         >
           <Card.Header
@@ -60,26 +68,26 @@ const Roster = ({ data, updateDb, isHost }) => {
               gridTemplateColumns: "1fr 7fr 1fr",
             }}
           >
-            <div></div> asdasd
+            <div></div>
             {data.title}
             {ifHost && (
-              <Button
-                className="GoButton"
-                style={{ margin: "0" }}
-                onClick={rotate}
-              >
-                rotate
+              <Button className="NavBarButton" onClick={rotate}>
+                <FaSyncAlt />
               </Button>
             )}
           </Card.Header>
 
           <Card.Body
+            className="UsersTasksList"
             style={{
-              display: "Flex",
-              alignItems: "flex-start",
-              justifyContent: "center",
-              width: "90%",
-              maxHeight: "100%",
+              display: "grid",
+              gridAutoFlow: "column",
+              alignItems: "center",
+
+              overflowX: "auto",
+              minWidth: "0",
+              width: "100%",
+              padding: "1em",
             }}
           >
             {data.assignedUsers.map((e, i) => {
@@ -96,6 +104,8 @@ const Roster = ({ data, updateDb, isHost }) => {
                 />
               );
             })}
+
+            <div style={{ margin: "0.25em" }}> </div>
           </Card.Body>
         </Card>
       )}

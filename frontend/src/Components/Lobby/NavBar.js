@@ -7,6 +7,9 @@ import { SocketContext } from "../../Context/socketContext";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
+import { FaCog as Cog } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
+
 const NavBar = ({ setSettings, setUpdate, isHost }) => {
   const history = useHistory();
   const { code } = useParams();
@@ -60,13 +63,11 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar.Brand href="#home">FlatMates</Navbar.Brand>
         <Nav className="mr-auto">
-          <Link to={"/room/" + code}>Room</Link>
+          <Link to={"/room/" + code}>Room </Link>
 
-          <Nav.Link to={"/room/" + code}>test</Nav.Link>
-          <Nav.Link href="#Roster">Roster</Nav.Link>
-          <Link to={"/room/" + code + "/roster"}>Roster</Link>
+          <Link to={"/room/" + code + "/roster"}>| Roster</Link>
         </Nav>
 
         <Button
@@ -74,7 +75,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
           style={{ margin: "0" }}
           onClick={() => setSettings(true)}
         >
-          Settings
+          <Cog />
         </Button>
 
         {isHost ? (
@@ -92,7 +93,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
         )}
 
         <Button className="GoButton" style={{ margin: "0" }} onClick={signOut}>
-          Sign Out
+          <FaSignOutAlt />
         </Button>
       </Navbar>
     </>

@@ -37,9 +37,6 @@
   }
 }
 
-
-
-
 .App {
   text-align: center;
 }
@@ -79,8 +76,6 @@
   }
 }
 
-
-
 /* Commons */
 .Title {
   position: absolute;
@@ -91,7 +86,8 @@
 }
 
 .BackGroundImage {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.411), rgba(0, 0, 0, 0.432)), url('https://i.imgur.com/grylMfV.png'); 
+  background-image: linear-gradient(rgba(0, 0, 0, 0.411), rgba(0, 0, 0, 0.432)),
+    url("https://i.imgur.com/grylMfV.png");
   background-color: #b8b8b8;
 
   width: 100vw;
@@ -99,34 +95,28 @@
   position: absolute;
   overflow: hidden;
   background-position: center;
-  
+
   background-size: cover;
   background-repeat: no-repeat;
 }
-
-
 
 .MakeCentre {
   height: 80vh;
   display: flex;
   flex-direction: column;
-  
+
   align-items: center;
   justify-content: center;
-
 }
-
 
 .MakeCentreRoster {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  
+
   align-items: center;
   justify-content: center;
-
 }
-
 
 /* StartPage */
 .StartTitle {
@@ -136,10 +126,7 @@
 
   margin: 0;
   margin-bottom: 3rem;
-  
 }
-
-
 
 .GoButton {
   cursor: pointer;
@@ -148,6 +135,10 @@
   border-radius: 0.5rem;
   border-color: black !important;
   border-width: 1.5px !important;
+
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
   background-color: #696969 !important;
   white-space: nowrap;
@@ -160,9 +151,7 @@
   background: #a7a7a7 !important;
 }
 
-
-
-.NavBarButton {
+.CardButton {
   cursor: pointer;
   outline: none;
   font-size: 1.3em !important;
@@ -170,17 +159,33 @@
   border-color: black !important;
   border-width: 1.5px !important;
 
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
   background-color: #696969 !important;
   white-space: nowrap;
-  margin-left: 2em;
-  margin-right: 2em;
+}
+
+.CardButton:hover {
+  background: #a7a7a7 !important;
+}
+
+.NavBarButton {
+  cursor: pointer;
+  outline: none;
+  font-size: 1em !important;
+  border-radius: 0.5rem;
+  border-color: black !important;
+  border-width: 1.5px !important;
+
+  background-color: #696969 !important;
+  white-space: nowrap;
 }
 
 .NavBarButton:hover {
   background: #a7a7a7 !important;
 }
-
-
 
 #Card-field {
   background-color: #64676e;
@@ -192,6 +197,14 @@
   color: white;
 }
 
+#Card-Footer {
+  background-color: #454549;
+  color: white;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
 .AccountInputField {
   outline: none;
@@ -203,6 +216,48 @@
   font-size: 2rem;
   margin-bottom: 1vw;
   padding-left: 0.4em;
-
 }
 
+::-webkit-scrollbar {
+  width: 13px;
+}
+/* Scrollbar Track */
+::-webkit-scrollbar-track {
+  border: 0.5px solid transparent;
+}
+/* Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(70, 70, 70);
+}
+/* Scrollbar Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(70, 70, 70);
+}
+
+.userTasks:last-child {
+  border-bottom: 10em solid transparent;
+}
+
+/** mobile view*/
+@media (max-width: 800px) {
+  .UsersTasksList {
+    /** grid-auto-flow: row !important;*/
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important ;
+  }
+
+  .rosterInstance {
+    width: 95% !important;
+  }
+
+  .UsersTasks {
+    width: 100% !important;
+    margin: 0.5em !important;
+  }
+}
+
+.UsersTasks {
+  min-height: min-content;
+}

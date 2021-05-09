@@ -198,7 +198,6 @@ function App() {
           <Route path="/room/:code/roster" exact>
             <Container>
               <div className="MakeCentre">
-                helloasdasdasd
                 <Rosters rosters={room} isHost={isHost} />
               </div>
             </Container>
