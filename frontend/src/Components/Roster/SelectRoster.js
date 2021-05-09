@@ -13,7 +13,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
-const SelectRoster = ({rosters, setRoster, updateDb, isHost}) => {
+const SelectRoster = ({rosters, setRoster, isHost}) => {
   let [makeRoster, setMakeRoster] = useState(false);
 
   const deleteRoster = (id) => {
@@ -48,6 +48,7 @@ const SelectRoster = ({rosters, setRoster, updateDb, isHost}) => {
       <Navbar bg='dark' variant='dark' style={{}}>
         <Nav className='mr-auto'>
           {rosters !== null &&
+            rosters.rosters !== null &&
             rosters.rosters.map((e, i) => [
               <Nav.Link
                 key={i}
@@ -63,7 +64,7 @@ const SelectRoster = ({rosters, setRoster, updateDb, isHost}) => {
           add
         </Button>
       </Navbar>
-      {makeRoster && <AddRoster show={setMakeRoster} updateDb={updateDb} />}
+      {makeRoster && <AddRoster show={setMakeRoster} />}
     </>
   );
 };

@@ -6,7 +6,7 @@ import UserTask from './UserTask';
 import '../../App.css';
 import axios from 'axios';
 
-const Roster = ({data, updateDb, isHost}) => {
+const Roster = ({data, isHost}) => {
   let [ifHost, setIsHost] = useState(isHost);
 
   const rotate = () => {
@@ -78,7 +78,6 @@ const Roster = ({data, updateDb, isHost}) => {
                   rid={data._id}
                   pid={e._id}
                   name={e.name}
-                  updateDb={updateDb}
                   task={data.tasks.filter((data) => {
                     return data.userIndex === i;
                   })}

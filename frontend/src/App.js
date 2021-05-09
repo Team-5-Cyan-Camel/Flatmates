@@ -1,21 +1,21 @@
-import "./App.css";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { useState, useEffect } from "react";
-import SignUp from "./Components/Account/SignUp";
-import Settings from "./Components/Account/Settings";
-import Login from "./Components/Account/Login";
-import GenerateRoom from "./Components/Code/GenerateRoom";
-import JoinRoom from "./Components/Code/JoinRoom";
-import NavBar from "./Components/Lobby/NavBar";
-import Room from "./Components/Room/Room";
-import MessageBoard from "./Components/MessageBoard/MessageBoard"
-import axios from "axios";
-import "./Components/Lobby/NavBar.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
-import Rosters from "./Components/Roster/Rosters";
-import { SocketContext, socket } from "./Context/socketContext";
+import './App.css';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import SignUp from './Components/Account/SignUp';
+import Settings from './Components/Account/Settings';
+import Login from './Components/Account/Login';
+import GenerateRoom from './Components/Code/GenerateRoom';
+import JoinRoom from './Components/Code/JoinRoom';
+import NavBar from './Components/Lobby/NavBar';
+import Room from './Components/Room/Room';
+import MessageBoard from './Components/MessageBoard/MessageBoard';
+import axios from 'axios';
+import './Components/Lobby/NavBar.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Rosters from './Components/Roster/Rosters';
+import {SocketContext, socket} from './Context/socketContext';
 
 function App() {
   // boolean for showing signup
@@ -33,10 +33,8 @@ function App() {
     });
   }, []);
 
-
   useEffect(() => {
     socket.on('update', () => {
-      console.log('socketio called update');
       setUpdate(!update);
       axios
         .get('/room')
@@ -205,12 +203,14 @@ function App() {
             </Container>
           </Route>
 
-          <Route path="/room/:code/message" exact>
+          <Route path='/room/:code/message' exact>
             <Container>
-                <MessageBoard messageList={messageList} setMessageList={setMessageList} />
+              <MessageBoard
+                messageList={messageList}
+                setMessageList={setMessageList}
+              />
             </Container>
           </Route>
-
 
           {/* path for incompatable path */}
           <Route path='*'>
