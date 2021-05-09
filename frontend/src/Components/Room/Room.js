@@ -86,9 +86,10 @@ const Room = ({ setIsHost }) => {
           }}
         >
           {room !== null ? (
-            room.users.map((e) => {
+            room.users.map((e, i) => {
               return (
                 <UserData
+                  key={i}
                   data={e}
                   hostId={hostId}
                   isHost={isHost}
