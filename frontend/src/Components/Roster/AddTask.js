@@ -10,7 +10,7 @@ import axios from "axios";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const AddTask = ({ show, rid, pid, updateDb }) => {
+const AddTask = ({ show, rid, pid }) => {
   let [title, setTitle] = useState("");
   let [description, setDescription] = useState("");
 
@@ -33,13 +33,28 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
   };
 
   return ReactDOM.createPortal(
-    <div className={styles.modalContainer}>
-      <div className={styles.form}>
+    <div
+      className={styles.modalContainer}
+      style={{ display: "flex", alignItems: "center" }}
+    >
+      <div></div>
+      <div
+        className={styles.form}
+        style={{
+          width: "90%",
+          maxWidth: "60em",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Card
           id="Card-field"
           style={{
             alignItems: "center",
             justifyContent: "center",
+            width: "95%",
+            maxWidth: "25em",
           }}
         >
           <Card.Header
@@ -53,6 +68,7 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
           </Card.Header>
 
           <Card.Body
+            id="Card-Body"
             style={{
               display: "Grid",
               alignItems: "center",
@@ -62,7 +78,7 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
           >
             <form>
               <input
-                className="TaskInputField"
+                className="AccountInputField"
                 type="text"
                 name="Title"
                 placeholder="Title"
@@ -71,7 +87,7 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
               />
               <br></br>
               <input
-                className="TaskInputField"
+                className="AccountInputField"
                 type="text"
                 name="Description"
                 placeholder="Description"

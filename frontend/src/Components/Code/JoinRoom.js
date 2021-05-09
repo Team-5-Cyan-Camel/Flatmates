@@ -1,25 +1,24 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
+import {useState} from 'react';
+import {useHistory} from 'react-router-dom';
+import axios from 'axios';
 
-import Button from "react-bootstrap/Button";
+import Button from 'react-bootstrap/Button';
 
 const JoinRoom = () => {
   const history = useHistory();
-  let [code, setCode] = useState("");
+  let [code, setCode] = useState('');
 
   const joinRoom = (e) => {
-    console.log("Join provided room");
     e.preventDefault();
     // check if code is set
     let roomCode = {
       roomCode: code,
     };
-    if (code !== "") {
+    if (code !== '') {
       axios
-        .post("/room/join", roomCode)
+        .post('/room/join', roomCode)
         .then((res) => {
-          history.push("/room/" + code);
+          history.push('/room/' + code);
         })
         .catch(function (error) {
           console.log(error);
@@ -31,16 +30,16 @@ const JoinRoom = () => {
       <form onSubmit={joinRoom}>
         <h3>Join Room</h3>
         <input
-          className="AccountInputField"
-          type="text"
-          name="code"
-          placeholder="Enter Code"
+          className='AccountInputField'
+          type='text'
+          name='code'
+          placeholder='Enter Code'
           value={code}
           onChange={(e) => setCode(e.target.value)}
         />
         <br />
       </form>
-      <Button className="GoButton" onClick={joinRoom}>
+      <Button className='GoButton' onClick={joinRoom}>
         Join
       </Button>
     </>

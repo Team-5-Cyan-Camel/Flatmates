@@ -6,7 +6,9 @@ import UserTask from "./UserTask";
 import "../../App.css";
 import axios from "axios";
 
-const Roster = ({ data, updateDb, isHost }) => {
+import { FaSyncAlt } from "react-icons/fa";
+
+const Roster = ({ data, isHost }) => {
   let [ifHost, setIsHost] = useState(isHost);
 
   const rotate = () => {
@@ -29,10 +31,11 @@ const Roster = ({ data, updateDb, isHost }) => {
           style={{
             alignItems: "center",
             justifyContent: "center",
-            height: "60vh",
-            maxHeight: "70vh",
+            height: "65vh",
+            maxHeight: "80vh",
             borderTopRightRadius: "0",
             borderTopLeftRadius: "0",
+            width: "100%",
           }}
         >
           <Card.Header
@@ -49,43 +52,53 @@ const Roster = ({ data, updateDb, isHost }) => {
               gridTemplateColumns: "1fr 7fr 1fr",
             }}
           >
-            <div></div> asdasd
+            <div></div>
             {data.title}
             {ifHost && (
-              <Button
-                className="GoButton"
-                style={{ margin: "0" }}
-                onClick={rotate}
-              >
-                rotate
+              <Button className="NavBarButton" onClick={rotate}>
+                <FaSyncAlt />
               </Button>
             )}
           </Card.Header>
 
           <Card.Body
+            className="UsersTasksList"
             style={{
-              display: "Flex",
-              alignItems: "flex-start",
-              justifyContent: "center",
-              width: "90%",
-              maxHeight: "100%",
+              display: "grid",
+              gridAutoFlow: "column",
+              alignItems: "center",
+
+              overflowX: "auto",
+              minWidth: "0",
+              width: "100%",
+              padding: "1em",
             }}
           >
             {data.assignedUsers.map((e, i) => {
               return (
-                <UserTask
-                  key={i}
-                  rid={data._id}
-                  pid={e._id}
-                  name={e.name}
-                  updateDb={updateDb}
-                  task={data.tasks.filter((data) => {
-                    return data.userIndex === i;
-                  })}
-                />
+                <div
+                  style={{
+                    display: "grid",
+                    height: "100%",
+                    width: "100%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <UserTask
+                    key={i}
+                    rid={data._id}
+                    pid={e._id}
+                    name={e.name}
+                    task={data.tasks.filter((data) => {
+                      return data.userIndex === i;
+                    })}
+                  />
+                </div>
               );
             })}
           </Card.Body>
+          <Card.Footer id="Card-Footer"></Card.Footer>
         </Card>
       )}
     </>

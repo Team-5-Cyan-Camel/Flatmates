@@ -5,16 +5,19 @@ import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { socket } from "../../Context/socketContext";
+import Spinner from "react-bootstrap/Spinner";
 
 const Room = ({ setIsHost }) => {
   let [isHost, setHost] = useState(false);
   const [room, setRoom] = useState(null);
   const [hostId, setHostId] = useState(null);
+  const [yourId, setYourId] = useState(null);
 
   useEffect(() => {
     axios
       .get("/user")
       .then((res) => {
+        setYourId(res.data._id);
         setIsHost(res.data.isHost);
         setHost(res.data.isHost);
       })
@@ -52,6 +55,8 @@ const Room = ({ setIsHost }) => {
         style={{
           alignItems: "center",
           justifyContent: "center",
+          width: "90%",
+          maxWidth: "50vh",
         }}
       >
         <Card.Header
@@ -66,17 +71,37 @@ const Room = ({ setIsHost }) => {
 
         <Card.Body
           style={{
-            display: "Flex",
+            display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
-            width: "90%",
+
+            marginTop: "0 !important",
+            marginBottom: "auto !important",
+
+            width: "100%",
+            maxHeight: "60vh",
+            overflowY: "auto",
+            paddingLeft: "1em",
+            paddingRight: "1em",
           }}
         >
-          {room !== null &&
+          {room !== null ? (
             room.users.map((e) => {
-              return <UserData data={e} hostId={hostId} isHost={isHost} />;
-            })}
+              return (
+                <UserData
+                  data={e}
+                  hostId={hostId}
+                  isHost={isHost}
+                  yourId={yourId}
+                />
+              );
+            })
+          ) : (
+            <Spinner animation="border" />
+          )}
         </Card.Body>
+
+        <Card.Footer id="Card-Footer"></Card.Footer>
       </Card>
     </>
   );

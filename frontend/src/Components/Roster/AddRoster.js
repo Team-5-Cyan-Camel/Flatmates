@@ -10,7 +10,7 @@ import axios from "axios";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const AddRoster = ({ show, updateDb }) => {
+const AddRoster = ({ show }) => {
   let [chore, setChore] = useState("");
 
   const addRoster = () => {
@@ -32,13 +32,28 @@ const AddRoster = ({ show, updateDb }) => {
   };
 
   return ReactDOM.createPortal(
-    <div className={styles.modalContainer}>
-      <div className={styles.form}>
+    <div
+      style={{ display: "flex", alignItems: "center" }}
+      className={styles.modalContainer}
+    >
+      <div></div>
+      <div
+        className={styles.form}
+        style={{
+          width: "90%",
+          maxWidth: "60em",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Card
           id="Card-field"
           style={{
             alignItems: "center",
             justifyContent: "center",
+            width: "95%",
+            maxWidth: "25em",
           }}
         >
           <Card.Header
@@ -61,7 +76,7 @@ const AddRoster = ({ show, updateDb }) => {
           >
             <form>
               <input
-                className="TaskInputField"
+                className="AccountInputField"
                 type="text"
                 name="Chore"
                 placeholder="Chore"
