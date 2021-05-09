@@ -75,8 +75,10 @@ router.patch("/update", getUserOfCookie, async function (req, res, next) {
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-  let roomID = JSON.stringify(user.roomCode).replace(/(^")|("$)/g, "");
-  global.io.in(roomID).emit("update");
+  if (global.io) {
+    let roomID = JSON.stringify(user.roomCode).replace(/(^")|("$)/g, "");
+    global.io.in(roomID).emit("update");
+  }
 });
 
 /* POST user logout */
