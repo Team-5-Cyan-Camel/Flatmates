@@ -17,7 +17,6 @@ const Room = ({ setIsHost }) => {
     axios
       .get("/user")
       .then((res) => {
-        console.log(res.data);
         setYourId(res.data._id);
         setIsHost(res.data.isHost);
         setHost(res.data.isHost);

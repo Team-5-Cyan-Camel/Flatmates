@@ -22,7 +22,6 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
     setUpdate();
     socket.emit("enter_room", { roomID: code });
     return () => {
-      console.log("left room");
       socket.emit("leave_room", { roomID: code });
     };
   }, []);
@@ -76,7 +75,6 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
             axios
               .delete("/room")
               .then((res) => {
-                console.log(res);
                 history.push("/code");
               })
               .catch(function (error) {

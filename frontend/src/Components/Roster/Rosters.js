@@ -1,8 +1,10 @@
 import Roster from "./Roster";
 import React, { useState, useEffect } from "react";
 import SelectRoster from "./SelectRoster";
+import { socket } from "../../Context/socketContext";
+import axios from "axios";
 
-const Rosters = ({ rosters, updateDb, isHost }) => {
+const Rosters = ({ rosters, isHost }) => {
   let [Rosters, setRosters] = useState(rosters);
   let [DisplayRoster, setDisplayRoster] = useState(null);
 
@@ -13,6 +15,17 @@ const Rosters = ({ rosters, updateDb, isHost }) => {
       setDisplayRoster({ rosters: rosters.rosters[0] });
     }
   }, [rosters]);
+
+  useEffect(() => {
+    axios
+      .get("/room")
+      .then((res) => {
+        setRosters(res.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   const roster = (title) => {
     for (var roster of Rosters.rosters) {
@@ -25,19 +38,10 @@ const Rosters = ({ rosters, updateDb, isHost }) => {
 
   return (
     <div style={{ width: "85vw" }}>
-      <SelectRoster
-        isHost={isHost}
-        rosters={Rosters}
-        setRoster={roster}
-        updateDb={updateDb}
-      />
+      <SelectRoster isHost={isHost} rosters={Rosters} setRoster={roster} />
 
       {Rosters !== null && DisplayRoster !== null && (
-        <Roster
-          data={DisplayRoster.rosters}
-          isHost={isHost}
-          updateDb={updateDb}
-        />
+        <Roster data={DisplayRoster.rosters} isHost={isHost} />
       )}
     </div>
   );

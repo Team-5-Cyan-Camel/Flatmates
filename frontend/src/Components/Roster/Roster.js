@@ -9,7 +9,7 @@ import { ArrowRight } from "react-bootstrap-icons";
 
 import { FaSyncAlt } from "react-icons/fa";
 
-const Roster = ({ data, updateDb, isHost }) => {
+const Roster = ({ data, isHost }) => {
   let [ifHost, setIsHost] = useState(isHost);
 
   const rotate = () => {
@@ -83,7 +83,6 @@ const Roster = ({ data, updateDb, isHost }) => {
                   rid={data._id}
                   pid={e._id}
                   name={e.name}
-                  updateDb={updateDb}
                   task={data.tasks.filter((data) => {
                     return data.userIndex === i;
                   })}

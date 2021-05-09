@@ -12,7 +12,7 @@ import { FaPlusCircle as PlusSymbol } from "react-icons/fa";
 
 import Button from "react-bootstrap/Button";
 
-const UserTask = ({ task, name, rid, pid, updateDb }) => {
+const UserTask = ({ task, name, rid, pid }) => {
   let [makeTask, setMakeTask] = useState(false);
   const deleteTask = (id) => {
     confirmAlert({
@@ -126,9 +126,7 @@ const UserTask = ({ task, name, rid, pid, updateDb }) => {
         </Card.Footer>
       </Card>
 
-      {makeTask && (
-        <AddTask show={setMakeTask} rid={rid} pid={pid} updateDb={updateDb} />
-      )}
+      {makeTask && <AddTask show={setMakeTask} rid={rid} pid={pid} />}
     </>
   );
 };

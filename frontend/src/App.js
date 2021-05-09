@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "./App.css";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -16,6 +17,26 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Rosters from "./Components/Roster/Rosters";
 import { SocketContext, socket } from "./Context/socketContext";
+=======
+import './App.css';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import SignUp from './Components/Account/SignUp';
+import Settings from './Components/Account/Settings';
+import Login from './Components/Account/Login';
+import GenerateRoom from './Components/Code/GenerateRoom';
+import JoinRoom from './Components/Code/JoinRoom';
+import NavBar from './Components/Lobby/NavBar';
+import Room from './Components/Room/Room';
+import MessageBoard from './Components/MessageBoard/MessageBoard';
+import axios from 'axios';
+import './Components/Lobby/NavBar.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Rosters from './Components/Roster/Rosters';
+import {SocketContext, socket} from './Context/socketContext';
+>>>>>>> 9087a8bf8e1d258162ce1c5f10d4091cd621a1fd
 
 function App() {
   // boolean for showing signup
@@ -34,8 +55,12 @@ function App() {
   }, []);
 
   useEffect(() => {
+<<<<<<< HEAD
     socket.on("update", () => {
       console.log("socketio called update");
+=======
+    socket.on('update', () => {
+>>>>>>> 9087a8bf8e1d258162ce1c5f10d4091cd621a1fd
       setUpdate(!update);
       axios
         .get("/room")
