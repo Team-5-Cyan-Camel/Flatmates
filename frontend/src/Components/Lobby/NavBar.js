@@ -106,9 +106,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand id="NavBarToHide" href="home">
-          FlatMates
-        </Navbar.Brand>
+        <Navbar.Brand id="NavBarToHide">FlatMates</Navbar.Brand>
         <Nav className="mr-auto">
           <div
             class="dropdown"
