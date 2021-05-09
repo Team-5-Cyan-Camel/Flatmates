@@ -1,38 +1,38 @@
-import React from 'react';
-import Card from 'react-bootstrap/Card';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {FaTimes as Cross} from 'react-icons/fa';
-import axios from 'axios';
-import Form from 'react-bootstrap/Form';
-import {socket} from '../../Context/socketContext';
-import {confirmAlert} from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
-const UserData = ({data, isHost, hostId, yourId}) => {
+import React from "react";
+import Card from "react-bootstrap/Card";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { FaTimes as Cross } from "react-icons/fa";
+import axios from "axios";
+import Form from "react-bootstrap/Form";
+import { socket } from "../../Context/socketContext";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+const UserData = ({ data, isHost, hostId, yourId }) => {
   console.log(data);
   const kickMember = (username) => {
     confirmAlert({
-      title: 'Kicking User',
-      message: 'Are you sure you want to kick ' + username + '?',
+      title: "Kicking User",
+      message: "Are you sure you want to kick " + username + "?",
       buttons: [
         {
-          label: 'Ok',
+          label: "Ok",
           onClick: () => {
             const kickUser = {
               username: username,
             };
             axios
-              .patch('/room/kick', kickUser)
+              .patch("/room/kick", kickUser)
               .then((res) => {
                 // console.log(res.data);
               })
               .catch(function (error) {
                 console.log(error);
               });
-            socket.emit('update');
+            socket.emit("update");
           },
         },
         {
-          label: 'Cancel',
+          label: "Cancel",
         },
       ],
     });
@@ -40,21 +40,24 @@ const UserData = ({data, isHost, hostId, yourId}) => {
   return (
     <>
       <Card
-        id='Card-field'
+        id="Card-field"
         style={{
-          alignItems: 'center',
-          justifyContent: 'center',
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "1em",
+          width: "90%",
+          backgroundColor: "#7e828b",
         }}
       >
         <Card.Header
-          as='h5'
-          id='Card-Header'
-          className='text-center'
-          style={{width: '100%'}}
+          as="h5"
+          id="Card-Header"
+          className="text-center"
+          style={{ width: "100%" }}
         >
-          {' '}
+          {" "}
           {data.name}
-          {data._id === yourId && ' (You)'}{' '}
+          {data._id === yourId && " (You)"}{" "}
           {isHost && hostId !== data._id && (
             <Cross onClick={() => kickMember(data.username)} />
           )}
@@ -62,16 +65,15 @@ const UserData = ({data, isHost, hostId, yourId}) => {
 
         <Card.Body
           style={{
-            display: 'Flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '90%',
+            alignItems: "start",
+            justifyContent: "start",
+            width: "100%",
           }}
         >
           <Form>
-            <p>Number: {data.phoneNumber === '' ? 'N/A' : data.phoneNumber}</p>
+            <p>Number: {data.phoneNumber === "" ? "N/A" : data.phoneNumber}</p>
             <br></br>
-            <p>Email: {data.email === '' ? 'N/A' : data.email}</p>
+            <p>Email: {data.email === "" ? "N/A" : data.email}</p>
             <br></br>
           </Form>
         </Card.Body>
