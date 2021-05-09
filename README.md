@@ -11,16 +11,20 @@ A flat management system to allow flatmates to manage communicate and manage tas
 
 ## Functionality
 
-1. Allow the creation of new accounts (New accounts)
-2. Allow sign in (Sign in)
-3. Allow creating a room (Create room)
-4. Allow joining an existing room (Join room)
-5. Allow all users of a room to be seen (Show Room users)
-6. Allow users to update their details (Update user data)
-7. Allow the host to kick members (Kick members)
-8. Allow room members to leave the room (Leave room)
-9. Allow users to assign task to each other (Assign tasks)
-10.
+1. Allow the creation of new accounts
+2. Allow sign in
+3. Allow creating a room
+4. Allow joining an existing room
+5. Allow all users of a room to be seen
+6. Allow users to update their details
+7. Allow the host to kick members
+8. Allow the host to rotate tasks
+9. Allow the host to delete rosters
+10. Allow the host to delete task
+11. Allow the host to delete the room
+12. Allow room members to leave the room
+13. Allow users to assign task to each other
+14. Allow members to chat with each other
 
 ## GPL v3.0 License
 
