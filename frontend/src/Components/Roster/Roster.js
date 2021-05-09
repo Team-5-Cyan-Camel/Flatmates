@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Card from "react-bootstrap/Card";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
-import UserTask from "./UserTask";
-import "../../App.css";
-import axios from "axios";
+import React, {useState} from 'react';
+import Card from 'react-bootstrap/Card';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
+import UserTask from './UserTask';
+import '../../App.css';
+import axios from 'axios';
 
-const Roster = ({ data, updateDb, isHost }) => {
+const Roster = ({data, updateDb, isHost}) => {
   let [ifHost, setIsHost] = useState(isHost);
 
   const rotate = () => {
@@ -15,7 +15,7 @@ const Roster = ({ data, updateDb, isHost }) => {
     };
 
     axios
-      .patch("/roster/rotate", rotateRep)
+      .patch('/roster/rotate', rotateRep)
       .then((res) => {})
       .catch(function (error) {
         console.log(error);
@@ -23,38 +23,38 @@ const Roster = ({ data, updateDb, isHost }) => {
   };
   return (
     <>
-      {data !== "undefined" && (
+      {data !== 'undefined' && (
         <Card
-          id="Card-field"
+          id='Card-field'
           style={{
-            alignItems: "center",
-            justifyContent: "center",
-            height: "60vh",
-            maxHeight: "70vh",
-            borderTopRightRadius: "0",
-            borderTopLeftRadius: "0",
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '60vh',
+            maxHeight: '70vh',
+            borderTopRightRadius: '0',
+            borderTopLeftRadius: '0',
           }}
         >
           <Card.Header
-            as="h5"
-            id="Card-Header"
-            className="text-center"
+            as='h5'
+            id='Card-Header'
+            className='text-center'
             style={{
-              width: "100%",
-              borderTopRightRadius: "0",
-              borderTopLeftRadius: "0",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "grid",
-              gridTemplateColumns: "1fr 7fr 1fr",
+              width: '100%',
+              borderTopRightRadius: '0',
+              borderTopLeftRadius: '0',
+              alignItems: 'center',
+              justifyContent: 'center',
+              display: 'grid',
+              gridTemplateColumns: '1fr 7fr 1fr',
             }}
           >
             <div></div> asdasd
             {data.title}
             {ifHost && (
               <Button
-                className="GoButton"
-                style={{ margin: "0" }}
+                className='GoButton'
+                style={{margin: '0'}}
                 onClick={rotate}
               >
                 rotate
@@ -64,11 +64,11 @@ const Roster = ({ data, updateDb, isHost }) => {
 
           <Card.Body
             style={{
-              display: "Flex",
-              alignItems: "flex-start",
-              justifyContent: "center",
-              width: "90%",
-              maxHeight: "100%",
+              display: 'Flex',
+              alignItems: 'flex-start',
+              justifyContent: 'center',
+              width: '90%',
+              maxHeight: '100%',
             }}
           >
             {data.assignedUsers.map((e, i) => {
