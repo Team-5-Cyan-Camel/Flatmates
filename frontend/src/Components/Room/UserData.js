@@ -5,7 +5,8 @@ import {FaTimes as Cross} from 'react-icons/fa';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import {socket} from '../../Context/socketContext';
-
+import {confirmAlert} from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 const UserData = ({data, isHost, hostId}) => {
   const kickMember = (username) => {
     confirmAlert({

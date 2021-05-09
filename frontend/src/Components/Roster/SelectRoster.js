@@ -7,6 +7,8 @@ import {useState} from 'react';
 import {FaTimes as Cross} from 'react-icons/fa';
 import axios from 'axios';
 import '../Lobby/NavBar.css';
+import {confirmAlert} from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';

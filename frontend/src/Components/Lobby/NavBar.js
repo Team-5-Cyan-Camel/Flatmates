@@ -3,7 +3,8 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import {useEffect, useContext} from 'react';
 import {SocketContext} from '../../Context/socketContext';
-
+import {confirmAlert} from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
