@@ -1,20 +1,20 @@
-import "./App.css";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { useState, useEffect } from "react";
-import SignUp from "./Components/Account/SignUp";
-import Settings from "./Components/Account/Settings";
-import Login from "./Components/Account/Login";
-import GenerateRoom from "./Components/Code/GenerateRoom";
-import JoinRoom from "./Components/Code/JoinRoom";
-import NavBar from "./Components/Lobby/NavBar";
-import Room from "./Components/Room/Room";
-import axios from "axios";
-import "./Components/Lobby/NavBar.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
-import Rosters from "./Components/Roster/Rosters";
-import { SocketContext, socket } from "./Context/socketContext";
+import './App.css';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import SignUp from './Components/Account/SignUp';
+import Settings from './Components/Account/Settings';
+import Login from './Components/Account/Login';
+import GenerateRoom from './Components/Code/GenerateRoom';
+import JoinRoom from './Components/Code/JoinRoom';
+import NavBar from './Components/Lobby/NavBar';
+import Room from './Components/Room/Room';
+import axios from 'axios';
+import './Components/Lobby/NavBar.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Rosters from './Components/Roster/Rosters';
+import {SocketContext, socket} from './Context/socketContext';
 
 function App() {
   // boolean for showing signup
@@ -26,11 +26,11 @@ function App() {
   let [hostId, setHostId] = useState(null);
 
   useEffect(() => {
-    socket.on("update", () => {
-      console.log("socketio called update");
+    socket.on('update', () => {
+      console.log('socketio called update');
       setUpdate(!update);
       axios
-        .get("/room")
+        .get('/room')
         .then((res) => {
           setRoom(res.data);
           setHostId(res.data.host);
@@ -43,7 +43,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("/room")
+      .get('/room')
       .then((res) => {
         setRoom(res.data);
         setHostId(res.data.host);
@@ -67,61 +67,61 @@ function App() {
 
   return (
     <SocketContext.Provider value={socket}>
-      <div className="BackGroundImage">
+      <div className='BackGroundImage'>
         <Router>
-          <Route path="/" exact>
-            <div className="MakeCentre">
-              <h1 className="StartTitle">
+          <Route path='/' exact>
+            <div className='MakeCentre'>
+              <h1 className='StartTitle'>
                 Flatmates
-                <small style={{ fontSize: "1.5rem" }}>1.0</small>
+                <small style={{fontSize: '1.5rem'}}>1.0</small>
               </h1>
 
               <Card
-                id="Card-field"
+                id='Card-field'
                 style={{
-                  alignItems: "center",
-                  justifyContent: "center",
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
                 <Card.Header
-                  as="h5"
-                  id="Card-Header"
-                  className="text-center"
-                  style={{ width: "100%" }}
+                  as='h5'
+                  id='Card-Header'
+                  className='text-center'
+                  style={{width: '100%'}}
                 >
-                  {" "}
+                  {' '}
                   Sign in
                 </Card.Header>
 
                 <Card.Body
                   style={{
-                    display: "grid",
-                    width: "90%",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    display: 'grid',
+                    width: '90%',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
                   <Login />
                   {/* modal for login*/}
                   {register && (
                     <SignUp
-                      style={{ width: "100px" }}
+                      style={{width: '100px'}}
                       dismissOnClickOutside={true}
                       cancel={cancelSignup}
                     />
                   )}
 
-                  <div style={{ marginTop: "1rem" }}>
-                    <p style={{ textAlign: "center" }}>
-                      {" "}
+                  <div style={{marginTop: '1rem'}}>
+                    <p style={{textAlign: 'center'}}>
+                      {' '}
                       Dont have an account?
                       <a
-                        style={{ marginLeft: "10px", color: "white" }}
-                        href="#"
+                        style={{marginLeft: '10px', color: 'white'}}
+                        href='#'
                         onClick={() => setSignup(true)}
-                        rel="noreferrer"
+                        rel='noreferrer'
                       >
-                        Sign Up{" "}
+                        Sign Up{' '}
                       </a>
                     </p>
                   </div>
@@ -131,32 +131,32 @@ function App() {
           </Route>
 
           {/* path for room code to give */}
-          <Route path="/code" exact>
+          <Route path='/code' exact>
             <Container>
-              <div className="MakeCentre">
+              <div className='MakeCentre'>
                 <Card
-                  id="Card-field"
+                  id='Card-field'
                   style={{
-                    alignItems: "center",
-                    justifyContent: "center",
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
                   <Card.Header
-                    as="h5"
-                    id="Card-Header"
-                    className="text-center"
-                    style={{ width: "100%" }}
+                    as='h5'
+                    id='Card-Header'
+                    className='text-center'
+                    style={{width: '100%'}}
                   >
-                    {" "}
+                    {' '}
                     Sign in
                   </Card.Header>
 
                   <Card.Body
                     style={{
-                      display: "grid",
-                      width: "90%",
-                      alignItems: "center",
-                      justifyContent: "center",
+                      display: 'grid',
+                      width: '90%',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                   >
                     <GenerateRoom />
@@ -168,7 +168,7 @@ function App() {
           </Route>
 
           {/* path for room screen */}
-          <Route path="/room/:code">
+          <Route path='/room/:code'>
             <NavBar
               setSettings={setSettings}
               isHost={isHost}
@@ -177,8 +177,8 @@ function App() {
             {settings && <Settings hideSettings={hideSettings} />}
           </Route>
 
-          <Route path="/room/:code" exact>
-            <div className="MakeCentre">
+          <Route path='/room/:code' exact>
+            <div className='MakeCentre'>
               <Room
                 update={update}
                 room={room}
@@ -188,18 +188,17 @@ function App() {
             </div>
           </Route>
 
-          <Route path="/room/:code/roster" exact>
+          <Route path='/room/:code/roster' exact>
             <Container>
-              <div className="MakeCentre">
-                helloasdasdasd
+              <div className='MakeCentre'>
                 <Rosters rosters={room} isHost={isHost} />
               </div>
             </Container>
           </Route>
 
           {/* path for incompatable path */}
-          <Route path="*">
-            <Redirect to="/" />
+          <Route path='*'>
+            <Redirect to='/' />
           </Route>
         </Router>
       </div>
