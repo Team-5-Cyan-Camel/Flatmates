@@ -8,6 +8,8 @@ exports[`Room display renders correctly 1`] = `
     Object {
       "alignItems": "center",
       "justifyContent": "center",
+      "maxWidth": "50vh",
+      "width": "90%",
     }
   }
 >
@@ -28,9 +30,15 @@ exports[`Room display renders correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "display": "Flex",
-        "justifyContent": "center",
-        "width": "90%",
+        "display": "flex",
+        "flexDirection": "column",
+        "marginBottom": "auto !important",
+        "marginTop": "0 !important",
+        "maxHeight": "60vh",
+        "overflowY": "auto",
+        "paddingLeft": "1em",
+        "paddingRight": "1em",
+        "width": "100%",
       }
     }
   >
@@ -38,6 +46,10 @@ exports[`Room display renders correctly 1`] = `
       className="spinner-border"
     />
   </div>
+  <div
+    className="card-footer"
+    id="Card-Footer"
+  />
 </div>
 `;
 
@@ -48,7 +60,10 @@ exports[`User info display renders correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
+      "backgroundColor": "#7e828b",
       "justifyContent": "center",
+      "margin": "1em",
+      "width": "90%",
     }
   }
 >
@@ -69,10 +84,9 @@ exports[`User info display renders correctly 1`] = `
     className="card-body"
     style={
       Object {
-        "alignItems": "center",
-        "display": "Flex",
-        "justifyContent": "center",
-        "width": "90%",
+        "alignItems": "start",
+        "justifyContent": "start",
+        "width": "100%",
       }
     }
   >
