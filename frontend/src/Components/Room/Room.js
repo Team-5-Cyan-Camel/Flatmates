@@ -1,13 +1,13 @@
-import React from 'react';
-import axios from 'axios';
-import UserData from './UserData';
-import {useState, useEffect} from 'react';
-import Card from 'react-bootstrap/Card';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {socket} from '../../Context/socketContext';
-import Spinner from 'react-bootstrap/Spinner';
+import React from "react";
+import axios from "axios";
+import UserData from "./UserData";
+import { useState, useEffect } from "react";
+import Card from "react-bootstrap/Card";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { socket } from "../../Context/socketContext";
+import Spinner from "react-bootstrap/Spinner";
 
-const Room = ({setIsHost}) => {
+const Room = ({ setIsHost }) => {
   let [isHost, setHost] = useState(false);
   const [room, setRoom] = useState(null);
   const [hostId, setHostId] = useState(null);
@@ -15,7 +15,7 @@ const Room = ({setIsHost}) => {
 
   useEffect(() => {
     axios
-      .get('/user')
+      .get("/user")
       .then((res) => {
         setYourId(res.data._id);
         setIsHost(res.data.isHost);
@@ -25,7 +25,7 @@ const Room = ({setIsHost}) => {
         console.log(error);
       });
     axios
-      .get('/room')
+      .get("/room")
       .then((res) => {
         setRoom(res.data);
         setHostId(res.data.host);
@@ -33,9 +33,9 @@ const Room = ({setIsHost}) => {
       .catch(function (error) {
         console.log(error);
       });
-    socket.on('update', () => {
+    socket.on("update", () => {
       axios
-        .get('/room')
+        .get("/room")
         .then((res) => {
           setRoom(res.data);
           setHostId(res.data.host);
@@ -45,34 +45,44 @@ const Room = ({setIsHost}) => {
         });
     });
 
-    socket.emit('update');
+    socket.emit("update");
   }, []);
 
   return (
     <>
       <Card
-        id='Card-field'
+        id="Card-field"
         style={{
-          alignItems: 'center',
-          justifyContent: 'center',
+          alignItems: "center",
+          justifyContent: "center",
+          width: "90%",
+          maxWidth: "50vh",
         }}
       >
         <Card.Header
-          as='h5'
-          id='Card-Header'
-          className='text-center'
-          style={{width: '100%'}}
+          as="h5"
+          id="Card-Header"
+          className="text-center"
+          style={{ width: "100%" }}
         >
-          {' '}
+          {" "}
           Members
         </Card.Header>
 
         <Card.Body
           style={{
-            display: 'Flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '90%',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+
+            marginTop: "0 !important",
+            marginBottom: "auto !important",
+
+            width: "100%",
+            maxHeight: "60vh",
+            overflowY: "auto",
+            paddingLeft: "1em",
+            paddingRight: "1em",
           }}
         >
           {room !== null ? (
@@ -87,9 +97,11 @@ const Room = ({setIsHost}) => {
               );
             })
           ) : (
-            <Spinner animation='border' />
+            <Spinner animation="border" />
           )}
         </Card.Body>
+
+        <Card.Footer id="Card-Footer"></Card.Footer>
       </Card>
     </>
   );

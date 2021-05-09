@@ -7,6 +7,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { SocketContext } from "../../Context/socketContext";
 import axios from "axios";
 import { FaSkating } from "react-icons/fa";
+import "../../App.css";
 
 const Chatbox = ({ messageList, setMessageList }) => {
   const scrollRef = useRef(null);
@@ -33,9 +34,9 @@ const Chatbox = ({ messageList, setMessageList }) => {
   }, [messageList]);
 
   return (
-    <Card>
-      <Card.Header title="MessageBoard" />
-      <Card.Body style={{ "overflow-y": "scroll", height: "75vh" }}>
+    <Card id="Card-field" style={{}}>
+      <Card.Header id="Card-Header" title="MessageBoard" />
+      <Card.Body style={{ "overflow-y": "scroll", height: "60vh" }}>
         <ListGroup>
           {messageList.map((message, index) => {
             return <ListGroup.Item key={index}>{message}</ListGroup.Item>;
@@ -43,7 +44,13 @@ const Chatbox = ({ messageList, setMessageList }) => {
           <ListGroup.Item ref={scrollRef} />
         </ListGroup>
       </Card.Body>
-      <Card.Footer>
+      <Card.Footer
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        id="Card-Footer"
+      >
         <InputGroup className="mb-3">
           <FormControl
             placeholder="Send a message"
@@ -65,6 +72,8 @@ const Chatbox = ({ messageList, setMessageList }) => {
           />
           <InputGroup.Append>
             <Button
+              className="NavBarButton"
+              style={{ margin: "0", color: "white" }}
               variant="outline-secondary"
               onClick={() => {
                 if (chatMessage) {

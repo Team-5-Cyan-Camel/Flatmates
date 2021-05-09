@@ -1,10 +1,10 @@
-import Roster from './Roster';
-import React, {useState, useEffect} from 'react';
-import SelectRoster from './SelectRoster';
-import {socket} from '../../Context/socketContext';
-import axios from 'axios';
+import Roster from "./Roster";
+import React, { useState, useEffect } from "react";
+import SelectRoster from "./SelectRoster";
+import { socket } from "../../Context/socketContext";
+import axios from "axios";
 
-const Rosters = ({rosters, isHost}) => {
+const Rosters = ({ rosters, isHost }) => {
   let [Rosters, setRosters] = useState(rosters);
   let [DisplayRoster, setDisplayRoster] = useState(null);
 
@@ -12,13 +12,13 @@ const Rosters = ({rosters, isHost}) => {
     setRosters(rosters);
 
     if (Rosters !== null && Rosters.rosters.length !== 0) {
-      setDisplayRoster({rosters: rosters.rosters[0]});
+      setDisplayRoster({ rosters: rosters.rosters[0] });
     }
   }, [rosters]);
 
   useEffect(() => {
     axios
-      .get('/room')
+      .get("/room")
       .then((res) => {
         setRosters(res.data);
       })
@@ -30,14 +30,14 @@ const Rosters = ({rosters, isHost}) => {
   const roster = (title) => {
     for (var roster of Rosters.rosters) {
       if (roster.title === title) {
-        setDisplayRoster({rosters: roster});
+        setDisplayRoster({ rosters: roster });
         break;
       }
     }
   };
 
   return (
-    <div>
+    <div style={{ width: "85vw" }}>
       <SelectRoster isHost={isHost} rosters={Rosters} setRoster={roster} />
 
       {Rosters !== null && DisplayRoster !== null && (
