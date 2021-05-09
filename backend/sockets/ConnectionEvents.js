@@ -3,8 +3,6 @@ module.exports = function (io) {
         socket.on('enter_room', (req) => {
             socket.join(req.roomID);
             console.log("A user joined", req.roomID);
-            let message = "A user joined"
-            emitMessageToSocketRoom(io, socket, message)
         });
 
         socket.on('message', (req) => {
@@ -14,16 +12,12 @@ module.exports = function (io) {
 
 
         socket.on('leave_room', (req) => {
-            console.log("A user left", req.roomID);
-            let message = "A user left"
-            emitMessageToSocketRoom(io, socket, message)
             socket.leave(req.roomID);
+            console.log("A user left", req.roomID);
         });
 
 
         socket.on('disconnecting', (req) => {
-            let message = "A user left"
-            emitMessageToSocketRoom(io, socket, message)
         });
     });
 }
