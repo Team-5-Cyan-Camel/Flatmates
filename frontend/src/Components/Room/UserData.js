@@ -39,18 +39,6 @@ const UserData = ({data, isHost, hostId}) => {
         },
       ],
     });
-    // const kickUser = {
-    //   username: username,
-    // };
-    // axios
-    //   .patch('/room/kick', kickUser)
-    //   .then((res) => {
-    //     // console.log(res.data);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    // socket.emit('update');
   };
   return (
     <>

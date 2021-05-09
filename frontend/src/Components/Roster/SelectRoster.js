@@ -47,8 +47,6 @@ const SelectRoster = ({rosters, setRoster, updateDb, isHost}) => {
 
   return (
     <>
-      {/* {rosters !== "undefined" && ( */}
-
       <Navbar bg='dark' variant='dark' style={{}}>
         <Nav className='mr-auto'>
           {rosters !== null &&
@@ -62,15 +60,11 @@ const SelectRoster = ({rosters, setRoster, updateDb, isHost}) => {
                 {isHost && <Cross onClick={() => deleteRoster(e._id)} />}
               </Nav.Link>,
             ])}
-
-          {/* </div> */}
         </Nav>
         <Button className='NavBarButton' onClick={() => setMakeRoster(true)}>
           add
         </Button>
       </Navbar>
-
-      {/* )} */}
       {makeRoster && <AddRoster show={setMakeRoster} updateDb={updateDb} />}
     </>
   );
