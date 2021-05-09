@@ -3,11 +3,7 @@ import React, { useState, useEffect } from "react";
 import SelectRoster from "./SelectRoster";
 
 const Rosters = ({ rosters, updateDb, isHost }) => {
-  // set default rosters
   let [Rosters, setRosters] = useState(rosters);
-
-  //TODO need to fix this harding of first position
-  //   let [DisplayRoster, setDisplayRoster] = useState(Rosters.rosters[0]);
   let [DisplayRoster, setDisplayRoster] = useState(null);
 
   useEffect(() => {
