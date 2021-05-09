@@ -15,8 +15,13 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
 
   useEffect(() => {
     setUpdate();
-    socket.emit('enter_room', {roomID: code});
+    socket.emit("enter_room", { roomID: code });
+    return () => {
+      console.log("left room");
+      socket.emit("leave_room", { roomID: code });
+    };
   }, []);
+
 
   const leave = () => {
     confirmAlert({
@@ -34,7 +39,6 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
               .catch(function (error) {
                 console.log(error);
               });
-            socket.emit('leave_room', {roomID: code});
           },
         },
         {
@@ -61,7 +65,6 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
               .catch(function (error) {
                 console.log(error);
               });
-            socket.emit('leave_room', {roomID: code});
           },
         },
         {
@@ -80,7 +83,6 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
       .catch(function (error) {
         console.log(error);
       });
-    socket.emit('leave_room', {roomID: code});
   };
 
   return (
@@ -93,6 +95,9 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
           </Nav.Link>
           <Nav.Link>
             <Link to={'/room/' + code + '/roster'}>Roster</Link>
+          </Nav.Link>
+          <Nav.Link>
+            <Link to={"/room/" + code + "/message"}>Message Board</Link>
           </Nav.Link>
         </Nav>
 
