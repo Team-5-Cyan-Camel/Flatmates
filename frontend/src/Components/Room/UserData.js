@@ -7,7 +7,8 @@ import Form from 'react-bootstrap/Form';
 import {socket} from '../../Context/socketContext';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-const UserData = ({data, isHost, hostId}) => {
+const UserData = ({data, isHost, hostId, yourId}) => {
+  console.log(data);
   const kickMember = (username) => {
     confirmAlert({
       title: 'Kicking User',
@@ -52,7 +53,8 @@ const UserData = ({data, isHost, hostId}) => {
           style={{width: '100%'}}
         >
           {' '}
-          {data.name}{' '}
+          {data.name}
+          {data._id === yourId && ' (You)'}{' '}
           {isHost && hostId !== data._id && (
             <Cross onClick={() => kickMember(data.username)} />
           )}
