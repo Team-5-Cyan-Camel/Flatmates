@@ -36,12 +36,22 @@ const Chatbox = ({ messageList, setMessageList }) => {
   return (
     <Card id="Card-field" style={{}}>
       <Card.Header id="Card-Header" title="MessageBoard" />
-      <Card.Body style={{ "overflow-y": "scroll", height: "60vh" }}>
+      <Card.Body style={{ overflowY: "scroll", height: "60vh" }}>
         <ListGroup>
           {messageList.map((message, index) => {
-            return <ListGroup.Item key={index}>{message}</ListGroup.Item>;
+            return (
+              <ListGroup.Item
+                style={{ backgroundColor: "#BDBDBD", color: "black" }}
+                key={index}
+              >
+                {message}
+              </ListGroup.Item>
+            );
           })}
-          <ListGroup.Item ref={scrollRef} />
+          <ListGroup.Item
+            style={{ backgroundColor: "#ABABAB", color: "black" }}
+            ref={scrollRef}
+          />
         </ListGroup>
       </Card.Body>
       <Card.Footer
@@ -51,12 +61,26 @@ const Chatbox = ({ messageList, setMessageList }) => {
         }}
         id="Card-Footer"
       >
-        <InputGroup className="mb-3">
-          <FormControl
+        <InputGroup
+          style={{
+            display: "grid",
+            gridTemplateColumns: "7fr 1fr",
+            gridAutoFlow: "column",
+          }}
+        >
+          <input
+            className="AccountInputField"
             placeholder="Send a message"
             aria-label="Send a message"
             aria-describedby="basic-addon2"
             value={chatMessage}
+            style={{
+              margin: "0",
+              backgroundColor: "#919191",
+              borderTopRightRadius: "0",
+              borderBottomRightRadius: "0",
+              color: "black",
+            }}
             onChange={(event) => {
               setChatMessage(event.target.value);
             }}
@@ -73,7 +97,11 @@ const Chatbox = ({ messageList, setMessageList }) => {
           <InputGroup.Append>
             <Button
               className="NavBarButton"
-              style={{ margin: "0", color: "white" }}
+              style={{
+                margin: "0",
+                color: "white",
+                width: "100%",
+              }}
               variant="outline-secondary"
               onClick={() => {
                 if (chatMessage) {
