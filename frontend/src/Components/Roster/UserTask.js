@@ -49,11 +49,10 @@ const UserTask = ({ task, name, rid, pid }) => {
         className="UsersTasks"
         style={{
           alignItems: "center",
-
           width: "20em",
           maxHeight: "100%",
-          margin: "1em",
-          height: "100%",
+          margin: "0.5em",
+          height: "47vh",
         }}
       >
         <Card.Header
@@ -72,9 +71,7 @@ const UserTask = ({ task, name, rid, pid }) => {
             borderRight: "#454549 solid 1px",
             display: "flex",
             flexDirection: "column",
-
             alignItems: "flex-start",
-
             height: "100%",
             width: "100%",
             overflowY: "auto",

@@ -33,7 +33,6 @@ const Roster = ({ data, isHost }) => {
             justifyContent: "center",
             height: "65vh",
             maxHeight: "80vh",
-            minWidth: "0",
             borderTopRightRadius: "0",
             borderTopLeftRadius: "0",
             width: "100%",
@@ -77,19 +76,27 @@ const Roster = ({ data, isHost }) => {
           >
             {data.assignedUsers.map((e, i) => {
               return (
-                <UserTask
-                  key={i}
-                  rid={data._id}
-                  pid={e._id}
-                  name={e.name}
-                  task={data.tasks.filter((data) => {
-                    return data.userIndex === i;
-                  })}
-                />
+                <div
+                  style={{
+                    display: "grid",
+                    height: "100%",
+                    width: "100%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <UserTask
+                    key={i}
+                    rid={data._id}
+                    pid={e._id}
+                    name={e.name}
+                    task={data.tasks.filter((data) => {
+                      return data.userIndex === i;
+                    })}
+                  />
+                </div>
               );
             })}
-
-            <div style={{ margin: "0.25em" }}> </div>
           </Card.Body>
           <Card.Footer id="Card-Footer"></Card.Footer>
         </Card>
