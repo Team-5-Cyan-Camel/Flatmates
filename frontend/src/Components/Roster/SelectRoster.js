@@ -48,6 +48,7 @@ const SelectRoster = ({rosters, setRoster, isHost}) => {
       <Navbar bg='dark' variant='dark' style={{}}>
         <Nav className='mr-auto'>
           {rosters !== null &&
+            rosters.rosters !== null &&
             rosters.rosters.map((e, i) => [
               <Nav.Link
                 key={i}

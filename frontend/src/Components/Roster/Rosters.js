@@ -1,6 +1,8 @@
 import Roster from './Roster';
 import React, {useState, useEffect} from 'react';
 import SelectRoster from './SelectRoster';
+import {socket} from '../../Context/socketContext';
+import axios from 'axios';
 
 const Rosters = ({rosters, isHost}) => {
   let [Rosters, setRosters] = useState(rosters);
@@ -13,6 +15,23 @@ const Rosters = ({rosters, isHost}) => {
       setDisplayRoster({rosters: rosters.rosters[0]});
     }
   }, [rosters]);
+
+  useEffect(() => {
+    console.log(rosters);
+    console.log(isHost);
+    socket.emit('update');
+  });
+
+  useEffect(() => {
+    axios
+      .get('/room')
+      .then((res) => {
+        setRosters(res.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   const roster = (title) => {
     for (var roster of Rosters.rosters) {
