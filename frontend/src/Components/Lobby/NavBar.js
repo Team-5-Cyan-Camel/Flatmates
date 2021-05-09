@@ -1,7 +1,7 @@
-import { Link, NavLink, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { SocketContext } from "../../Context/socketContext";
 
 import Navbar from "react-bootstrap/Navbar";
@@ -9,10 +9,7 @@ import Nav from "react-bootstrap/Nav";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
-import $ from "jquery";
-import Popper from "popper.js";
 
-import { FaCog as Cog } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 
