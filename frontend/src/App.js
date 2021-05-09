@@ -68,10 +68,6 @@ function App() {
     setSettings(false);
   };
 
-  const setHost = (res) => {
-    setIsHost(res);
-  };
-
   return (
     <SocketContext.Provider value={socket}>
       <div className="BackGroundImage">
@@ -208,10 +204,7 @@ function App() {
           <Route path="/room/:code/message" exact>
             <div className="MakeCentre">
               <Container>
-                <MessageBoard
-                  messageList={messageList}
-                  setMessageList={setMessageList}
-                />
+                <MessageBoard messageList={messageList} />
               </Container>
             </div>
           </Route>

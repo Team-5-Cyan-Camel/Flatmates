@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Join room dialog renders correctly 1`] = `
+Array [
+  <form
+    onSubmit={[Function]}
+  >
+    <h3>
+      Join Room
+    </h3>
+    <input
+      className="AccountInputField"
+      name="code"
+      onChange={[Function]}
+      placeholder="Enter Code"
+      type="text"
+      value=""
+    />
+    <br />
+  </form>,
+  <button
+    className="GoButton btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Join
+  </button>,
+]
+`;
+
+exports[`Room generator button renders correctly 1`] = `
+<button
+  className="GoButton btn btn-primary"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+  Generate
+</button>
+`;

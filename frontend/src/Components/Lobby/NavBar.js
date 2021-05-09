@@ -1,7 +1,7 @@
-import { Link, NavLink, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { SocketContext } from "../../Context/socketContext";
 
 import Navbar from "react-bootstrap/Navbar";
@@ -9,10 +9,7 @@ import Nav from "react-bootstrap/Nav";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
-import $ from "jquery";
-import Popper from "popper.js";
 
-import { FaCog as Cog } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 
@@ -109,17 +106,15 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand id="NavBarToHide" href="home">
-          FlatMates
-        </Navbar.Brand>
+        <Navbar.Brand id="NavBarToHide">FlatMates</Navbar.Brand>
         <Nav className="mr-auto">
           <div
-            class="dropdown"
+            className="dropdown"
             id="NavBarToShow"
             style={{ borderRadius: "0", display: "none" }}
           >
             <button
-              class="btn btn-secondary"
+              className="btn btn-secondary"
               type="button"
               id="dropdownMenuButton"
               data-toggle="dropdown"
@@ -130,7 +125,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
               FlatMates <FaBars style={{ marginLeft: "0.25em" }}></FaBars>
             </button>
             <div
-              class="dropdown-menu"
+              className="dropdown-menu"
               style={{
                 width: "100%",
                 borderTopRightRadius: "0",
@@ -141,30 +136,39 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
             >
               {" "}
               <Link to={"/room/" + code}>
-                <a class="dropdown-item dropdownTab" style={{ color: "white" }}>
+                <a
+                  className="dropdown-item dropdownTab"
+                  style={{ color: "white" }}
+                >
                   Room
                 </a>{" "}
               </Link>
               <Link to={"/room/" + code + "/roster"}>
-                <a class="dropdown-item dropdownTab" style={{ color: "white" }}>
+                <a
+                  className="dropdown-item dropdownTab"
+                  style={{ color: "white" }}
+                >
                   Roster
                 </a>
               </Link>{" "}
               <Link to={"/room/" + code + "/message"}>
-                <a class="dropdown-item dropdownTab" style={{ color: "white" }}>
+                <a
+                  className="dropdown-item dropdownTab"
+                  style={{ color: "white" }}
+                >
                   Message Board
                 </a>{" "}
               </Link>
-              <div class="dropdown-divider"></div>
+              <div className="dropdown-divider"></div>
               <a
-                class="dropdown-item dropdownTabButton"
+                className="dropdown-item dropdownTabButton"
                 style={{ color: "white" }}
                 onClick={() => setSettings(true)}
               >
                 Personalise
               </a>
               <a
-                class="dropdown-item dropdownTab"
+                className="dropdown-item dropdownTab"
                 style={{ color: "white" }}
                 onClick={() => copyCode()}
               >
@@ -172,7 +176,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
               </a>
               {isHost ? (
                 <a
-                  class="dropdown-item dropdownTab"
+                  className="dropdown-item dropdownTab"
                   style={{ color: "white" }}
                   onClick={deleteRoom}
                 >
@@ -180,16 +184,16 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
                 </a>
               ) : (
                 <a
-                  class="dropdown-item dropdownTab"
+                  className="dropdown-item dropdownTab"
                   style={{ color: "white" }}
                   onClick={leave}
                 >
                   Leave Room
                 </a>
               )}
-              <div class="dropdown-divider"></div>
+              <div className="dropdown-divider"></div>
               <a
-                class="dropdown-item dropdownTab"
+                className="dropdown-item dropdownTab"
                 style={{ color: "white" }}
                 onClick={signOut}
               >

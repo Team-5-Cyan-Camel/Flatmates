@@ -1,0 +1,547 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Roster renders correctly 1`] = `
+<div
+  className="card"
+  id="Card-field"
+  style={
+    Object {
+      "alignItems": "center",
+      "borderTopLeftRadius": "0",
+      "borderTopRightRadius": "0",
+      "height": "60vh",
+      "justifyContent": "center",
+      "maxHeight": "70vh",
+    }
+  }
+>
+  <h5
+    className="text-center card-header"
+    id="Card-Header"
+    style={
+      Object {
+        "alignItems": "center",
+        "borderTopLeftRadius": "0",
+        "borderTopRightRadius": "0",
+        "display": "grid",
+        "gridTemplateColumns": "1fr 7fr 1fr",
+        "justifyContent": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <div />
+     asdasd
+    nice
+    <button
+      className="GoButton btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "margin": "0",
+        }
+      }
+      type="button"
+    >
+      rotate
+    </button>
+  </h5>
+  <div
+    className="card-body"
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "display": "Flex",
+        "justifyContent": "center",
+        "maxHeight": "100%",
+        "width": "90%",
+      }
+    }
+  >
+    <div
+      className="card"
+      id="Card-field"
+      style={
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "maxHeight": "100%",
+          "width": "20rem",
+        }
+      }
+    >
+      <h5
+        className="text-center card-header"
+        id="Card-Header"
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
+      >
+         
+        Leon
+      </h5>
+      <div
+        className="card-body"
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "Grid",
+            "height": "100%",
+            "justifyContent": "center",
+            "padding": "0!important",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "maxHeight": "100%",
+              "overflow": "hidden",
+            }
+          }
+        >
+          <button
+            className="GoButton btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Add Task
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="card"
+      id="Card-field"
+      style={
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "maxHeight": "100%",
+          "width": "20rem",
+        }
+      }
+    >
+      <h5
+        className="text-center card-header"
+        id="Card-Header"
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
+      >
+         
+        Coco
+      </h5>
+      <div
+        className="card-body"
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "Grid",
+            "height": "100%",
+            "justifyContent": "center",
+            "padding": "0!important",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "maxHeight": "100%",
+              "overflow": "hidden",
+            }
+          }
+        >
+          <button
+            className="GoButton btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Add Task
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="card"
+      id="Card-field"
+      style={
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "maxHeight": "100%",
+          "width": "20rem",
+        }
+      }
+    >
+      <h5
+        className="text-center card-header"
+        id="Card-Header"
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
+      >
+         
+        Leon
+      </h5>
+      <div
+        className="card-body"
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "Grid",
+            "height": "100%",
+            "justifyContent": "center",
+            "padding": "0!important",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "maxHeight": "100%",
+              "overflow": "hidden",
+            }
+          }
+        >
+          <button
+            className="GoButton btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Add Task
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Roster tabs render correctly 1`] = `
+<nav
+  className="navbar navbar-expand navbar-dark bg-dark"
+  style={Object {}}
+>
+  <div
+    className="mr-auto navbar-nav"
+    onKeyDown={[Function]}
+  >
+    <a
+      className="nav-link"
+      data-rb-event-key={null}
+      href="#"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      style={
+        Object {
+          "outline": "1px solid black ",
+          "outlineColor": "black",
+        }
+      }
+    >
+      nice
+       
+      <svg
+        fill="currentColor"
+        height="1em"
+        onClick={[Function]}
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 352 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+        />
+      </svg>
+    </a>
+    <a
+      className="nav-link"
+      data-rb-event-key={null}
+      href="#"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      style={
+        Object {
+          "outline": "1px solid black ",
+          "outlineColor": "black",
+        }
+      }
+    >
+      nice
+       
+      <svg
+        fill="currentColor"
+        height="1em"
+        onClick={[Function]}
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 352 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+        />
+      </svg>
+    </a>
+    <a
+      className="nav-link"
+      data-rb-event-key={null}
+      href="#"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      style={
+        Object {
+          "outline": "1px solid black ",
+          "outlineColor": "black",
+        }
+      }
+    >
+      mine
+       
+      <svg
+        fill="currentColor"
+        height="1em"
+        onClick={[Function]}
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 352 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+        />
+      </svg>
+    </a>
+  </div>
+  <button
+    className="NavBarButton btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    add
+  </button>
+</nav>
+`;
+
+exports[`Rosters container (containing tabs and roster view) render correctly 1`] = `
+<div>
+  <nav
+    className="navbar navbar-expand navbar-dark bg-dark"
+    style={Object {}}
+  >
+    <div
+      className="mr-auto navbar-nav"
+      onKeyDown={[Function]}
+    >
+      <a
+        className="nav-link"
+        data-rb-event-key={null}
+        href="#"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        style={
+          Object {
+            "outline": "1px solid black ",
+            "outlineColor": "black",
+          }
+        }
+      >
+        nice
+         
+        <svg
+          fill="currentColor"
+          height="1em"
+          onClick={[Function]}
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 352 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+          />
+        </svg>
+      </a>
+      <a
+        className="nav-link"
+        data-rb-event-key={null}
+        href="#"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        style={
+          Object {
+            "outline": "1px solid black ",
+            "outlineColor": "black",
+          }
+        }
+      >
+        nice
+         
+        <svg
+          fill="currentColor"
+          height="1em"
+          onClick={[Function]}
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 352 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+          />
+        </svg>
+      </a>
+      <a
+        className="nav-link"
+        data-rb-event-key={null}
+        href="#"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        style={
+          Object {
+            "outline": "1px solid black ",
+            "outlineColor": "black",
+          }
+        }
+      >
+        mine
+         
+        <svg
+          fill="currentColor"
+          height="1em"
+          onClick={[Function]}
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 352 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+          />
+        </svg>
+      </a>
+    </div>
+    <button
+      className="NavBarButton btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      add
+    </button>
+  </nav>
+</div>
+`;
+
+exports[`User task list in roster render correctly 1`] = `
+<div
+  className="card"
+  id="Card-field"
+  style={
+    Object {
+      "alignItems": "center",
+      "justifyContent": "center",
+      "maxHeight": "100%",
+      "width": "20rem",
+    }
+  }
+>
+  <h5
+    className="text-center card-header"
+    id="Card-Header"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+     
+    Leon
+  </h5>
+  <div
+    className="card-body"
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "Grid",
+        "height": "100%",
+        "justifyContent": "center",
+        "padding": "0!important",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "maxHeight": "100%",
+          "overflow": "hidden",
+        }
+      }
+    >
+      <button
+        className="GoButton btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Add Task
+      </button>
+    </div>
+  </div>
+</div>
+`;

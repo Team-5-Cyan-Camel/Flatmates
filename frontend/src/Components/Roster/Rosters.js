@@ -1,7 +1,6 @@
 import Roster from "./Roster";
 import React, { useState, useEffect } from "react";
 import SelectRoster from "./SelectRoster";
-import { socket } from "../../Context/socketContext";
 import axios from "axios";
 
 const Rosters = ({ rosters, isHost }) => {
@@ -10,7 +9,7 @@ const Rosters = ({ rosters, isHost }) => {
 
   useEffect(() => {
     setRosters(rosters);
-
+    // get roster data
     if (Rosters !== null && Rosters.rosters.length !== 0) {
       setDisplayRoster({ rosters: rosters.rosters[0] });
     }
