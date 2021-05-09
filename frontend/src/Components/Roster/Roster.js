@@ -49,7 +49,7 @@ const Roster = ({ data, isHost }) => {
               alignItems: "center",
               justifyContent: "center",
               display: "grid",
-              gridTemplateColumns: "1fr 7fr 1fr",
+              gridTemplateColumns: "1fr 16fr 1fr",
             }}
           >
             <div></div>
