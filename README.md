@@ -1,6 +1,6 @@
 # Flatmates
 
-A flat management system to allow flatmates to manage costs, communicate and manage tasks/chores
+A flat management system to allow flatmates to manage communicate and manage tasks/chores between each other.
 
 # Set Up
 
@@ -11,14 +11,16 @@ A flat management system to allow flatmates to manage costs, communicate and man
 
 ## Functionality
 
-1. Allow the creation of new accounts
-2. Allow sign in
-3. Allow creating a room
-4. Allow joining an existing room
-5. Allow all users of a room to be seen
-6. Allow a functioning roster
-7. Allow the host to kick members
-8. Allow room members to leave the room
+1. Allow the creation of new accounts (New accounts)
+2. Allow sign in (Sign in)
+3. Allow creating a room (Create room)
+4. Allow joining an existing room (Join room)
+5. Allow all users of a room to be seen (Show Room users)
+6. Allow users to update their details (Update user data)
+7. Allow the host to kick members (Kick members)
+8. Allow room members to leave the room (Leave room)
+9. Allow users to assign task to each other (Assign tasks)
+10.
 
 ## GPL v3.0 License
 
