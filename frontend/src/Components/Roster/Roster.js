@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 import UserTask from "./UserTask";
 import "../../App.css";
 import axios from "axios";
-import { ArrowRight } from "react-bootstrap-icons";
 
 import { FaSyncAlt } from "react-icons/fa";
 
