@@ -9,7 +9,6 @@ const modalRoot = document.querySelector("#modal-root");
 const Settings = ({ hideSettings }) => {
   return ReactDOM.createPortal(
     <div className={styles.modalContainer}>
-      {/* add code */}
       <Card
         id="Card-field"
         style={{

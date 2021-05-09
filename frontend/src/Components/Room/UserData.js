@@ -1,25 +1,19 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
 import { FaTimes as Cross } from "react-icons/fa";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
-import { socket, SocketContext } from "../../Context/socketContext";
+import { socket } from "../../Context/socketContext";
 
 const UserData = ({ data, isHost, hostId }) => {
   const kickMember = (username) => {
-    // console.log("KICLKK");
-    // console.log(data);
-    // console.log(username);
     const kickUser = {
       username: username,
     };
     axios
       .patch("/room/kick", kickUser)
-      .then((res) => {
-        // console.log(res.data);
-      })
+      .then((res) => {})
       .catch(function (error) {
         console.log(error);
       });

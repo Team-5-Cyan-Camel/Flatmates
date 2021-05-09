@@ -35,17 +35,14 @@ function App() {
 
 
   useEffect(() => {
-    // <<<<<<< HEAD
     socket.on("update", () => {
       console.log("socketio called update");
       setUpdate(!update);
       axios
         .get("/room")
         .then((res) => {
-          // console.log(res.data);
           setRoom(res.data);
           setHostId(res.data.host);
-          // console.log(res.data);
         })
         .catch(function (error) {
           console.log(error);
@@ -57,10 +54,8 @@ function App() {
     axios
       .get("/room")
       .then((res) => {
-        // console.log(res.data);
         setRoom(res.data);
         setHostId(res.data.host);
-        // console.log(res.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -82,8 +77,6 @@ function App() {
   return (
     <SocketContext.Provider value={socket}>
       <div className="BackGroundImage">
-        {/* path for main page */}
-
         <Router>
           <Route path="/" exact>
             <div className="MakeCentre">
