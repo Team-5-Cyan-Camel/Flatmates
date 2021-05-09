@@ -78,10 +78,11 @@ const UserTask = ({ task, name, rid, pid }) => {
             backgroundColor: "#7e828b",
           }}
         >
-          {task.map((e) => {
+          {task.map((e, i) => {
             return (
               <Card
                 id="Card-field"
+                key={i}
                 style={{
                   alignItems: "center",
                   justifyContent: "center",

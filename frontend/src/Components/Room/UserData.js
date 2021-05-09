@@ -8,7 +8,6 @@ import { socket } from "../../Context/socketContext";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 const UserData = ({ data, isHost, hostId, yourId }) => {
-  console.log(data);
   const kickMember = (username) => {
     confirmAlert({
       title: "Kicking User",
@@ -22,9 +21,7 @@ const UserData = ({ data, isHost, hostId, yourId }) => {
             };
             axios
               .patch("/room/kick", kickUser)
-              .then((res) => {
-                // console.log(res.data);
-              })
+              .then((res) => {})
               .catch(function (error) {
                 console.log(error);
               });

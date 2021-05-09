@@ -1,7 +1,6 @@
 import Roster from "./Roster";
 import React, { useState, useEffect } from "react";
 import SelectRoster from "./SelectRoster";
-import { socket } from "../../Context/socketContext";
 import axios from "axios";
 
 const Rosters = ({ rosters, isHost }) => {
