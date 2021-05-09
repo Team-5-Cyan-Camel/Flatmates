@@ -49,7 +49,7 @@ const UserTask = ({ task, name, rid, pid }) => {
         className="UsersTasks"
         style={{
           alignItems: "center",
-          width: "20em",
+          width: "19em",
           maxHeight: "100%",
           margin: "0.5em",
           height: "47vh",
