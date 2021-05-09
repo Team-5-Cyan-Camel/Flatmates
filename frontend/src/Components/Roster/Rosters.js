@@ -13,7 +13,7 @@ const Rosters = ({ room, isHost }) => {
     if (Room !== null && Room.rosters.length !== 0) {
       setDisplayRoster({ rosters: Room.rosters[0] });
     }
-  }, [rosters]);
+  }, [room]);
 
   useEffect(() => {
     axios
