@@ -18,6 +18,10 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
     socket.emit('enter_room', {roomID: code});
   }, []);
 
+  const copyCode = () => {
+    navigator.clipboard.writeText(code);
+  };
+
   const leave = () => {
     confirmAlert({
       title: 'Leaving Room',
@@ -95,6 +99,14 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
             <Link to={'/room/' + code + '/roster'}>Roster</Link>
           </Nav.Link>
         </Nav>
+
+        <Button
+          className='GoButton'
+          style={{margin: '0'}}
+          onClick={() => copyCode()}
+        >
+          Get Code
+        </Button>
 
         <Button
           className='GoButton'
