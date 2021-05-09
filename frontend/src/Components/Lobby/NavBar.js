@@ -125,17 +125,17 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
         <Button
           className="GoButton"
           style={{ margin: "0" }}
-          onClick={() => copyCode()}
+          onClick={() => setSettings(true)}
         >
-          Get Code
+          Personalise
         </Button>
 
         <Button
           className="GoButton"
           style={{ margin: "0" }}
-          onClick={() => setSettings(true)}
+          onClick={() => copyCode()}
         >
-          Personalise
+          Get Code
         </Button>
 
         {isHost ? (
