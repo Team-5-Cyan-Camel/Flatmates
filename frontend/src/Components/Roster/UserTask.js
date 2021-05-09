@@ -1,12 +1,10 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import AddTask from './AddTask';
 import {FaTimes as Cross} from 'react-icons/fa';
 import axios from 'axios';
-import {confirmAlert} from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 import Button from 'react-bootstrap/Button';
 

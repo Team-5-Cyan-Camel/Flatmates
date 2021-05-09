@@ -4,19 +4,17 @@ import UserData from "./UserData";
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { socket, SocketContext } from "../../Context/socketContext";
+import { socket } from "../../Context/socketContext";
 
 const Room = ({ setIsHost }) => {
   let [isHost, setHost] = useState(false);
   const [room, setRoom] = useState(null);
   const [hostId, setHostId] = useState(null);
-  // console.log(room);
-  // console.log(room.users);
+
   useEffect(() => {
     axios
       .get("/user")
       .then((res) => {
-        console.log(res.data);
         setIsHost(res.data.isHost);
         setHost(res.data.isHost);
       })
@@ -26,10 +24,8 @@ const Room = ({ setIsHost }) => {
     axios
       .get("/room")
       .then((res) => {
-        // console.log(res.data);
         setRoom(res.data);
         setHostId(res.data.host);
-        // console.log(res.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -38,10 +34,8 @@ const Room = ({ setIsHost }) => {
       axios
         .get("/room")
         .then((res) => {
-          // console.log(res.data);
           setRoom(res.data);
           setHostId(res.data.host);
-          // console.log(res.data);
         })
         .catch(function (error) {
           console.log(error);

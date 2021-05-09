@@ -1,10 +1,8 @@
-import {Link, NavLink, useHistory, useParams} from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import {useState, useEffect, useContext} from 'react';
+import {useEffect, useContext} from 'react';
 import {SocketContext} from '../../Context/socketContext';
-import {confirmAlert} from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -73,8 +71,6 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
   };
 
   const signOut = () => {
-    // remove any cached content, return to main room
-    // console.log("signOut");
     axios
       .post('/user/logout')
       .then((res) => {
@@ -89,13 +85,14 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
   return (
     <>
       <Navbar bg='dark' variant='dark'>
-        <Navbar.Brand href='#home'>Navbar</Navbar.Brand>
+        <Navbar.Brand href='home'>Navigation</Navbar.Brand>
         <Nav className='mr-auto'>
-          <Link to={'/room/' + code}>Room</Link>
-
-          <Nav.Link to={'/room/' + code}>test</Nav.Link>
-          <Nav.Link href='#Roster'>Roster</Nav.Link>
-          <Link to={'/room/' + code + '/roster'}>Roster</Link>
+          <Nav.Link>
+            <Link to={'/room/' + code}>Room</Link>
+          </Nav.Link>
+          <Nav.Link>
+            <Link to={'/room/' + code + '/roster'}>Roster</Link>
+          </Nav.Link>
         </Nav>
 
         <Button

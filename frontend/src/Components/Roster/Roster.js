@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
@@ -93,7 +93,3 @@ const Roster = ({data, updateDb, isHost}) => {
 };
 
 export default Roster;
-
-// data.tasks.filter((data) => {
-//     return data.userIndex === 0;
-//   });

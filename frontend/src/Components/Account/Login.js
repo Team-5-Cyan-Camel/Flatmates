@@ -18,7 +18,6 @@ const Login = () => {
     axios
       .get('/user')
       .then((res) => {
-        // console.log(res.data);
         if (res.data.roomCode !== null) {
           history.push('/room/' + res.data.roomCode);
         } else {
@@ -33,7 +32,6 @@ const Login = () => {
   const login = (e) => {
     e.preventDefault();
     //  check if user account exist (axios)
-
     const userIn = {
       username: user,
       password: password,

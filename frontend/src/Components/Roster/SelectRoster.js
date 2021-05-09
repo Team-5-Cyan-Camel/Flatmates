@@ -1,19 +1,15 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import '../Lobby/NavBar.css';
 import AddRoster from './AddRoster';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {FaTimes as Cross} from 'react-icons/fa';
 import axios from 'axios';
 import '../Lobby/NavBar.css';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import {Link, NavLink, useHistory, useParams} from 'react-router-dom';
-import {confirmAlert} from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 const SelectRoster = ({rosters, setRoster, updateDb, isHost}) => {
   let [makeRoster, setMakeRoster] = useState(false);

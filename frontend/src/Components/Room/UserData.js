@@ -1,18 +1,13 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
 import {FaTimes as Cross} from 'react-icons/fa';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
-import {socket, SocketContext} from '../../Context/socketContext';
-import {confirmAlert} from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import {socket} from '../../Context/socketContext';
 
 const UserData = ({data, isHost, hostId}) => {
   const kickMember = (username) => {
-    // console.log("KICLKK");
-    // console.log(data);
     confirmAlert({
       title: 'Kicking User',
       message: 'Are you sure you want to kick ' + username + '?',
