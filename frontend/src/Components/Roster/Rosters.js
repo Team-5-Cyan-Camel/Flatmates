@@ -10,7 +10,7 @@ const Rosters = ({ rosters, isHost }) => {
 
   useEffect(() => {
     setRosters(rosters);
-
+    // get roster data
     if (Rosters !== null && Rosters.rosters.length !== 0) {
       setDisplayRoster({ rosters: rosters.rosters[0] });
     }
