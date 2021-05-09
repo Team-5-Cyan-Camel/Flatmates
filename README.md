@@ -1,13 +1,14 @@
 # Flatmates
 
-A flat management system to allow flatmates to manage communicate and manage tasks/chores between each other.
+A flat management system to allow flatmates to communicate and manage tasks/chores between each other.
 
 # Set Up
 
 1. First, clone this repository to a known location
 2. Get or make an appropriate .env file to set up the connection to the database. Place the .env file inside the backend folder.
-   Note, if you would like the organization’s file, please contact [In.early.springs@gmail.com](In.early.springs@gmail.com)
+   <b>Note:</b> if you would like the organization’s file, please contact [In.early.springs@gmail.com](In.early.springs@gmail.com)
 3. In both frontend and backend folders, run `npm install`, followed by `npm start` to start both the frontend and backend.
+   <b>Note:</b> We recommend starting the backend first, however it should not cause any issues.
 
 ## Functionality
 
