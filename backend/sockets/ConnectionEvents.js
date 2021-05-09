@@ -15,10 +15,6 @@ module.exports = function (io) {
             socket.leave(req.roomID);
             console.log("A user left", req.roomID);
         });
-
-
-        socket.on('disconnecting', (req) => {
-        });
     });
 }
 
