@@ -68,11 +68,16 @@ router.patch("/update", getUserOfCookie, async function (req, res, next) {
   if (req.body.phoneNumber) { req.user.phoneNumber = req.body.phoneNumber };
   if (req.body.name) { req.user.name = req.body.name };
 
+  let user;
   try {
-    let user = await req.user.save();
-    return res.status(200).json(user);
+    user = await req.user.save();
+    res.status(200).json(user);
   } catch (err) {
     return res.status(500).json({ message: err.message });
+  }
+  if (global.io) {
+    let roomID = JSON.stringify(user.roomCode).replace(/(^")|("$)/g, "");
+    global.io.in(roomID).emit("update");
   }
 });
 

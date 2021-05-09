@@ -8,6 +8,7 @@ import GenerateRoom from "./Components/Code/GenerateRoom";
 import JoinRoom from "./Components/Code/JoinRoom";
 import NavBar from "./Components/Lobby/NavBar";
 import Room from "./Components/Room/Room";
+import MessageBoard from "./Components/MessageBoard/MessageBoard";
 import axios from "axios";
 import "./Components/Lobby/NavBar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -24,19 +25,23 @@ function App() {
   let [room, setRoom] = useState(null);
   const [isHost, setIsHost] = useState(false);
   let [hostId, setHostId] = useState(null);
+  const [messageList, setMessageList] = useState([]);
 
   useEffect(() => {
-    // <<<<<<< HEAD
+    socket.on("message_update", (data) => {
+      setMessageList((prevList) => [...prevList, data]);
+    });
+  }, []);
+
+  useEffect(() => {
     socket.on("update", () => {
       console.log("socketio called update");
       setUpdate(!update);
       axios
         .get("/room")
         .then((res) => {
-          // console.log(res.data);
           setRoom(res.data);
           setHostId(res.data.host);
-          // console.log(res.data);
         })
         .catch(function (error) {
           console.log(error);
@@ -48,10 +53,8 @@ function App() {
     axios
       .get("/room")
       .then((res) => {
-        // console.log(res.data);
         setRoom(res.data);
         setHostId(res.data.host);
-        // console.log(res.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -73,8 +76,6 @@ function App() {
   return (
     <SocketContext.Provider value={socket}>
       <div className="BackGroundImage">
-        {/* path for main page */}
-
         <Router>
           <Route path="/" exact>
             <div className="MakeCentre">
@@ -200,6 +201,15 @@ function App() {
               <div className="MakeCentre">
                 <Rosters rosters={room} isHost={isHost} />
               </div>
+            </Container>
+          </Route>
+
+          <Route path="/room/:code/message" exact>
+            <Container>
+              <MessageBoard
+                messageList={messageList}
+                setMessageList={setMessageList}
+              />
             </Container>
           </Route>
 

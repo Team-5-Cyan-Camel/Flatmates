@@ -4,19 +4,21 @@ import UserData from "./UserData";
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { socket, SocketContext } from "../../Context/socketContext";
+import { socket } from "../../Context/socketContext";
+import Spinner from "react-bootstrap/Spinner";
 
 const Room = ({ setIsHost }) => {
   let [isHost, setHost] = useState(false);
   const [room, setRoom] = useState(null);
   const [hostId, setHostId] = useState(null);
-  // console.log(room);
-  // console.log(room.users);
+  const [yourId, setYourId] = useState(null);
+
   useEffect(() => {
     axios
       .get("/user")
       .then((res) => {
         console.log(res.data);
+        setYourId(res.data._id);
         setIsHost(res.data.isHost);
         setHost(res.data.isHost);
       })
@@ -26,10 +28,8 @@ const Room = ({ setIsHost }) => {
     axios
       .get("/room")
       .then((res) => {
-        // console.log(res.data);
         setRoom(res.data);
         setHostId(res.data.host);
-        // console.log(res.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -38,10 +38,8 @@ const Room = ({ setIsHost }) => {
       axios
         .get("/room")
         .then((res) => {
-          // console.log(res.data);
           setRoom(res.data);
           setHostId(res.data.host);
-          // console.log(res.data);
         })
         .catch(function (error) {
           console.log(error);
@@ -88,10 +86,20 @@ const Room = ({ setIsHost }) => {
             paddingRight: "1em",
           }}
         >
-          {room !== null &&
+          {room !== null ? (
             room.users.map((e) => {
-              return <UserData data={e} hostId={hostId} isHost={isHost} />;
-            })}
+              return (
+                <UserData
+                  data={e}
+                  hostId={hostId}
+                  isHost={isHost}
+                  yourId={yourId}
+                />
+              );
+            })
+          ) : (
+            <Spinner animation="border" />
+          )}
         </Card.Body>
       </Card>
     </>

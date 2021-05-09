@@ -1,29 +1,41 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
 import { FaTimes as Cross } from "react-icons/fa";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
-import { socket, SocketContext } from "../../Context/socketContext";
-
-const UserData = ({ data, isHost, hostId }) => {
+import { socket } from "../../Context/socketContext";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+const UserData = ({ data, isHost, hostId, yourId }) => {
+  console.log(data);
   const kickMember = (username) => {
-    // console.log("KICLKK");
-    // console.log(data);
-    // console.log(username);
-    const kickUser = {
-      username: username,
-    };
-    axios
-      .patch("/room/kick", kickUser)
-      .then((res) => {
-        // console.log(res.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    socket.emit("update");
+    confirmAlert({
+      title: "Kicking User",
+      message: "Are you sure you want to kick " + username + "?",
+      buttons: [
+        {
+          label: "Ok",
+          onClick: () => {
+            const kickUser = {
+              username: username,
+            };
+            axios
+              .patch("/room/kick", kickUser)
+              .then((res) => {
+                // console.log(res.data);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+            socket.emit("update");
+          },
+        },
+        {
+          label: "Cancel",
+        },
+      ],
+    });
   };
   return (
     <>
@@ -44,7 +56,8 @@ const UserData = ({ data, isHost, hostId }) => {
           style={{ width: "100%" }}
         >
           {" "}
-          {data.name}{" "}
+          {data.name}
+          {data._id === yourId && " (You)"}{" "}
           {isHost && hostId !== data._id && (
             <Cross onClick={() => kickMember(data.username)} />
           )}

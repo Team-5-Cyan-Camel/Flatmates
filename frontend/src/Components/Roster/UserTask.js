@@ -1,10 +1,12 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AddTask from "./AddTask";
 import { FaTimes as Cross } from "react-icons/fa";
 import axios from "axios";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { FaPlusCircle as PlusSymbol } from "react-icons/fa";
 
@@ -13,17 +15,31 @@ import Button from "react-bootstrap/Button";
 const UserTask = ({ task, name, rid, pid, updateDb }) => {
   let [makeTask, setMakeTask] = useState(false);
   const deleteTask = (id) => {
-    const delTask = {
-      rosterID: rid,
-      taskID: id,
-    };
+    confirmAlert({
+      title: "Deleting Task",
+      message: "Are you sure you want to delete this task",
+      buttons: [
+        {
+          label: "Ok",
+          onClick: () => {
+            const delTask = {
+              rosterID: rid,
+              taskID: id,
+            };
 
-    axios
-      .delete("/roster/task", { data: delTask })
-      .then((res) => {})
-      .catch(function (error) {
-        console.log(error);
-      });
+            axios
+              .delete("/roster/task", { data: delTask })
+              .then((res) => {})
+              .catch(function (error) {
+                console.log(error);
+              });
+          },
+        },
+        {
+          label: "Cancel",
+        },
+      ],
+    });
   };
 
   return (

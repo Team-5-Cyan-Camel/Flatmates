@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,10 +14,6 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
   let [title, setTitle] = useState("");
   let [description, setDescription] = useState("");
 
-  useEffect(() => {
-    console.log(pid);
-  }, []);
-
   const makeTask = () => {
     const newTask = {
       title: title,
@@ -29,7 +25,6 @@ const AddTask = ({ show, rid, pid, updateDb }) => {
     axios
       .post("/roster/task", newTask)
       .then((res) => {
-        console.log(res);
         show(false);
       })
       .catch(function (error) {
