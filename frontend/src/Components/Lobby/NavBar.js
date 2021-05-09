@@ -15,13 +15,12 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
 
   useEffect(() => {
     setUpdate();
-    socket.emit("enter_room", { roomID: code });
+    socket.emit('enter_room', {roomID: code});
     return () => {
-      console.log("left room");
-      socket.emit("leave_room", { roomID: code });
+      console.log('left room');
+      socket.emit('leave_room', {roomID: code});
     };
   }, []);
-
 
   const copyCode = () => {
     navigator.clipboard.writeText(code);
@@ -35,7 +34,6 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
       ],
     });
   };
-
 
   const leave = () => {
     confirmAlert({
@@ -111,7 +109,7 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
             <Link to={'/room/' + code + '/roster'}>Roster</Link>
           </Nav.Link>
           <Nav.Link>
-            <Link to={"/room/" + code + "/message"}>Message Board</Link>
+            <Link to={'/room/' + code + '/message'}>Message Board</Link>
           </Nav.Link>
         </Nav>
 
@@ -128,7 +126,7 @@ const NavBar = ({setSettings, setUpdate, isHost}) => {
           style={{margin: '0'}}
           onClick={() => setSettings(true)}
         >
-          Settings
+          Personalise
         </Button>
 
         {isHost ? (
