@@ -3,15 +3,15 @@ import React, { useState, useEffect } from "react";
 import SelectRoster from "./SelectRoster";
 import axios from "axios";
 
-const Rosters = ({ rosters, isHost }) => {
-  let [Rosters, setRosters] = useState(rosters);
+const Rosters = ({ room, isHost }) => {
+  let [Room, setRoom] = useState(room);
   let [DisplayRoster, setDisplayRoster] = useState(null);
 
   useEffect(() => {
-    setRosters(rosters);
+    setRoom(room);
     // get roster data
-    if (Rosters !== null && Rosters.rosters.length !== 0) {
-      setDisplayRoster({ rosters: rosters.rosters[0] });
+    if (Room !== null && Room.rosters.length !== 0) {
+      setDisplayRoster({ rosters: Room.rosters[0] });
     }
   }, [rosters]);
 
@@ -19,7 +19,7 @@ const Rosters = ({ rosters, isHost }) => {
     axios
       .get("/room")
       .then((res) => {
-        setRosters(res.data);
+        setRoom(res.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -27,7 +27,7 @@ const Rosters = ({ rosters, isHost }) => {
   }, []);
 
   const roster = (title) => {
-    for (var roster of Rosters.rosters) {
+    for (var roster of Room.rosters) {
       if (roster.title === title) {
         setDisplayRoster({ rosters: roster });
         break;
@@ -37,9 +37,9 @@ const Rosters = ({ rosters, isHost }) => {
 
   return (
     <div style={{ width: "85vw" }}>
-      <SelectRoster isHost={isHost} rosters={Rosters} setRoster={roster} />
+      <SelectRoster isHost={isHost} room={Room} setRoster={roster} />
 
-      {Rosters !== null && DisplayRoster !== null && (
+      {Room !== null && DisplayRoster !== null && (
         <Roster data={DisplayRoster.rosters} isHost={isHost} />
       )}
     </div>

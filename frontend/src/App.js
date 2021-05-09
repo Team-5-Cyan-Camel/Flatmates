@@ -196,7 +196,7 @@ function App() {
           <Route path="/room/:code/roster" exact>
             <Container>
               <div className="MakeCentre">
-                <Rosters rosters={room} isHost={isHost} />
+                <Rosters room={room} isHost={isHost} />
               </div>
             </Container>
           </Route>

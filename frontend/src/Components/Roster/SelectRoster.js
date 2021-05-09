@@ -16,7 +16,7 @@ import { FaPlusCircle as PlusSymbol } from "react-icons/fa";
 
 import Navbar from "react-bootstrap/Navbar";
 
-const SelectRoster = ({ rosters, setRoster, isHost }) => {
+const SelectRoster = ({ room, setRoster, isHost }) => {
   let [makeRoster, setMakeRoster] = useState(false);
 
   const deleteRoster = (id) => {
@@ -50,9 +50,9 @@ const SelectRoster = ({ rosters, setRoster, isHost }) => {
     <>
       <Navbar bg="dark" variant="dark" style={{}}>
         <Nav className="mr-auto">
-          {rosters !== null &&
-            rosters.rosters !== null &&
-            rosters.rosters.map((e, i) => [
+          {room !== null &&
+            room.rosters !== null &&
+            room.rosters.map((e, i) => [
               <Nav.Link
                 key={i}
                 onClick={() => setRoster(e.title)}

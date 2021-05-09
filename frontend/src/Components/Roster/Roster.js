@@ -91,7 +91,7 @@ const Roster = ({ data, isHost }) => {
                     rid={data._id}
                     pid={e._id}
                     name={e.name}
-                    task={data.tasks.filter((data) => {
+                    tasks={data.tasks.filter((data) => {
                       return data.userIndex === i;
                     })}
                   />
