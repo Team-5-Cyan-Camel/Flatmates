@@ -9,9 +9,10 @@ exports[`Roster renders correctly 1`] = `
       "alignItems": "center",
       "borderTopLeftRadius": "0",
       "borderTopRightRadius": "0",
-      "height": "60vh",
+      "height": "65vh",
       "justifyContent": "center",
-      "maxHeight": "70vh",
+      "maxHeight": "80vh",
+      "width": "100%",
     }
   }
 >
@@ -31,200 +32,322 @@ exports[`Roster renders correctly 1`] = `
     }
   >
     <div />
-     asdasd
     nice
     <button
-      className="GoButton btn btn-primary"
+      className="NavBarButton btn btn-primary"
       disabled={false}
       onClick={[Function]}
-      style={
-        Object {
-          "margin": "0",
-        }
-      }
       type="button"
     >
-      rotate
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 512 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M370.72 133.28C339.458 104.008 298.888 87.962 255.848 88c-77.458.068-144.328 53.178-162.791 126.85-1.344 5.363-6.122 9.15-11.651 9.15H24.103c-7.498 0-13.194-6.807-11.807-14.176C33.933 94.924 134.813 8 256 8c66.448 0 126.791 26.136 171.315 68.685L463.03 40.97C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.749zM32 296h134.059c21.382 0 32.09 25.851 16.971 40.971l-41.75 41.75c31.262 29.273 71.835 45.319 114.876 45.28 77.418-.07 144.315-53.144 162.787-126.849 1.344-5.363 6.122-9.15 11.651-9.15h57.304c7.498 0 13.194 6.807 11.807 14.176C478.067 417.076 377.187 504 256 504c-66.448 0-126.791-26.136-171.315-68.685L48.97 471.03C33.851 486.149 8 475.441 8 454.059V320c0-13.255 10.745-24 24-24z"
+        />
+      </svg>
     </button>
   </h5>
   <div
-    className="card-body"
+    className="UsersTasksList card-body"
     style={
       Object {
-        "alignItems": "flex-start",
-        "display": "Flex",
-        "justifyContent": "center",
-        "maxHeight": "100%",
-        "width": "90%",
+        "alignItems": "center",
+        "display": "grid",
+        "gridAutoFlow": "column",
+        "minWidth": "0",
+        "overflowX": "auto",
+        "padding": "1em",
+        "width": "100%",
       }
     }
   >
     <div
-      className="card"
-      id="Card-field"
       style={
         Object {
           "alignItems": "center",
+          "display": "grid",
+          "height": "100%",
           "justifyContent": "center",
-          "maxHeight": "100%",
-          "width": "20rem",
+          "width": "100%",
         }
       }
     >
-      <h5
-        className="text-center card-header"
-        id="Card-Header"
-        style={
-          Object {
-            "width": "100%",
-          }
-        }
-      >
-         
-        Leon
-      </h5>
       <div
-        className="card-body"
+        className="UsersTasks card"
+        id="Card-field"
         style={
           Object {
             "alignItems": "center",
-            "display": "Grid",
-            "height": "100%",
-            "justifyContent": "center",
-            "padding": "0!important",
+            "height": "47vh",
+            "margin": "0.5em",
+            "maxHeight": "100%",
+            "width": "19em",
           }
         }
       >
-        <div
+        <h5
+          className="text-center card-header"
+          id="Card-Header"
           style={
             Object {
-              "maxHeight": "100%",
-              "overflow": "hidden",
+              "width": "100%",
             }
           }
         >
+           
+          Leon
+        </h5>
+        <div
+          className="card-body"
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "backgroundColor": "#7e828b",
+              "borderLeft": "#454549 solid 1px",
+              "borderRight": "#454549 solid 1px",
+              "display": "flex",
+              "flexDirection": "column",
+              "height": "100%",
+              "overflowY": "auto",
+              "width": "100%",
+            }
+          }
+        />
+        <div
+          className="card-footer"
+          id="Card-Footer"
+        >
           <button
-            className="GoButton btn btn-primary"
+            className="CardButton text-center btn btn-primary"
             disabled={false}
             onClick={[Function]}
+            style={
+              Object {
+                "verticalAlign": "middle",
+              }
+            }
             type="button"
           >
-            Add Task
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              strokeWidth="0"
+              style={
+                Object {
+                  "color": undefined,
+                  "verticalAlign": "middle",
+                }
+              }
+              viewBox="0 0 512 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"
+              />
+            </svg>
           </button>
         </div>
       </div>
     </div>
     <div
-      className="card"
-      id="Card-field"
       style={
         Object {
           "alignItems": "center",
+          "display": "grid",
+          "height": "100%",
           "justifyContent": "center",
-          "maxHeight": "100%",
-          "width": "20rem",
+          "width": "100%",
         }
       }
     >
-      <h5
-        className="text-center card-header"
-        id="Card-Header"
-        style={
-          Object {
-            "width": "100%",
-          }
-        }
-      >
-         
-        Coco
-      </h5>
       <div
-        className="card-body"
+        className="UsersTasks card"
+        id="Card-field"
         style={
           Object {
             "alignItems": "center",
-            "display": "Grid",
-            "height": "100%",
-            "justifyContent": "center",
-            "padding": "0!important",
+            "height": "47vh",
+            "margin": "0.5em",
+            "maxHeight": "100%",
+            "width": "19em",
           }
         }
       >
-        <div
+        <h5
+          className="text-center card-header"
+          id="Card-Header"
           style={
             Object {
-              "maxHeight": "100%",
-              "overflow": "hidden",
+              "width": "100%",
             }
           }
         >
+           
+          Coco
+        </h5>
+        <div
+          className="card-body"
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "backgroundColor": "#7e828b",
+              "borderLeft": "#454549 solid 1px",
+              "borderRight": "#454549 solid 1px",
+              "display": "flex",
+              "flexDirection": "column",
+              "height": "100%",
+              "overflowY": "auto",
+              "width": "100%",
+            }
+          }
+        />
+        <div
+          className="card-footer"
+          id="Card-Footer"
+        >
           <button
-            className="GoButton btn btn-primary"
+            className="CardButton text-center btn btn-primary"
             disabled={false}
             onClick={[Function]}
+            style={
+              Object {
+                "verticalAlign": "middle",
+              }
+            }
             type="button"
           >
-            Add Task
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              strokeWidth="0"
+              style={
+                Object {
+                  "color": undefined,
+                  "verticalAlign": "middle",
+                }
+              }
+              viewBox="0 0 512 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"
+              />
+            </svg>
           </button>
         </div>
       </div>
     </div>
     <div
-      className="card"
-      id="Card-field"
       style={
         Object {
           "alignItems": "center",
+          "display": "grid",
+          "height": "100%",
           "justifyContent": "center",
-          "maxHeight": "100%",
-          "width": "20rem",
+          "width": "100%",
         }
       }
     >
-      <h5
-        className="text-center card-header"
-        id="Card-Header"
-        style={
-          Object {
-            "width": "100%",
-          }
-        }
-      >
-         
-        Leon
-      </h5>
       <div
-        className="card-body"
+        className="UsersTasks card"
+        id="Card-field"
         style={
           Object {
             "alignItems": "center",
-            "display": "Grid",
-            "height": "100%",
-            "justifyContent": "center",
-            "padding": "0!important",
+            "height": "47vh",
+            "margin": "0.5em",
+            "maxHeight": "100%",
+            "width": "19em",
           }
         }
       >
-        <div
+        <h5
+          className="text-center card-header"
+          id="Card-Header"
           style={
             Object {
-              "maxHeight": "100%",
-              "overflow": "hidden",
+              "width": "100%",
             }
           }
         >
+           
+          Leon
+        </h5>
+        <div
+          className="card-body"
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "backgroundColor": "#7e828b",
+              "borderLeft": "#454549 solid 1px",
+              "borderRight": "#454549 solid 1px",
+              "display": "flex",
+              "flexDirection": "column",
+              "height": "100%",
+              "overflowY": "auto",
+              "width": "100%",
+            }
+          }
+        />
+        <div
+          className="card-footer"
+          id="Card-Footer"
+        >
           <button
-            className="GoButton btn btn-primary"
+            className="CardButton text-center btn btn-primary"
             disabled={false}
             onClick={[Function]}
+            style={
+              Object {
+                "verticalAlign": "middle",
+              }
+            }
             type="button"
           >
-            Add Task
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              strokeWidth="0"
+              style={
+                Object {
+                  "color": undefined,
+                  "verticalAlign": "middle",
+                }
+              }
+              viewBox="0 0 512 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"
+              />
+            </svg>
           </button>
         </div>
       </div>
     </div>
   </div>
+  <div
+    className="card-footer"
+    id="Card-Footer"
+  />
 </div>
 `;
 
@@ -246,8 +369,8 @@ exports[`Roster tabs render correctly 1`] = `
       role="button"
       style={
         Object {
-          "outline": "1px solid black ",
-          "outlineColor": "black",
+          "marginLeft": "0.25em",
+          "marginRight": "0.25em",
         }
       }
     >
@@ -282,8 +405,8 @@ exports[`Roster tabs render correctly 1`] = `
       role="button"
       style={
         Object {
-          "outline": "1px solid black ",
-          "outlineColor": "black",
+          "marginLeft": "0.25em",
+          "marginRight": "0.25em",
         }
       }
     >
@@ -318,8 +441,8 @@ exports[`Roster tabs render correctly 1`] = `
       role="button"
       style={
         Object {
-          "outline": "1px solid black ",
-          "outlineColor": "black",
+          "marginLeft": "0.25em",
+          "marginRight": "0.25em",
         }
       }
     >
@@ -352,13 +475,36 @@ exports[`Roster tabs render correctly 1`] = `
     onClick={[Function]}
     type="button"
   >
-    add
+    <svg
+      fill="currentColor"
+      height="1em"
+      stroke="currentColor"
+      strokeWidth="0"
+      style={
+        Object {
+          "color": undefined,
+        }
+      }
+      viewBox="0 0 512 512"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"
+      />
+    </svg>
   </button>
 </nav>
 `;
 
 exports[`Rosters container (containing tabs and roster view) render correctly 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "width": "85vw",
+    }
+  }
+>
   <nav
     className="navbar navbar-expand navbar-dark bg-dark"
     style={Object {}}
@@ -376,8 +522,8 @@ exports[`Rosters container (containing tabs and roster view) render correctly 1`
         role="button"
         style={
           Object {
-            "outline": "1px solid black ",
-            "outlineColor": "black",
+            "marginLeft": "0.25em",
+            "marginRight": "0.25em",
           }
         }
       >
@@ -412,8 +558,8 @@ exports[`Rosters container (containing tabs and roster view) render correctly 1`
         role="button"
         style={
           Object {
-            "outline": "1px solid black ",
-            "outlineColor": "black",
+            "marginLeft": "0.25em",
+            "marginRight": "0.25em",
           }
         }
       >
@@ -448,8 +594,8 @@ exports[`Rosters container (containing tabs and roster view) render correctly 1`
         role="button"
         style={
           Object {
-            "outline": "1px solid black ",
-            "outlineColor": "black",
+            "marginLeft": "0.25em",
+            "marginRight": "0.25em",
           }
         }
       >
@@ -482,7 +628,24 @@ exports[`Rosters container (containing tabs and roster view) render correctly 1`
       onClick={[Function]}
       type="button"
     >
-      add
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 512 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"
+        />
+      </svg>
     </button>
   </nav>
 </div>
@@ -490,14 +653,15 @@ exports[`Rosters container (containing tabs and roster view) render correctly 1`
 
 exports[`User task list in roster render correctly 1`] = `
 <div
-  className="card"
+  className="UsersTasks card"
   id="Card-field"
   style={
     Object {
       "alignItems": "center",
-      "justifyContent": "center",
+      "height": "47vh",
+      "margin": "0.5em",
       "maxHeight": "100%",
-      "width": "20rem",
+      "width": "19em",
     }
   }
 >
@@ -517,31 +681,53 @@ exports[`User task list in roster render correctly 1`] = `
     className="card-body"
     style={
       Object {
-        "alignItems": "center",
-        "display": "Grid",
+        "alignItems": "flex-start",
+        "backgroundColor": "#7e828b",
+        "borderLeft": "#454549 solid 1px",
+        "borderRight": "#454549 solid 1px",
+        "display": "flex",
+        "flexDirection": "column",
         "height": "100%",
-        "justifyContent": "center",
-        "padding": "0!important",
+        "overflowY": "auto",
+        "width": "100%",
       }
     }
+  />
+  <div
+    className="card-footer"
+    id="Card-Footer"
   >
-    <div
+    <button
+      className="CardButton text-center btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
       style={
         Object {
-          "maxHeight": "100%",
-          "overflow": "hidden",
+          "verticalAlign": "middle",
         }
       }
+      type="button"
     >
-      <button
-        className="GoButton btn btn-primary"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+            "verticalAlign": "middle",
+          }
+        }
+        viewBox="0 0 512 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        Add Task
-      </button>
-    </div>
+        <path
+          d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"
+        />
+      </svg>
+    </button>
   </div>
 </div>
 `;
