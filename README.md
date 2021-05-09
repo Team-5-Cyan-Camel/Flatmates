@@ -9,6 +9,7 @@ A flat management system to allow flatmates to communicate and manage tasks/chor
    <b>Note:</b> if you would like the organization’s file, please contact [In.early.springs@gmail.com](In.early.springs@gmail.com)
 3. In both frontend and backend folders, run `npm install`, followed by `npm start` to start both the frontend and backend.
    <b>Note:</b> We recommend starting the backend first, however it should not cause any issues.
+4. If the user wants to use the backend hosted on heroku instead, do not run `npm install` and `npm start` on the backend folder. Instead, replace the `"proxy": "http://localhost:3001"` in `package.json` with `"proxy": "https://softeng750-flatmates-backend.herokuapp.com"`. Then just normally run `npm install` and `npm start` in the frontend folder.
 
 ## Functionality
 
