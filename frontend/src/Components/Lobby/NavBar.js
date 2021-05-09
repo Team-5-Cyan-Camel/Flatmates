@@ -135,7 +135,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
                 width: "100%",
                 borderTopRightRadius: "0",
                 borderTopLeftRadius: "0",
-                backgroundColor: "#868686",
+                backgroundColor: "#4D4D4D",
               }}
               aria-labelledby="dropdownMenuButton"
             >
@@ -187,6 +187,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
                   Leave Room
                 </a>
               )}
+              <div class="dropdown-divider"></div>
               <a
                 class="dropdown-item dropdownTab"
                 style={{ color: "white" }}
@@ -217,6 +218,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
         <Button
           className="NavBarButton"
           id="NavBarToHide"
+          style={{ marginLeft: "0.2em" }}
           onClick={() => setSettings(true)}
         >
           Personalise
@@ -225,6 +227,7 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
         <Button
           className="NavBarButton"
           id="NavBarToHide"
+          style={{ marginLeft: "0.2em" }}
           onClick={() => copyCode()}
         >
           Get Code
@@ -234,17 +237,28 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
           <Button
             className="NavBarButton"
             id="NavBarToHide"
+            style={{ marginLeft: "0.2em" }}
             onClick={deleteRoom}
           >
             Delete Room
           </Button>
         ) : (
-          <Button className="NavBarButton" id="NavBarToHide" onClick={leave}>
+          <Button
+            className="NavBarButton"
+            id="NavBarToHide"
+            style={{ marginLeft: "0.2em" }}
+            onClick={leave}
+          >
             Leave Room
           </Button>
         )}
 
-        <Button className="NavBarButton" id="NavBarToHide" onClick={signOut}>
+        <Button
+          className="NavBarButton"
+          id="NavBarToHide"
+          style={{ marginLeft: "0.2em" }}
+          onClick={signOut}
+        >
           <FaSignOutAlt />
         </Button>
       </Navbar>
