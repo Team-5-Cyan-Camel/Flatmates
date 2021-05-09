@@ -9,7 +9,6 @@ import { useState } from "react";
 import axios from "axios";
 import "../Lobby/NavBar.css";
 
-import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Link, NavLink, useHistory, useParams } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
@@ -17,7 +16,6 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import { FaPlusCircle as PlusSymbol } from "react-icons/fa";
 
 import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 
 const SelectRoster = ({ rosters, setRoster, updateDb, isHost }) => {
   let [makeRoster, setMakeRoster] = useState(false);

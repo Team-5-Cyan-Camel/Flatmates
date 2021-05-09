@@ -10,7 +10,6 @@ import Nav from "react-bootstrap/Nav";
 import { FaCog as Cog } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 
-import { SocketContext } from "../../Context/socketContext";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
@@ -109,13 +108,19 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
         <Navbar.Brand href="home">FlatMates</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link>
-            <Link to={"/room/" + code}>Room</Link>
+            <Link style={{ color: "white" }} to={"/room/" + code}>
+              Room
+            </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link to={"/room/" + code + "/roster"}>Roster</Link>
+            <Link style={{ color: "white" }} to={"/room/" + code + "/roster"}>
+              Roster
+            </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link to={"/room/" + code + "/message"}>Message Board</Link>
+            <Link style={{ color: "white" }} to={"/room/" + code + "/message"}>
+              Message Board
+            </Link>
           </Nav.Link>
         </Nav>
 

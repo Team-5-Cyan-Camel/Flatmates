@@ -101,6 +101,8 @@ const Room = ({ setIsHost }) => {
             <Spinner animation="border" />
           )}
         </Card.Body>
+
+        <Card.Footer id="Card-Footer"></Card.Footer>
       </Card>
     </>
   );

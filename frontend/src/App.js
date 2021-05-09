@@ -205,12 +205,14 @@ function App() {
           </Route>
 
           <Route path="/room/:code/message" exact>
-            <Container>
-              <MessageBoard
-                messageList={messageList}
-                setMessageList={setMessageList}
-              />
-            </Container>
+            <div className="MakeCentre">
+              <Container>
+                <MessageBoard
+                  messageList={messageList}
+                  setMessageList={setMessageList}
+                />
+              </Container>
+            </div>
           </Route>
 
           {/* path for incompatable path */}
