@@ -77,6 +77,7 @@ const Roster = ({ data, isHost }) => {
             {data.assignedUsers.map((e, i) => {
               return (
                 <div
+                  key={i}
                   style={{
                     display: "grid",
                     height: "100%",

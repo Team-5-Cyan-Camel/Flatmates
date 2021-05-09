@@ -1,15 +1,13 @@
 import { React, useEffect, useState, useRef, useContext } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import { SocketContext } from "../../Context/socketContext";
 import axios from "axios";
-import { FaSkating } from "react-icons/fa";
 import "../../App.css";
 
-const Chatbox = ({ messageList, setMessageList }) => {
+const Chatbox = ({ messageList }) => {
   const scrollRef = useRef(null);
   const [chatMessage, setChatMessage] = useState("");
   const socket = useContext(SocketContext);

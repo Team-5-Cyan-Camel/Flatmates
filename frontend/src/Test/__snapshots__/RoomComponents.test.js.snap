@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Room display renders correctly 1`] = `
+<div
+  className="card"
+  id="Card-field"
+  style={
+    Object {
+      "alignItems": "center",
+      "justifyContent": "center",
+    }
+  }
+>
+  <h5
+    className="text-center card-header"
+    id="Card-Header"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+     
+    Members
+  </h5>
+  <div
+    className="card-body"
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "Flex",
+        "justifyContent": "center",
+        "width": "90%",
+      }
+    }
+  >
+    <div
+      className="spinner-border"
+    />
+  </div>
+</div>
+`;
+
+exports[`User info display renders correctly 1`] = `
+<div
+  className="card"
+  id="Card-field"
+  style={
+    Object {
+      "alignItems": "center",
+      "justifyContent": "center",
+    }
+  }
+>
+  <h5
+    className="text-center card-header"
+    id="Card-Header"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+     
+    Leon
+     
+  </h5>
+  <div
+    className="card-body"
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "Flex",
+        "justifyContent": "center",
+        "width": "90%",
+      }
+    }
+  >
+    <form
+      className=""
+    >
+      <p>
+        Number: 
+        N/A
+      </p>
+      <br />
+      <p>
+        Email: 
+        N/A
+      </p>
+      <br />
+    </form>
+  </div>
+</div>
+`;
