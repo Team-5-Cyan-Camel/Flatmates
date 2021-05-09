@@ -248,9 +248,8 @@
 }
 
 /** mobile view*/
-@media (max-width: 800px) {
+@media (max-width: 750px) {
   .UsersTasksList {
-    /** grid-auto-flow: row !important;*/
     display: flex !important;
     flex-direction: column !important;
 
@@ -262,11 +261,22 @@
   }
 
   .UsersTasks {
-    width: 100% !important;
     margin: 0.5em !important;
+  }
+
+  #NavBarToHide {
+    display: none;
+  }
+
+  #NavBarToShow {
+    display: block !important;
   }
 }
 
 .UsersTasks {
   min-height: min-content;
+}
+
+.dropdownTab:active {
+  background-color: #b8b8b8 !important;
 }
