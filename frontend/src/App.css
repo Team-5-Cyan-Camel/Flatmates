@@ -87,7 +87,7 @@
 
 .BackGroundImage {
   background-image: linear-gradient(rgba(0, 0, 0, 0.411), rgba(0, 0, 0, 0.432)),
-    url("https://i.imgur.com/avH0ibK.png"); /**credit to Leon Chin who drew this himself*/
+    url("darkKitchen.png");
   background-color: #b8b8b8;
 
   width: 100vw;
