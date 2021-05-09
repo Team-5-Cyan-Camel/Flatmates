@@ -109,7 +109,9 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="home">FlatMates</Navbar.Brand>
+        <Navbar.Brand id="NavBarToHide" href="home">
+          FlatMates
+        </Navbar.Brand>
         <Nav className="mr-auto">
           <div
             class="dropdown"
@@ -123,9 +125,9 @@ const NavBar = ({ setSettings, setUpdate, isHost }) => {
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-              style={{ width: "100%" }}
+              style={{ width: "10em" }}
             >
-              <FaBars />
+              FlatMates <FaBars style={{ marginLeft: "0.25em" }}></FaBars>
             </button>
             <div
               class="dropdown-menu"
